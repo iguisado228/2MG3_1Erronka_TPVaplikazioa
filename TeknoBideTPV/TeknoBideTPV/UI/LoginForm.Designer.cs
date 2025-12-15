@@ -76,6 +76,7 @@
             txtErabiltzailea.Name = "txtErabiltzailea";
             txtErabiltzailea.Size = new Size(381, 70);
             txtErabiltzailea.TabIndex = 3;
+            txtErabiltzailea.TextChanged += txtErabiltzailea_TextChanged;
             // 
             // txtPasahitza
             // 
@@ -109,6 +110,7 @@
             Name = "LoginForm";
             Text = "LoginForm";
             WindowState = FormWindowState.Maximized;
+            Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

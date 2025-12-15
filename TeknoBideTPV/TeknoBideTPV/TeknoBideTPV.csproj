@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Datu_Iturriak\Repositories\" />
     <Folder Include="UI\Controls\" />
   </ItemGroup>
 

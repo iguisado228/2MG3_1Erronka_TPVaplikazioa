@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TeknoBideTPV.UI;
 
 namespace TeknoBideTPV.UI
 {
@@ -19,9 +13,18 @@ namespace TeknoBideTPV.UI
 
         private void MenuNagusia_Load(object sender, EventArgs e)
         {
-
         }
 
-       
+        private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
+        {
+            var ErreserbakForm = new ErreserbakForm();
+            ErreserbakForm.ShowDialog();
+        }
+
+        private void btn_EskariakSortu_Click(object sender, EventArgs e)
+        {
+            var EskariakSortuForm = new EskariakSortuForm();
+            EskariakSortuForm.ShowDialog();
+        }
     }
 }

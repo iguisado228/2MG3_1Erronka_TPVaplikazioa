@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             tlpMenua = new TableLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
+            btn_ErreserbakIkusi = new Button();
+            btn_EskariakSortu = new Button();
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
@@ -47,8 +47,8 @@
             tlpMenua.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tlpMenua.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tlpMenua.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tlpMenua.Controls.Add(button1, 0, 0);
-            tlpMenua.Controls.Add(button2, 1, 0);
+            tlpMenua.Controls.Add(btn_ErreserbakIkusi, 0, 0);
+            tlpMenua.Controls.Add(btn_EskariakSortu, 1, 0);
             tlpMenua.Controls.Add(button3, 2, 0);
             tlpMenua.Controls.Add(button4, 3, 0);
             tlpMenua.Controls.Add(button5, 0, 1);
@@ -63,23 +63,25 @@
             tlpMenua.Size = new Size(1902, 838);
             tlpMenua.TabIndex = 0;
             // 
-            // button1
+            // btn_ErreserbakIkusi
             // 
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(469, 413);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btn_ErreserbakIkusi.Location = new Point(3, 3);
+            btn_ErreserbakIkusi.Name = "btn_ErreserbakIkusi";
+            btn_ErreserbakIkusi.Size = new Size(469, 413);
+            btn_ErreserbakIkusi.TabIndex = 0;
+            btn_ErreserbakIkusi.Text = "Erreserbak ikusi";
+            btn_ErreserbakIkusi.UseVisualStyleBackColor = false;
+            btn_ErreserbakIkusi.Click += btn_ErreserbakIkusi_Click;
             // 
-            // button2
+            // btn_EskariakSortu
             // 
-            button2.Location = new Point(478, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(469, 413);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btn_EskariakSortu.Location = new Point(478, 3);
+            btn_EskariakSortu.Name = "btn_EskariakSortu";
+            btn_EskariakSortu.Size = new Size(469, 413);
+            btn_EskariakSortu.TabIndex = 1;
+            btn_EskariakSortu.Text = "Eskaria Sortu";
+            btn_EskariakSortu.UseVisualStyleBackColor = true;
+            btn_EskariakSortu.Click += btn_EskariakSortu_Click;
             // 
             // button3
             // 
@@ -153,8 +155,8 @@
         #endregion
 
         private TableLayoutPanel tlpMenua;
-        private Button button1;
-        private Button button2;
+        private Button btn_ErreserbakIkusi;
+        private Button btn_EskariakSortu;
         private Button button3;
         private Button button4;
         private Button button5;
