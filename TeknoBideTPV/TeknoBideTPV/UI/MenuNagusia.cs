@@ -10,11 +10,6 @@ namespace TeknoBideTPV.UI
         {
             InitializeComponent();
         }
-
-        private void MenuNagusia_Load(object sender, EventArgs e)
-        {
-        }
-
         private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
         {
             var ErreserbakForm = new ErreserbakForm();

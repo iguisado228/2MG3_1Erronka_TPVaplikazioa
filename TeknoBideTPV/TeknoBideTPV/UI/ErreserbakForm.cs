@@ -24,7 +24,6 @@ namespace TeknoBideTPV.UI
 
                 dgv_ErreserbakIkusi.DataSource = erreserbak;
 
-                // Opcional: configurar columnas
                 dgv_ErreserbakIkusi.Columns["Id"].HeaderText = "ID";
                 dgv_ErreserbakIkusi.Columns["BezeroIzena"].HeaderText = "Bezeroa";
                 dgv_ErreserbakIkusi.Columns["Telefonoa"].HeaderText = "Telefonoa";
@@ -41,7 +40,5 @@ namespace TeknoBideTPV.UI
                 MessageBox.Show($"Errorea erreserbak kargatzen: {ex.Message}");
             }
         }
-
-
     }
 }

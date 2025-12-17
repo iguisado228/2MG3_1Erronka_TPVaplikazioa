@@ -6,9 +6,7 @@
         public string BezeroIzena { get; set; } = string.Empty;
         public string Telefonoa { get; set; } = string.Empty;
         public int PertsonaKopurua { get; set; }
-        public DateTime EgunaOrdua { get; set; } // fecha + hora
-
-        // Propiedades calculadas para mostrar en el DataGridView
+        public DateTime EgunaOrdua { get; set; } 
         public string Eguna => EgunaOrdua.ToString("dd/MM/yyyy");
         public string Ordua => EgunaOrdua.ToString("HH:mm");
 

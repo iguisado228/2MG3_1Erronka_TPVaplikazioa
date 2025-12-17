@@ -36,15 +36,15 @@
             // dgv_ErreserbakIkusi
             // 
             dgv_ErreserbakIkusi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_ErreserbakIkusi.Location = new Point(69, 23);
+            dgv_ErreserbakIkusi.Location = new Point(59, 41);
             dgv_ErreserbakIkusi.Name = "dgv_ErreserbakIkusi";
             dgv_ErreserbakIkusi.RowHeadersWidth = 51;
-            dgv_ErreserbakIkusi.Size = new Size(698, 469);
+            dgv_ErreserbakIkusi.Size = new Size(992, 676);
             dgv_ErreserbakIkusi.TabIndex = 0;
             // 
             // btn_ErreserbakErakutsi
             // 
-            btn_ErreserbakErakutsi.Location = new Point(925, 62);
+            btn_ErreserbakErakutsi.Location = new Point(1125, 97);
             btn_ErreserbakErakutsi.Name = "btn_ErreserbakErakutsi";
             btn_ErreserbakErakutsi.Size = new Size(190, 115);
             btn_ErreserbakErakutsi.TabIndex = 1;
@@ -52,15 +52,17 @@
             btn_ErreserbakErakutsi.UseVisualStyleBackColor = true;
             btn_ErreserbakErakutsi.Click += btn_ErreserbakErakutsi_Click;
             // 
-            // Erreserbak
+            // ErreserbakForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
             Controls.Add(btn_ErreserbakErakutsi);
             Controls.Add(dgv_ErreserbakIkusi);
-            Name = "Erreserbak";
+            Name = "ErreserbakForm";
             Text = "Erreserbak";
+            WindowState = FormWindowState.Maximized;
+            Load += ErreserbakForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).EndInit();
             ResumeLayout(false);
         }

@@ -21,34 +21,35 @@ namespace TeknoBideTPV.UI
         }
         private async void btnSartu_Click(object sender, EventArgs e)
         {
-            string erabiltzaile_izena = txtErabiltzailea.Text;
+            if (!int.TryParse(txtErabiltzailea.Text, out int langileKodea))
+            {
+                MessageBox.Show("Langile kodea zenbaki bat izan behar da", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string pasahitza = txtPasahitza.Text;
 
             var api = new ApiZerbitzua();
-            var langilea = await api.LoginAsync(erabiltzaile_izena, pasahitza);
+            var erantzuna = await api.LoginAsync(langileKodea, pasahitza);
 
-            if (langilea != null)
+            if (erantzuna == null)
             {
-                MessageBox.Show("Login zuzena", "Sarrera", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Errorea APIarekin konektatzean", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (erantzuna.Ok)
+            {
+                MessageBox.Show(erantzuna.Message, "Sarrera", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var menuNagusia = new MenuNagusia();
                 menuNagusia.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Erabiltzaile edo Pasahitza okerra", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(erantzuna.Message, "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-
-        private void txtErabiltzailea_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
+

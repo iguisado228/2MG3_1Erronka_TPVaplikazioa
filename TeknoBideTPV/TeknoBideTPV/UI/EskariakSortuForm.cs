@@ -77,40 +77,76 @@ namespace TeknoBideTPV.UI
             EskariakGridEguneratu();
         }
 
-        private void EskariakGridEguneratu()
-        {
-            dgv_EskariaProduktua.DataSource = null;
-            dgv_EskariaProduktua.DataSource = produktuakEskarian;
+       private void EskariakGridEguneratu()
+{
+    dgv_EskariaProduktua.Columns.Clear();
 
-            if (!dgv_EskariaProduktua.Columns.Contains("btn_ProduktuaKendu"))
-            {
-                var btnCol = new DataGridViewButtonColumn
-                {
-                    Name = "btn_ProduktuaKendu",
-                    HeaderText = "❌",
-                    Text = "Ezabatu",
-                    UseColumnTextForButtonValue = true,
-                    Width = 80
-                };
-                dgv_EskariaProduktua.Columns.Add(btnCol);
-            }
+    var data = produktuakEskarian.Select(p => new
+    {
+        ProduktuaIzena = produktuak.FirstOrDefault(x => x.Id == p.ProduktuaId)?.Izena ?? "Desconocido",
+        Kantitatea = p.Kantitatea,
+        ProduktuakPrezioaBakarka = p.Prezioa / p.Kantitatea,
+        ProduktuakPrezioaGuztira = p.Prezioa
+    }).ToList();
 
-            txt_PrezioTotala.Text = produktuakEskarian.Sum(p => p.Prezioa).ToString("0.00");
-        }
+    dgv_EskariaProduktua.AutoGenerateColumns = false;
+    dgv_EskariaProduktua.DataSource = data;
+    dgv_EskariaProduktua.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+    {
+        DataPropertyName = "ProduktuaIzena",
+        HeaderText = "Produktua",
+        Name = "ProduktuaIzena"
+    });
+
+    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+    {
+        DataPropertyName = "Kantitatea",
+        HeaderText = "Kantitatea",
+        Name = "Kantitatea"
+    });
+
+    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+    {
+        DataPropertyName = "ProduktuakPrezioaBakarka",
+        HeaderText = "Prezioa (€)",
+        Name = "ProduktuakPrezioaBakarka"
+    });
+
+    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+    {
+        DataPropertyName = "ProduktuakPrezioaGuztira",
+        HeaderText = "Guztira (€)",
+        Name = "ProduktuakPrezioaGuztira"
+    });
+
+    dgv_EskariaProduktua.Columns.Add(new DataGridViewButtonColumn
+    {
+        Name = "btn_ProduktuaKendu",
+        HeaderText = "Produktua ezabatu",
+        Text = "Ezabatu",
+        UseColumnTextForButtonValue = true
+    });
+
+    txt_PrezioTotala.Text = produktuakEskarian.Sum(p => p.Prezioa).ToString("0.00");
+}
 
         private void dgv_EskariaProduktua_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgv_EskariaProduktua.Columns[e.ColumnIndex].Name == "btn_ProduktuaKendu")
             {
-                var produktuaId = (int)dgv_EskariaProduktua.Rows[e.RowIndex].Cells["ProduktuaId"].Value;
-                var produktuaEskarian = produktuakEskarian.FirstOrDefault(p => p.ProduktuaId == produktuaId);
+                var produktuaIzena = dgv_EskariaProduktua.Rows[e.RowIndex].Cells["ProduktuaIzena"].Value.ToString();
+                var produktuaEskarian = produktuakEskarian.FirstOrDefault(p =>
+                    produktuak.FirstOrDefault(x => x.Id == p.ProduktuaId)?.Izena == produktuaIzena);
 
                 if (produktuaEskarian != null)
                 {
                     if (produktuaEskarian.Kantitatea > 1)
                     {
                         produktuaEskarian.Kantitatea--;
-                        produktuaEskarian.Prezioa = produktuaEskarian.Kantitatea * produktuak.First(p => p.Id == produktuaId).Prezioa;
+                        produktuaEskarian.Prezioa = produktuaEskarian.Kantitatea *
+                            produktuak.First(x => x.Id == produktuaEskarian.ProduktuaId).Prezioa;
                     }
                     else
                     {
@@ -122,11 +158,9 @@ namespace TeknoBideTPV.UI
             }
         }
 
+
         private async void btn_SortuEskaria_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("Botón pulsado, creando eskaria...");
-
             if (cbo_Erreserba.SelectedItem == null || produktuakEskarian.Count == 0)
             {
                 MessageBox.Show("Aukeratu erreserba eta produktuak lehenik.");
@@ -137,18 +171,38 @@ namespace TeknoBideTPV.UI
             {
                 ErreserbaId = ((ErreserbaDto)cbo_Erreserba.SelectedItem).Id,
                 Prezioa = double.Parse(txt_PrezioTotala.Text),
-                Egoera = txt_Egoera.Text,
+                Egoera = "Bidalita",
                 Produktuak = produktuakEskarian
             };
 
             var emaitza = await api.SortuEskariaAsync(eskaria);
+
             if (emaitza != null)
-                MessageBox.Show($"Eskaria sortuta! ID: {emaitza.EskariaId}");
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine($"Eskaria sortuta!");
+                sb.AppendLine($"Prezio Totala: {emaitza.PrezioaTotala:0.00} €");
+                sb.AppendLine("Produktuak:");
+
+                foreach (var p in emaitza.Produktuak)
+                {
+                    sb.AppendLine($"{p.ProduktuaIzena} - {p.Kantitatea} x {p.ProduktuakPrezioaBakarka:0.00}€ = {p.ProduktuakPrezioaGuztira:0.00}€");
+                }
+
+                MessageBox.Show(sb.ToString(), "Eskaria sortuta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
+            {
                 MessageBox.Show("Errorea eskaria sortzean.");
+            }
 
             produktuakEskarian.Clear();
-            EskariakGridEguneratu();
+
+            if (produktuakEskarian.Count > 0)
+                EskariakGridEguneratu();
+            else
+                dgv_EskariaProduktua.DataSource = null;
         }
+
     }
 }
