@@ -62,7 +62,6 @@
             Name = "ErreserbakForm";
             Text = "Erreserbak";
             WindowState = FormWindowState.Maximized;
-            Load += ErreserbakForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).EndInit();
             ResumeLayout(false);
         }

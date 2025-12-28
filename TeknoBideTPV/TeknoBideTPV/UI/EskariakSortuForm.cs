@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
+using System.Drawing;
 
 namespace TeknoBideTPV.UI
 {
@@ -13,6 +14,12 @@ namespace TeknoBideTPV.UI
         private List<EskariaProduktuaSortuDto> produktuakEskarian = new();
         private List<ProduktuaDto> produktuak = new();
         private List<ErreserbaDto> erreserbak = new();
+
+        private Button botoiAktiboa = null;
+
+        private readonly Color KoloreNormala = Color.FromArgb(52, 152, 219);
+        private readonly Color KoloreHover = Color.FromArgb(41, 128, 185);
+        private readonly Color KoloreAktiboa = Color.FromArgb(39, 174, 96);
 
         public EskariakSortuForm()
         {
@@ -24,6 +31,23 @@ namespace TeknoBideTPV.UI
         {
             erreserbak = await api.ErreserbakLortuAsync();
             cbo_Erreserba.DataSource = erreserbak;
+
+            dgv_EskariaProduktua.EnableHeadersVisualStyles = false;
+            dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
+            dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dgv_EskariaProduktua.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgv_EskariaProduktua.DefaultCellStyle.BackColor = Color.White;
+            dgv_EskariaProduktua.DefaultCellStyle.ForeColor = Color.Black;
+            dgv_EskariaProduktua.DefaultCellStyle.SelectionBackColor = Color.FromArgb(39, 174, 96);
+            dgv_EskariaProduktua.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv_EskariaProduktua.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+            dgv_EskariaProduktua.GridColor = Color.LightGray;
+            dgv_EskariaProduktua.RowHeadersVisible = false;
+
+
             cbo_Erreserba.DisplayMember = "BezeroIzena";
             cbo_Erreserba.ValueMember = "Id";
 
@@ -35,9 +59,103 @@ namespace TeknoBideTPV.UI
                 return;
             }
 
+            SortuProduktuMotaBotoiak();
+            ErakutsiProduktuak(produktuak);
+        }
+
+        private Button SortuTpvBotoia(string testua)
+        {
+            var btn = new Button
+            {
+                Text = testua,
+                AutoSize = true,
+                BackColor = KoloreNormala,
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                FlatStyle = FlatStyle.Flat,
+                Padding = new Padding(25, 15, 25, 15),
+                Margin = new Padding(8)
+            };
+
+            btn.FlatAppearance.BorderSize = 0;
+
+            btn.MouseEnter += (s, e) =>
+            {
+                if (btn != botoiAktiboa)
+                    btn.BackColor = KoloreHover;
+            };
+
+            btn.MouseLeave += (s, e) =>
+            {
+                if (btn != botoiAktiboa)
+                    btn.BackColor = KoloreNormala;
+            };
+
+            return btn;
+        }
+
+        private void SortuProduktuMotaBotoiak()
+        {
+            flp_ProduktuMotak.Controls.Clear();
+
+            var motak = produktuak
+                .Select(p => p.Mota?.Trim().ToLower())
+                .Where(m => !string.IsNullOrWhiteSpace(m))
+                .Distinct()
+                .OrderBy(m => m)
+                .ToList();
+
+            if (motak.Count == 0)
+            {
+                MessageBox.Show("Ez da produktu motarik aurkitu.");
+                return;
+            }
+
+            var btnGuztiak = SortuTpvBotoia("Guztiak");
+
+            btnGuztiak.Click += (s, e) =>
+            {
+                if (botoiAktiboa != null)
+                    botoiAktiboa.BackColor = KoloreNormala;
+
+                btnGuztiak.BackColor = KoloreAktiboa;
+                botoiAktiboa = btnGuztiak;
+
+                ErakutsiProduktuak(produktuak);
+            };
+
+            flp_ProduktuMotak.Controls.Add(btnGuztiak);
+
+            foreach (var mota in motak)
+            {
+                var btn = SortuTpvBotoia(char.ToUpper(mota[0]) + mota.Substring(1));
+
+                btn.Click += (s, e) =>
+                {
+                    if (botoiAktiboa != null)
+                        botoiAktiboa.BackColor = KoloreNormala;
+
+                    btn.BackColor = KoloreAktiboa;
+                    botoiAktiboa = btn;
+
+                    var filtratuak = produktuak
+                        .Where(p => p.Mota.Equals(mota, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+
+                    ErakutsiProduktuak(filtratuak);
+                };
+
+                flp_ProduktuMotak.Controls.Add(btn);
+            }
+
+            btnGuztiak.PerformClick();
+        }
+
+        private void ErakutsiProduktuak(List<ProduktuaDto> zerrenda)
+        {
             flp_Produktuak.Controls.Clear();
 
-            foreach (var p in produktuak)
+            foreach (var p in zerrenda)
             {
                 var btn = new Button
                 {
@@ -45,10 +163,11 @@ namespace TeknoBideTPV.UI
                     Tag = p,
                     Width = 150,
                     Height = 80,
-                    BackColor = System.Drawing.Color.LightSteelBlue,
-                    Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold),
+                    BackColor = Color.LightSteelBlue,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
                     Margin = new Padding(5)
                 };
+
                 btn.Click += ProduktuaGehitu_Click;
                 flp_Produktuak.Controls.Add(btn);
             }
@@ -77,60 +196,60 @@ namespace TeknoBideTPV.UI
             EskariakGridEguneratu();
         }
 
-       private void EskariakGridEguneratu()
-{
-    dgv_EskariaProduktua.Columns.Clear();
+        private void EskariakGridEguneratu()
+        {
+            dgv_EskariaProduktua.Columns.Clear();
 
-    var data = produktuakEskarian.Select(p => new
-    {
-        ProduktuaIzena = produktuak.FirstOrDefault(x => x.Id == p.ProduktuaId)?.Izena ?? "Desconocido",
-        Kantitatea = p.Kantitatea,
-        ProduktuakPrezioaBakarka = p.Prezioa / p.Kantitatea,
-        ProduktuakPrezioaGuztira = p.Prezioa
-    }).ToList();
+            var data = produktuakEskarian.Select(p => new
+            {
+                ProduktuaIzena = produktuak.FirstOrDefault(x => x.Id == p.ProduktuaId)?.Izena ?? "Desconocido",
+                Kantitatea = p.Kantitatea,
+                ProduktuakPrezioaBakarka = p.Prezioa / p.Kantitatea,
+                ProduktuakPrezioaGuztira = p.Prezioa
+            }).ToList();
 
-    dgv_EskariaProduktua.AutoGenerateColumns = false;
-    dgv_EskariaProduktua.DataSource = data;
-    dgv_EskariaProduktua.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_EskariaProduktua.AutoGenerateColumns = false;
+            dgv_EskariaProduktua.DataSource = data;
+            dgv_EskariaProduktua.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
-    {
-        DataPropertyName = "ProduktuaIzena",
-        HeaderText = "Produktua",
-        Name = "ProduktuaIzena"
-    });
+            dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "ProduktuaIzena",
+                HeaderText = "Produktua",
+                Name = "ProduktuaIzena"
+            });
 
-    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
-    {
-        DataPropertyName = "Kantitatea",
-        HeaderText = "Kantitatea",
-        Name = "Kantitatea"
-    });
+            dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Kantitatea",
+                HeaderText = "Kantitatea",
+                Name = "Kantitatea"
+            });
 
-    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
-    {
-        DataPropertyName = "ProduktuakPrezioaBakarka",
-        HeaderText = "Prezioa (€)",
-        Name = "ProduktuakPrezioaBakarka"
-    });
+            dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "ProduktuakPrezioaBakarka",
+                HeaderText = "Prezioa (€)",
+                Name = "ProduktuakPrezioaBakarka"
+            });
 
-    dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
-    {
-        DataPropertyName = "ProduktuakPrezioaGuztira",
-        HeaderText = "Guztira (€)",
-        Name = "ProduktuakPrezioaGuztira"
-    });
+            dgv_EskariaProduktua.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "ProduktuakPrezioaGuztira",
+                HeaderText = "Guztira (€)",
+                Name = "ProduktuakPrezioaGuztira"
+            });
 
-    dgv_EskariaProduktua.Columns.Add(new DataGridViewButtonColumn
-    {
-        Name = "btn_ProduktuaKendu",
-        HeaderText = "Produktua ezabatu",
-        Text = "Ezabatu",
-        UseColumnTextForButtonValue = true
-    });
+            dgv_EskariaProduktua.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "btn_ProduktuaKendu",
+                HeaderText = "Produktua ezabatu",
+                Text = "Ezabatu",
+                UseColumnTextForButtonValue = true
+            });
 
-    txt_PrezioTotala.Text = produktuakEskarian.Sum(p => p.Prezioa).ToString("0.00");
-}
+            txt_PrezioTotala.Text = produktuakEskarian.Sum(p => p.Prezioa).ToString("0.00");
+        }
 
         private void dgv_EskariaProduktua_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -157,7 +276,6 @@ namespace TeknoBideTPV.UI
                 EskariakGridEguneratu();
             }
         }
-
 
         private async void btn_SortuEskaria_Click(object sender, EventArgs e)
         {
@@ -203,6 +321,5 @@ namespace TeknoBideTPV.UI
             else
                 dgv_EskariaProduktua.DataSource = null;
         }
-
     }
 }

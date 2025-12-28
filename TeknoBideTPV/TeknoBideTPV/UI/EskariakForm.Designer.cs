@@ -37,7 +37,6 @@
             ClientSize = new Size(800, 450);
             Name = "EskariakForm";
             Text = "EskariakForm";
-            Load += EskariakForm_Load;
             ResumeLayout(false);
         }
 

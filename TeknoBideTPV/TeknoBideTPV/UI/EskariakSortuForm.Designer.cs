@@ -35,8 +35,9 @@
             txt_PrezioTotala = new TextBox();
             cbo_Erreserba = new ComboBox();
             label1 = new Label();
-            txt_Egoera = new Label();
             btn_SortuEskaria = new Button();
+            pnl_ProduktuMotak = new Panel();
+            flp_ProduktuMotak = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dgv_EskariaProduktua).BeginInit();
             SuspendLayout();
             // 
@@ -52,15 +53,15 @@
             // 
             // flp_Produktuak
             // 
-            flp_Produktuak.Location = new Point(34, 142);
+            flp_Produktuak.Location = new Point(34, 270);
             flp_Produktuak.Name = "flp_Produktuak";
-            flp_Produktuak.Size = new Size(1005, 879);
+            flp_Produktuak.Size = new Size(1005, 751);
             flp_Produktuak.TabIndex = 1;
             // 
             // dgv_EskariaProduktua
             // 
             dgv_EskariaProduktua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_EskariaProduktua.Location = new Point(1129, 270);
+            dgv_EskariaProduktua.Location = new Point(1138, 270);
             dgv_EskariaProduktua.Name = "dgv_EskariaProduktua";
             dgv_EskariaProduktua.RowHeadersWidth = 51;
             dgv_EskariaProduktua.Size = new Size(651, 568);
@@ -69,62 +70,75 @@
             // lbl_PrezioTotala
             // 
             lbl_PrezioTotala.AutoSize = true;
-            lbl_PrezioTotala.Location = new Point(1172, 854);
+            lbl_PrezioTotala.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_PrezioTotala.Location = new Point(1293, 857);
             lbl_PrezioTotala.Name = "lbl_PrezioTotala";
-            lbl_PrezioTotala.Size = new Size(98, 20);
+            lbl_PrezioTotala.Size = new Size(148, 31);
             lbl_PrezioTotala.TabIndex = 3;
             lbl_PrezioTotala.Text = "Prezio Totala:";
             // 
             // txt_PrezioTotala
             // 
-            txt_PrezioTotala.Location = new Point(1325, 847);
+            txt_PrezioTotala.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_PrezioTotala.Location = new Point(1447, 854);
             txt_PrezioTotala.Name = "txt_PrezioTotala";
-            txt_PrezioTotala.Size = new Size(125, 27);
+            txt_PrezioTotala.Size = new Size(125, 38);
             txt_PrezioTotala.TabIndex = 4;
             // 
             // cbo_Erreserba
             // 
+            cbo_Erreserba.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbo_Erreserba.FormattingEnabled = true;
-            cbo_Erreserba.Location = new Point(1452, 144);
+            cbo_Erreserba.Location = new Point(1447, 164);
             cbo_Erreserba.Name = "cbo_Erreserba";
-            cbo_Erreserba.Size = new Size(151, 28);
+            cbo_Erreserba.Size = new Size(219, 39);
             cbo_Erreserba.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1270, 147);
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(1184, 167);
             label1.Name = "label1";
-            label1.Size = new Size(166, 20);
+            label1.Size = new Size(257, 31);
             label1.TabIndex = 6;
             label1.Text = "Aukeratutako Erreserba:";
             // 
-            // txt_Egoera
-            // 
-            txt_Egoera.AutoSize = true;
-            txt_Egoera.Location = new Point(1405, 194);
-            txt_Egoera.Name = "txt_Egoera";
-            txt_Egoera.Size = new Size(56, 20);
-            txt_Egoera.TabIndex = 7;
-            txt_Egoera.Text = "Egoera";
-            // 
             // btn_SortuEskaria
             // 
-            btn_SortuEskaria.Location = new Point(1429, 913);
+            btn_SortuEskaria.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_SortuEskaria.Location = new Point(1351, 916);
             btn_SortuEskaria.Name = "btn_SortuEskaria";
-            btn_SortuEskaria.Size = new Size(203, 29);
+            btn_SortuEskaria.Size = new Size(216, 68);
             btn_SortuEskaria.TabIndex = 8;
             btn_SortuEskaria.Text = "Eskaria Sortu";
             btn_SortuEskaria.UseVisualStyleBackColor = true;
             btn_SortuEskaria.Click += btn_SortuEskaria_Click;
+            // 
+            // pnl_ProduktuMotak
+            // 
+            pnl_ProduktuMotak.AutoSize = true;
+            pnl_ProduktuMotak.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            pnl_ProduktuMotak.Location = new Point(34, 144);
+            pnl_ProduktuMotak.Name = "pnl_ProduktuMotak";
+            pnl_ProduktuMotak.Size = new Size(0, 0);
+            pnl_ProduktuMotak.TabIndex = 9;
+            // 
+            // flp_ProduktuMotak
+            // 
+            flp_ProduktuMotak.Location = new Point(34, 131);
+            flp_ProduktuMotak.Name = "flp_ProduktuMotak";
+            flp_ProduktuMotak.Size = new Size(1005, 125);
+            flp_ProduktuMotak.TabIndex = 10;
             // 
             // EskariakSortuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(flp_ProduktuMotak);
+            Controls.Add(pnl_ProduktuMotak);
             Controls.Add(btn_SortuEskaria);
-            Controls.Add(txt_Egoera);
             Controls.Add(label1);
             Controls.Add(cbo_Erreserba);
             Controls.Add(txt_PrezioTotala);
@@ -150,7 +164,8 @@
         private TextBox txt_PrezioTotala;
         private ComboBox cbo_Erreserba;
         private Label label1;
-        private Label txt_Egoera;
         private Button btn_SortuEskaria;
+        private Panel pnl_ProduktuMotak;
+        private FlowLayoutPanel flp_ProduktuMotak;
     }
 }

@@ -147,7 +147,6 @@
             StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "MenuNagusia";
             WindowState = FormWindowState.Maximized;
-            Load += MenuNagusia_Load;
             tlpMenua.ResumeLayout(false);
             ResumeLayout(false);
         }

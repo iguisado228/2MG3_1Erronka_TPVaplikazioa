@@ -109,7 +109,6 @@
             Name = "LoginForm";
             Text = "LoginForm";
             WindowState = FormWindowState.Maximized;
-            Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
