@@ -14,11 +14,13 @@ namespace TeknoBideTPV.Zerbitzuak
         {
             BaseAddress = new Uri("https://localhost:5001/")
         };
+
         public async Task<List<ErreserbaDto>> ErreserbakLortuAsync()
         {
             var erreserbak = await _httpClient.GetFromJsonAsync<List<ErreserbaDto>>("api/erreserbak");
             return erreserbak ?? new List<ErreserbaDto>();
         }
+
         public async Task<LoginErantzunaDto?> LoginAsync(int langileKodea, string pasahitza)
         {
             var request = new { Langile_kodea = langileKodea, Pasahitza = pasahitza };
@@ -29,6 +31,7 @@ namespace TeknoBideTPV.Zerbitzuak
 
             return await response.Content.ReadFromJsonAsync<LoginErantzunaDto>();
         }
+
         public async Task<List<ProduktuaDto>> LortuProduktuakAsync()
         {
             var produktuak = await _httpClient.GetFromJsonAsync<List<ProduktuaDto>>("api/produktuak");
@@ -50,7 +53,10 @@ namespace TeknoBideTPV.Zerbitzuak
             var eskariak = await _httpClient.GetFromJsonAsync<List<EskariaDto>>("api/eskariak");
             return eskariak ?? new List<EskariaDto>();
         }
-
-
+        public async Task<List<MahaiDto>> MahaiakLortuAsync()
+        {
+            var mahaiak = await _httpClient.GetFromJsonAsync<List<MahaiDto>>("api/mahaiak");
+            return mahaiak ?? new List<MahaiDto>();
+        }
     }
 }

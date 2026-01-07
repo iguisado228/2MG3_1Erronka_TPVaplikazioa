@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
@@ -10,35 +11,126 @@ namespace TeknoBideTPV.UI
     {
         private readonly ApiZerbitzua _api = new ApiZerbitzua();
 
+        private List<ErreserbaDto> _erreserbakOriginalak = new();
+        private List<MahaiDto> _mahaiak = new();
+
         public ErreserbakForm()
         {
             InitializeComponent();
+            this.Load += ErreserbakForm_Load;
+        }
+        private async void ErreserbakForm_Load(object sender, EventArgs e)
+        {
+            await KargatuMahaiak();
+            await KargatuErreserbak();
+            EstilatuDataGridView();
         }
 
-        private async void btn_ErreserbakErakutsi_Click(object sender, EventArgs e)
+        private async Task KargatuMahaiak()
+        {
+            _mahaiak = await _api.MahaiakLortuAsync();
+        }
+
+        private async Task KargatuErreserbak()
         {
             try
             {
-                var api = new ApiZerbitzua();
-                var erreserbak = await api.ErreserbakLortuAsync();
+                _erreserbakOriginalak = await _api.ErreserbakLortuAsync();
 
-                dgv_ErreserbakIkusi.DataSource = erreserbak;
+                foreach (var r in _erreserbakOriginalak)
+                {
+                    r.MahaiaZenbakia =
+                        _mahaiak.FirstOrDefault(m => m.Id == r.MahaiakId)?.Zenbakia ?? 0;
+                }
 
-                dgv_ErreserbakIkusi.Columns["Id"].HeaderText = "ID";
-                dgv_ErreserbakIkusi.Columns["BezeroIzena"].HeaderText = "Bezeroa";
-                dgv_ErreserbakIkusi.Columns["Telefonoa"].HeaderText = "Telefonoa";
-                dgv_ErreserbakIkusi.Columns["PertsonaKopurua"].HeaderText = "Kopurua";
-                dgv_ErreserbakIkusi.Columns["Eguna"].HeaderText = "Eguna";
-                dgv_ErreserbakIkusi.Columns["Ordua"].HeaderText = "Ordua";
-                dgv_ErreserbakIkusi.Columns["PrezioTotala"].HeaderText = "Prezioa";
-                dgv_ErreserbakIkusi.Columns["FakturaRuta"].HeaderText = "Faktura";
-                dgv_ErreserbakIkusi.Columns["LangileaId"].HeaderText = "Langilea";
-                dgv_ErreserbakIkusi.Columns["MahaiakId"].HeaderText = "Mahaia";
+                dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak;
+
+                EzarriKolumnak();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Errorea erreserbak kargatzen: {ex.Message}");
             }
+        }
+
+        private void EzarriKolumnak()
+        {
+            if (dgv_ErreserbakIkusi.Columns.Count == 0)
+                return;
+
+            dgv_ErreserbakIkusi.RowHeadersVisible = false;
+            dgv_ErreserbakIkusi.Columns["Id"].Visible = false;
+            dgv_ErreserbakIkusi.Columns["EgunaOrdua"].Visible = false;
+            dgv_ErreserbakIkusi.Columns["FakturaRuta"].Visible = false;
+            dgv_ErreserbakIkusi.Columns["MahaiakId"].Visible = false;
+
+            dgv_ErreserbakIkusi.Columns["BezeroIzena"].HeaderText = "Bezeroa";
+            dgv_ErreserbakIkusi.Columns["Telefonoa"].HeaderText = "Telefonoa";
+            dgv_ErreserbakIkusi.Columns["PertsonaKopurua"].HeaderText = "Kopurua";
+            dgv_ErreserbakIkusi.Columns["Eguna"].HeaderText = "Eguna";
+            dgv_ErreserbakIkusi.Columns["Ordua"].HeaderText = "Ordua";
+            dgv_ErreserbakIkusi.Columns["PrezioTotala"].HeaderText = "Prezioa";
+            dgv_ErreserbakIkusi.Columns["LangileaId"].HeaderText = "Langilea";
+
+            dgv_ErreserbakIkusi.Columns["MahaiaZenbakia"].HeaderText = "Mahaia";
+        }
+
+        private void EstilatuDataGridView()
+        {
+            dgv_ErreserbakIkusi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv_ErreserbakIkusi.BackgroundColor = Color.White;
+            dgv_ErreserbakIkusi.BorderStyle = BorderStyle.None;
+
+            dgv_ErreserbakIkusi.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 230, 230);
+            dgv_ErreserbakIkusi.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            dgv_ErreserbakIkusi.EnableHeadersVisualStyles = false;
+
+            dgv_ErreserbakIkusi.DefaultCellStyle.Font = new Font("Segoe UI", 11);
+            dgv_ErreserbakIkusi.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
+            dgv_ErreserbakIkusi.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgv_ErreserbakIkusi.RowTemplate.Height = 40;
+        }
+
+        private void btn_Bilatu_Click(object sender, EventArgs e)
+        {
+            FiltratuErreserbak();
+        }
+
+        private void FiltratuErreserbak()
+        {
+            if (_erreserbakOriginalak == null || _erreserbakOriginalak.Count == 0)
+                return;
+
+            string testua = txt_Bilatu.Text.Trim().ToLower();
+            bool egunaAktibatuta = dtp_Eguna.Checked;
+            DateTime eguna = dtp_Eguna.Value.Date;
+
+            IEnumerable<ErreserbaDto> filtratuta = _erreserbakOriginalak;
+
+            if (!string.IsNullOrEmpty(testua))
+            {
+                filtratuta = filtratuta.Where(r =>
+                    r.BezeroIzena != null &&
+                    r.BezeroIzena.ToLower().Contains(testua));
+            }
+
+            if (egunaAktibatuta)
+            {
+                filtratuta = filtratuta.Where(r => r.EgunaOrdua.Date == eguna);
+            }
+
+            dgv_ErreserbakIkusi.DataSource = filtratuta.ToList();
+            EzarriKolumnak();
+        }
+
+        private void btn_Garbitu_Click(object sender, EventArgs e)
+        {
+            txt_Bilatu.Text = string.Empty;
+            dtp_Eguna.Checked = false;
+
+            dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak.ToList();
+            EzarriKolumnak();
         }
     }
 }

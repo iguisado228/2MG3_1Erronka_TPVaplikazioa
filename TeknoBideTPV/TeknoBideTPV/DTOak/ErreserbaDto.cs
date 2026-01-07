@@ -14,5 +14,7 @@
         public string FakturaRuta { get; set; } = string.Empty;
         public int LangileaId { get; set; }
         public int MahaiakId { get; set; }
+
+        public int MahaiaZenbakia { get; set; }
     }
 }
