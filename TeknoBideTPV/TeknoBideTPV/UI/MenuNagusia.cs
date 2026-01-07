@@ -21,5 +21,11 @@ namespace TeknoBideTPV.UI
             var EskariakSortuForm = new EskariakSortuForm();
             EskariakSortuForm.ShowDialog();
         }
+
+        private void btn_EskariakIkusi_Click(object sender, EventArgs e)
+        {
+            var EskariakForm = new EskariakForm();
+            EskariakForm.ShowDialog();
+        }
     }
 }

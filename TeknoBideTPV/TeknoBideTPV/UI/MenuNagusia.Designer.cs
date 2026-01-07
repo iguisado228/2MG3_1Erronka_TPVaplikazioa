@@ -31,7 +31,7 @@
             tlpMenua = new TableLayoutPanel();
             btn_ErreserbakIkusi = new Button();
             btn_EskariakSortu = new Button();
-            button3 = new Button();
+            btn_EskariakIkusi = new Button();
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
@@ -49,7 +49,7 @@
             tlpMenua.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tlpMenua.Controls.Add(btn_ErreserbakIkusi, 0, 0);
             tlpMenua.Controls.Add(btn_EskariakSortu, 1, 0);
-            tlpMenua.Controls.Add(button3, 2, 0);
+            tlpMenua.Controls.Add(btn_EskariakIkusi, 2, 0);
             tlpMenua.Controls.Add(button4, 3, 0);
             tlpMenua.Controls.Add(button5, 0, 1);
             tlpMenua.Controls.Add(button6, 1, 1);
@@ -83,14 +83,16 @@
             btn_EskariakSortu.UseVisualStyleBackColor = true;
             btn_EskariakSortu.Click += btn_EskariakSortu_Click;
             // 
-            // button3
+            // btn_EskariakIkusi
             // 
-            button3.Location = new Point(953, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(469, 413);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            btn_EskariakIkusi.Location = new Point(953, 3);
+            btn_EskariakIkusi.Name = "btn_EskariakIkusi";
+            btn_EskariakIkusi.Size = new Size(469, 413);
+            btn_EskariakIkusi.TabIndex = 2;
+            btn_EskariakIkusi.Text = "EskariakIkusi";
+            btn_EskariakIkusi.UseVisualStyleBackColor = true;
+            btn_EskariakIkusi.Click += btn_EskariakIkusi_Click;
+
             // 
             // button4
             // 
@@ -156,7 +158,7 @@
         private TableLayoutPanel tlpMenua;
         private Button btn_ErreserbakIkusi;
         private Button btn_EskariakSortu;
-        private Button button3;
+        private Button btn_EskariakIkusi;
         private Button button4;
         private Button button5;
         private Button button6;

@@ -44,5 +44,13 @@ namespace TeknoBideTPV.Zerbitzuak
 
             return await response.Content.ReadFromJsonAsync<EskariaSortuErantzunaDto>();
         }
+
+        public async Task<List<EskariaDto>> LortuEskariakAsync()
+        {
+            var eskariak = await _httpClient.GetFromJsonAsync<List<EskariaDto>>("api/eskariak");
+            return eskariak ?? new List<EskariaDto>();
+        }
+
+
     }
 }
