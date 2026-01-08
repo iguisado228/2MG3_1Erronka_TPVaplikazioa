@@ -33,14 +33,17 @@
             lbl_Erreserbak = new Label();
             lbl_Erabiltzailea = new Label();
             lbl_Izena = new Label();
+            btn_Atzera = new Button();
             lbl_Bilatu = new Label();
             txt_Bilatu = new TextBox();
             lbl_Eguna = new Label();
             dtp_Eguna = new DateTimePicker();
             btn_Bilatu = new Button();
             btn_Garbitu = new Button();
+            pnl_FooterEskariak = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).BeginInit();
             pnl_HeaderErreserbak.SuspendLayout();
+            pnl_FooterEskariak.SuspendLayout();
             SuspendLayout();
             // 
             // dgv_ErreserbakIkusi
@@ -49,7 +52,7 @@
             dgv_ErreserbakIkusi.Location = new Point(40, 240);
             dgv_ErreserbakIkusi.Name = "dgv_ErreserbakIkusi";
             dgv_ErreserbakIkusi.RowHeadersWidth = 51;
-            dgv_ErreserbakIkusi.Size = new Size(1840, 800);
+            dgv_ErreserbakIkusi.Size = new Size(1840, 623);
             dgv_ErreserbakIkusi.TabIndex = 0;
             // 
             // pnl_HeaderErreserbak
@@ -68,7 +71,7 @@
             // 
             lbl_Erreserbak.AutoSize = true;
             lbl_Erreserbak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Erreserbak.Location = new Point(810, 35);
+            lbl_Erreserbak.Location = new Point(860, 35);
             lbl_Erreserbak.Name = "lbl_Erreserbak";
             lbl_Erreserbak.Size = new Size(227, 46);
             lbl_Erreserbak.TabIndex = 3;
@@ -94,45 +97,61 @@
             lbl_Izena.TabIndex = 0;
             lbl_Izena.Text = "TXAPELA";
             // 
+            // btn_Atzera
+            // 
+            btn_Atzera.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Atzera.Location = new Point(1741, 8);
+            btn_Atzera.Name = "btn_Atzera";
+            btn_Atzera.Size = new Size(149, 60);
+            btn_Atzera.TabIndex = 6;
+            btn_Atzera.Text = "⬅ Atzera";
+            btn_Atzera.UseVisualStyleBackColor = true;
+            btn_Atzera.Click += btn_Atzera_Click;
+            // 
             // lbl_Bilatu
             // 
             lbl_Bilatu.AutoSize = true;
-            lbl_Bilatu.Location = new Point(40, 120);
+            lbl_Bilatu.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Bilatu.Location = new Point(49, 147);
             lbl_Bilatu.Name = "lbl_Bilatu";
-            lbl_Bilatu.Size = new Size(50, 20);
+            lbl_Bilatu.Size = new Size(92, 38);
             lbl_Bilatu.TabIndex = 3;
             lbl_Bilatu.Text = "Bilatu:";
             // 
             // txt_Bilatu
             // 
-            txt_Bilatu.Location = new Point(140, 115);
+            txt_Bilatu.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_Bilatu.Location = new Point(147, 147);
             txt_Bilatu.Name = "txt_Bilatu";
-            txt_Bilatu.Size = new Size(300, 27);
+            txt_Bilatu.Size = new Size(300, 43);
             txt_Bilatu.TabIndex = 4;
             // 
             // lbl_Eguna
             // 
             lbl_Eguna.AutoSize = true;
-            lbl_Eguna.Location = new Point(480, 120);
+            lbl_Eguna.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Eguna.Location = new Point(458, 147);
             lbl_Eguna.Name = "lbl_Eguna";
-            lbl_Eguna.Size = new Size(53, 20);
+            lbl_Eguna.Size = new Size(99, 38);
             lbl_Eguna.TabIndex = 5;
             lbl_Eguna.Text = "Eguna:";
             // 
             // dtp_Eguna
             // 
+            dtp_Eguna.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtp_Eguna.Format = DateTimePickerFormat.Short;
-            dtp_Eguna.Location = new Point(580, 115);
+            dtp_Eguna.Location = new Point(563, 147);
             dtp_Eguna.Name = "dtp_Eguna";
             dtp_Eguna.ShowCheckBox = true;
-            dtp_Eguna.Size = new Size(180, 27);
+            dtp_Eguna.Size = new Size(220, 43);
             dtp_Eguna.TabIndex = 6;
             // 
             // btn_Bilatu
             // 
-            btn_Bilatu.Location = new Point(780, 112);
+            btn_Bilatu.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Bilatu.Location = new Point(806, 145);
             btn_Bilatu.Name = "btn_Bilatu";
-            btn_Bilatu.Size = new Size(140, 40);
+            btn_Bilatu.Size = new Size(156, 46);
             btn_Bilatu.TabIndex = 7;
             btn_Bilatu.Text = "Bilatu";
             btn_Bilatu.UseVisualStyleBackColor = true;
@@ -140,19 +159,31 @@
             // 
             // btn_Garbitu
             // 
-            btn_Garbitu.Location = new Point(940, 112);
+            btn_Garbitu.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Garbitu.Location = new Point(1628, 147);
             btn_Garbitu.Name = "btn_Garbitu";
-            btn_Garbitu.Size = new Size(140, 40);
+            btn_Garbitu.Size = new Size(226, 50);
             btn_Garbitu.TabIndex = 8;
             btn_Garbitu.Text = "Filtroak Garbitu";
             btn_Garbitu.UseVisualStyleBackColor = true;
             btn_Garbitu.Click += btn_Garbitu_Click;
+            // 
+            // pnl_FooterEskariak
+            // 
+            pnl_FooterEskariak.BackColor = Color.Silver;
+            pnl_FooterEskariak.Controls.Add(btn_Atzera);
+            pnl_FooterEskariak.Dock = DockStyle.Bottom;
+            pnl_FooterEskariak.Location = new Point(0, 953);
+            pnl_FooterEskariak.Name = "pnl_FooterEskariak";
+            pnl_FooterEskariak.Size = new Size(1902, 80);
+            pnl_FooterEskariak.TabIndex = 9;
             // 
             // ErreserbakForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(pnl_FooterEskariak);
             Controls.Add(btn_Garbitu);
             Controls.Add(btn_Bilatu);
             Controls.Add(dtp_Eguna);
@@ -168,6 +199,7 @@
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).EndInit();
             pnl_HeaderErreserbak.ResumeLayout(false);
             pnl_HeaderErreserbak.PerformLayout();
+            pnl_FooterEskariak.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -185,5 +217,7 @@
         private DateTimePicker dtp_Eguna;
         private Button btn_Bilatu;
         private Button btn_Garbitu;
+        private Panel pnl_FooterEskariak;
+        private Button btn_Atzera;
     }
 }

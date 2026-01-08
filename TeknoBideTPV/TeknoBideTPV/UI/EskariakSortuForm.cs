@@ -21,9 +21,12 @@ namespace TeknoBideTPV.UI
         private readonly Color KoloreHover = Color.FromArgb(41, 128, 185);
         private readonly Color KoloreAktiboa = Color.FromArgb(39, 174, 96);
 
-        public EskariakSortuForm()
+        private Form _AurrekoPantaila;
+
+        public EskariakSortuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            _AurrekoPantaila = AurrekoPantaila;
             dgv_EskariaProduktua.CellClick += dgv_EskariaProduktua_CellClick;
         }
 
@@ -320,6 +323,12 @@ namespace TeknoBideTPV.UI
                 EskariakGridEguneratu();
             else
                 dgv_EskariaProduktua.DataSource = null;
+        }
+
+        private void btn_Atzera_Click(object sender, EventArgs e)
+        {
+            _AurrekoPantaila.Show();
+            this.Close();
         }
     }
 }

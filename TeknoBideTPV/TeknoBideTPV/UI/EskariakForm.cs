@@ -12,11 +12,18 @@ namespace TeknoBideTPV.UI
     {
         private readonly ApiZerbitzua _api = new ApiZerbitzua();
 
-        public EskariakForm()
+
+        private Form _AurrekoPantaila;
+
+        public EskariakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            _AurrekoPantaila = AurrekoPantaila;
+            EskariakForm_Load(this, EventArgs.Empty);
             this.Load += EskariakForm_Load;
         }
+
+      
 
         private async void EskariakForm_Load(object sender, EventArgs e)
         {
@@ -29,7 +36,7 @@ namespace TeknoBideTPV.UI
         private void EzarriEskariakLayout()
         {
             int panel_Zabalera = 520;
-            int margina = 10; 
+            int margina = 10;
             int zutabeak = 3;
 
             int beharrezkoZabalera = (panel_Zabalera + margina) * zutabeak;
@@ -164,6 +171,10 @@ namespace TeknoBideTPV.UI
             return pnl_Eskaria;
         }
 
-
+        private void btn_Atzera_Click(object sender, EventArgs e)
+        {
+            _AurrekoPantaila.Show(); 
+            this.Close();
+        }
     }
 }

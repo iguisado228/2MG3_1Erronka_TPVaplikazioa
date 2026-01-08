@@ -14,11 +14,17 @@ namespace TeknoBideTPV.UI
         private List<ErreserbaDto> _erreserbakOriginalak = new();
         private List<MahaiDto> _mahaiak = new();
 
-        public ErreserbakForm()
+        private bool _editatuKolumnaGehituta = false;
+
+        private Form _AurrekoPantaila;
+
+        public ErreserbakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            _AurrekoPantaila = AurrekoPantaila;
             this.Load += ErreserbakForm_Load;
         }
+
         private async void ErreserbakForm_Load(object sender, EventArgs e)
         {
             await KargatuMahaiak();
@@ -73,7 +79,36 @@ namespace TeknoBideTPV.UI
             dgv_ErreserbakIkusi.Columns["LangileaId"].HeaderText = "Langilea";
 
             dgv_ErreserbakIkusi.Columns["MahaiaZenbakia"].HeaderText = "Mahaia";
+
+            if (!_editatuKolumnaGehituta)
+            {
+                var editatuCol = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Editatu",
+                    Text = "Editatu",
+                    UseColumnTextForButtonValue = true,
+                    Width = 80,
+                    Name = "Editatu"
+                };
+                dgv_ErreserbakIkusi.Columns.Add(editatuCol);
+                _editatuKolumnaGehituta = true;
+            }
         }
+
+        private void dgv_ErreserbakIkusi_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgv_ErreserbakIkusi.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
+            {
+                var dto = dgv_ErreserbakIkusi.Rows[e.RowIndex].DataBoundItem as ErreserbaDto;
+                if (dto != null)
+                {
+                    //var editForm = new ErreserbaEditatuForm(dto);
+                    //editForm.ShowDialog();
+                    //await KargatuErreserbak(); // refrescar después de editar
+                }
+            }
+        }
+
 
         private void EstilatuDataGridView()
         {
@@ -131,6 +166,12 @@ namespace TeknoBideTPV.UI
 
             dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak.ToList();
             EzarriKolumnak();
+        }
+
+        private void btn_Atzera_Click(object sender, EventArgs e)
+        {
+            _AurrekoPantaila.Show();
+            this.Close();
         }
     }
 }

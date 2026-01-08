@@ -12,20 +12,29 @@ namespace TeknoBideTPV.UI
         }
         private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
         {
-            var ErreserbakForm = new ErreserbakForm();
-            ErreserbakForm.ShowDialog();
+            var ErreserbakForm = new ErreserbakForm(this);
+            this.Hide();
+            ErreserbakForm.Show();
         }
 
         private void btn_EskariakSortu_Click(object sender, EventArgs e)
         {
-            var EskariakSortuForm = new EskariakSortuForm();
-            EskariakSortuForm.ShowDialog();
+            var EskariakSortuForm = new EskariakSortuForm(this);
+            this.Hide();
+            EskariakSortuForm.Show();
         }
 
         private void btn_EskariakIkusi_Click(object sender, EventArgs e)
         {
-            var EskariakForm = new EskariakForm();
-            EskariakForm.ShowDialog();
+            var EskariakForm = new EskariakForm(this);
+            this.Hide();
+            EskariakForm.Show();
+        }
+        private void btn_ErreserbaSortu_Click(object sender, EventArgs e)
+        {
+            var ErreserbakSortuForm = new ErreserbakSortuForm(this);
+            this.Hide();
+            ErreserbakSortuForm.Show();
         }
     }
 }

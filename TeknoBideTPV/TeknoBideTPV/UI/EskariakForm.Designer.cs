@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             pnl_HeaderEskariak = new Panel();
+            lbl_Eskariak = new Label();
             lbl_Erabiltzailea = new Label();
             lbl_Izena = new Label();
+            btn_Atzera = new Button();
             pnl_FooterEskariak = new Panel();
             pnl_EdukiaEskariak = new Panel();
             flp_Eskariak = new FlowLayoutPanel();
@@ -40,6 +42,7 @@
             btn_Prest = new Button();
             btn_Zerbitzatuak = new Button();
             pnl_HeaderEskariak.SuspendLayout();
+            pnl_FooterEskariak.SuspendLayout();
             pnl_EdukiaEskariak.SuspendLayout();
             flp_Filtroak.SuspendLayout();
             SuspendLayout();
@@ -47,6 +50,7 @@
             // pnl_HeaderEskariak
             // 
             pnl_HeaderEskariak.BackColor = Color.Silver;
+            pnl_HeaderEskariak.Controls.Add(lbl_Eskariak);
             pnl_HeaderEskariak.Controls.Add(lbl_Erabiltzailea);
             pnl_HeaderEskariak.Controls.Add(lbl_Izena);
             pnl_HeaderEskariak.Dock = DockStyle.Top;
@@ -54,6 +58,16 @@
             pnl_HeaderEskariak.Name = "pnl_HeaderEskariak";
             pnl_HeaderEskariak.Size = new Size(1902, 100);
             pnl_HeaderEskariak.TabIndex = 0;
+            // 
+            // lbl_Eskariak
+            // 
+            lbl_Eskariak.AutoSize = true;
+            lbl_Eskariak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Eskariak.Location = new Point(860, 27);
+            lbl_Eskariak.Name = "lbl_Eskariak";
+            lbl_Eskariak.Size = new Size(182, 46);
+            lbl_Eskariak.TabIndex = 4;
+            lbl_Eskariak.Text = "ESKARIAK";
             // 
             // lbl_Erabiltzailea
             // 
@@ -75,9 +89,21 @@
             lbl_Izena.TabIndex = 0;
             lbl_Izena.Text = "TXAPELA";
             // 
+            // btn_Atzera
+            // 
+            btn_Atzera.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Atzera.Location = new Point(1741, 8);
+            btn_Atzera.Name = "btn_Atzera";
+            btn_Atzera.Size = new Size(149, 60);
+            btn_Atzera.TabIndex = 7;
+            btn_Atzera.Text = "⬅ Atzera";
+            btn_Atzera.UseVisualStyleBackColor = true;
+            btn_Atzera.Click += btn_Atzera_Click;
+            // 
             // pnl_FooterEskariak
             // 
             pnl_FooterEskariak.BackColor = Color.Silver;
+            pnl_FooterEskariak.Controls.Add(btn_Atzera);
             pnl_FooterEskariak.Dock = DockStyle.Bottom;
             pnl_FooterEskariak.Location = new Point(0, 953);
             pnl_FooterEskariak.Name = "pnl_FooterEskariak";
@@ -181,6 +207,7 @@
             WindowState = FormWindowState.Maximized;
             pnl_HeaderEskariak.ResumeLayout(false);
             pnl_HeaderEskariak.PerformLayout();
+            pnl_FooterEskariak.ResumeLayout(false);
             pnl_EdukiaEskariak.ResumeLayout(false);
             flp_Filtroak.ResumeLayout(false);
             ResumeLayout(false);
@@ -199,5 +226,7 @@
         private FlowLayoutPanel flp_Eskariak;
         private Button btn_Prest;
         private Button btn_Zerbitzatuak;
+        private Label lbl_Eskariak;
+        private Button btn_Atzera;
     }
 }
