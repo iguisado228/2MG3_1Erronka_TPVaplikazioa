@@ -35,19 +35,20 @@
             pnl_FooterEskariak = new Panel();
             btn_Atzera = new Button();
             pnl_EzkerrekoPanela = new Panel();
-            lbl_BezeroIzena = new Label();
-            txt_BezeroIzena = new TextBox();
-            lbl_Telefonoa = new Label();
-            txt_Telefonoa = new TextBox();
-            lbl_PertsonaKopurua = new Label();
             nud_PertsonaKopurua = new NumericUpDown();
+            lbl_PertsonaKopurua = new Label();
+            txt_Telefonoa = new TextBox();
+            lbl_Telefonoa = new Label();
+            txt_BezeroIzena = new TextBox();
+            lbl_BezeroIzena = new Label();
             pnl_EskubikoPanela = new Panel();
-            lbl_Eguna = new Label();
-            dtp_Eguna = new DateTimePicker();
-            lbl_Ordua = new Label();
-            dtp_Ordua = new DateTimePicker();
-            lbl_Mahaia = new Label();
             comboBox1 = new ComboBox();
+            lbl_Mahaia = new Label();
+            dtp_Ordua = new DateTimePicker();
+            lbl_Ordua = new Label();
+            dtp_Eguna = new DateTimePicker();
+            lbl_Eguna = new Label();
+            btn_Gorde = new Button();
             pnl_HeaderEskariak.SuspendLayout();
             pnl_FooterEskariak.SuspendLayout();
             pnl_EzkerrekoPanela.SuspendLayout();
@@ -133,39 +134,12 @@
             pnl_EzkerrekoPanela.Size = new Size(800, 700);
             pnl_EzkerrekoPanela.TabIndex = 11;
             // 
-            // lbl_BezeroIzena
+            // nud_PertsonaKopurua
             // 
-            lbl_BezeroIzena.AutoSize = true;
-            lbl_BezeroIzena.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_BezeroIzena.Location = new Point(20, 20);
-            lbl_BezeroIzena.Name = "lbl_BezeroIzena";
-            lbl_BezeroIzena.Size = new Size(121, 28);
-            lbl_BezeroIzena.TabIndex = 0;
-            lbl_BezeroIzena.Text = "Bezero Izena";
-            // 
-            // txt_BezeroIzena
-            // 
-            txt_BezeroIzena.Location = new Point(20, 60);
-            txt_BezeroIzena.Name = "txt_BezeroIzena";
-            txt_BezeroIzena.Size = new Size(500, 27);
-            txt_BezeroIzena.TabIndex = 1;
-            // 
-            // lbl_Telefonoa
-            // 
-            lbl_Telefonoa.AutoSize = true;
-            lbl_Telefonoa.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Telefonoa.Location = new Point(20, 130);
-            lbl_Telefonoa.Name = "lbl_Telefonoa";
-            lbl_Telefonoa.Size = new Size(96, 28);
-            lbl_Telefonoa.TabIndex = 2;
-            lbl_Telefonoa.Text = "Telefonoa";
-            // 
-            // txt_Telefonoa
-            // 
-            txt_Telefonoa.Location = new Point(20, 170);
-            txt_Telefonoa.Name = "txt_Telefonoa";
-            txt_Telefonoa.Size = new Size(300, 27);
-            txt_Telefonoa.TabIndex = 3;
+            nud_PertsonaKopurua.Location = new Point(20, 280);
+            nud_PertsonaKopurua.Name = "nud_PertsonaKopurua";
+            nud_PertsonaKopurua.Size = new Size(150, 27);
+            nud_PertsonaKopurua.TabIndex = 5;
             // 
             // lbl_PertsonaKopurua
             // 
@@ -177,12 +151,39 @@
             lbl_PertsonaKopurua.TabIndex = 4;
             lbl_PertsonaKopurua.Text = "Pertsona Kopurua";
             // 
-            // nud_PertsonaKopurua
+            // txt_Telefonoa
             // 
-            nud_PertsonaKopurua.Location = new Point(20, 280);
-            nud_PertsonaKopurua.Name = "nud_PertsonaKopurua";
-            nud_PertsonaKopurua.Size = new Size(150, 27);
-            nud_PertsonaKopurua.TabIndex = 5;
+            txt_Telefonoa.Location = new Point(20, 170);
+            txt_Telefonoa.Name = "txt_Telefonoa";
+            txt_Telefonoa.Size = new Size(300, 27);
+            txt_Telefonoa.TabIndex = 3;
+            // 
+            // lbl_Telefonoa
+            // 
+            lbl_Telefonoa.AutoSize = true;
+            lbl_Telefonoa.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Telefonoa.Location = new Point(20, 130);
+            lbl_Telefonoa.Name = "lbl_Telefonoa";
+            lbl_Telefonoa.Size = new Size(96, 28);
+            lbl_Telefonoa.TabIndex = 2;
+            lbl_Telefonoa.Text = "Telefonoa";
+            // 
+            // txt_BezeroIzena
+            // 
+            txt_BezeroIzena.Location = new Point(20, 60);
+            txt_BezeroIzena.Name = "txt_BezeroIzena";
+            txt_BezeroIzena.Size = new Size(500, 27);
+            txt_BezeroIzena.TabIndex = 1;
+            // 
+            // lbl_BezeroIzena
+            // 
+            lbl_BezeroIzena.AutoSize = true;
+            lbl_BezeroIzena.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_BezeroIzena.Location = new Point(20, 20);
+            lbl_BezeroIzena.Name = "lbl_BezeroIzena";
+            lbl_BezeroIzena.Size = new Size(121, 28);
+            lbl_BezeroIzena.TabIndex = 0;
+            lbl_BezeroIzena.Text = "Bezero Izena";
             // 
             // pnl_EskubikoPanela
             // 
@@ -199,42 +200,14 @@
             pnl_EskubikoPanela.Size = new Size(800, 700);
             pnl_EskubikoPanela.TabIndex = 12;
             // 
-            // lbl_Eguna
+            // comboBox1
             // 
-            lbl_Eguna.AutoSize = true;
-            lbl_Eguna.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Eguna.Location = new Point(20, 20);
-            lbl_Eguna.Name = "lbl_Eguna";
-            lbl_Eguna.Size = new Size(66, 28);
-            lbl_Eguna.TabIndex = 0;
-            lbl_Eguna.Text = "Eguna";
-            // 
-            // dtp_Eguna
-            // 
-            dtp_Eguna.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtp_Eguna.Location = new Point(20, 60);
-            dtp_Eguna.Name = "dtp_Eguna";
-            dtp_Eguna.Size = new Size(365, 34);
-            dtp_Eguna.TabIndex = 1;
-            // 
-            // lbl_Ordua
-            // 
-            lbl_Ordua.AutoSize = true;
-            lbl_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Ordua.Location = new Point(20, 130);
-            lbl_Ordua.Name = "lbl_Ordua";
-            lbl_Ordua.Size = new Size(67, 28);
-            lbl_Ordua.TabIndex = 2;
-            lbl_Ordua.Text = "Ordua";
-            // 
-            // dtp_Ordua
-            // 
-            dtp_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtp_Ordua.Format = DateTimePickerFormat.Time;
-            dtp_Ordua.Location = new Point(20, 170);
-            dtp_Ordua.Name = "dtp_Ordua";
-            dtp_Ordua.Size = new Size(200, 34);
-            dtp_Ordua.TabIndex = 3;
+            comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(20, 280);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(300, 36);
+            comboBox1.TabIndex = 5;
             // 
             // lbl_Mahaia
             // 
@@ -246,20 +219,60 @@
             lbl_Mahaia.TabIndex = 4;
             lbl_Mahaia.Text = "Mahaia";
             // 
-            // comboBox1
+            // dtp_Ordua
             // 
-            comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(20, 280);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(300, 36);
-            comboBox1.TabIndex = 5;
+            dtp_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtp_Ordua.Format = DateTimePickerFormat.Time;
+            dtp_Ordua.Location = new Point(20, 170);
+            dtp_Ordua.Name = "dtp_Ordua";
+            dtp_Ordua.Size = new Size(200, 34);
+            dtp_Ordua.TabIndex = 3;
+            // 
+            // lbl_Ordua
+            // 
+            lbl_Ordua.AutoSize = true;
+            lbl_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Ordua.Location = new Point(20, 130);
+            lbl_Ordua.Name = "lbl_Ordua";
+            lbl_Ordua.Size = new Size(67, 28);
+            lbl_Ordua.TabIndex = 2;
+            lbl_Ordua.Text = "Ordua";
+            // 
+            // dtp_Eguna
+            // 
+            dtp_Eguna.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtp_Eguna.Location = new Point(20, 60);
+            dtp_Eguna.Name = "dtp_Eguna";
+            dtp_Eguna.Size = new Size(365, 34);
+            dtp_Eguna.TabIndex = 1;
+            // 
+            // lbl_Eguna
+            // 
+            lbl_Eguna.AutoSize = true;
+            lbl_Eguna.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Eguna.Location = new Point(20, 20);
+            lbl_Eguna.Name = "lbl_Eguna";
+            lbl_Eguna.Size = new Size(66, 28);
+            lbl_Eguna.TabIndex = 0;
+            lbl_Eguna.Text = "Eguna";
+            // 
+            // btn_Gorde
+            // 
+            btn_Gorde.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Gorde.Location = new Point(1676, 876);
+            btn_Gorde.Name = "btn_Gorde";
+            btn_Gorde.Size = new Size(141, 44);
+            btn_Gorde.TabIndex = 13;
+            btn_Gorde.Text = "Gorde";
+            btn_Gorde.UseVisualStyleBackColor = true;
+            btn_Gorde.Click += btn_Gorde_Click;
             // 
             // ErreserbakSortuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(btn_Gorde);
             Controls.Add(pnl_EskubikoPanela);
             Controls.Add(pnl_EzkerrekoPanela);
             Controls.Add(pnl_FooterEskariak);
@@ -301,5 +314,6 @@
         private DateTimePicker dtp_Ordua;
         private Label lbl_Ordua;
         private DateTimePicker dtp_Eguna;
+        private Button btn_Gorde;
     }
 }

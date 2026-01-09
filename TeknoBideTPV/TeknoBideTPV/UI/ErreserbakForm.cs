@@ -12,7 +12,7 @@ namespace TeknoBideTPV.UI
         private readonly ApiZerbitzua _api = new ApiZerbitzua();
 
         private List<ErreserbaDto> _erreserbakOriginalak = new();
-        private List<MahaiDto> _mahaiak = new();
+        private List<MahaiaDto> mahaiak = new();
 
         private bool _editatuKolumnaGehituta = false;
 
@@ -34,7 +34,7 @@ namespace TeknoBideTPV.UI
 
         private async Task KargatuMahaiak()
         {
-            _mahaiak = await _api.MahaiakLortuAsync();
+            mahaiak = await _api.MahaiakLortuAsync();
         }
 
         private async Task KargatuErreserbak()
@@ -46,7 +46,7 @@ namespace TeknoBideTPV.UI
                 foreach (var r in _erreserbakOriginalak)
                 {
                     r.MahaiaZenbakia =
-                        _mahaiak.FirstOrDefault(m => m.Id == r.MahaiakId)?.Zenbakia ?? 0;
+                        mahaiak.FirstOrDefault(m => m.Id == r.MahaiakId)?.Zenbakia ?? 0;
                 }
 
                 dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak;

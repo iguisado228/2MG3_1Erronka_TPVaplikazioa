@@ -40,6 +40,11 @@ namespace TeknoBideTPV.UI
 
             if (erantzuna.Ok)
             {
+
+                SesioZerbitzua.LangileaId = erantzuna.Data.Id; 
+
+                SesioZerbitzua.Izena = erantzuna.Data.Izena;
+
                 MessageBox.Show(erantzuna.Message, "Sarrera", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var menuNagusia = new MenuNagusia();
                 menuNagusia.Show();

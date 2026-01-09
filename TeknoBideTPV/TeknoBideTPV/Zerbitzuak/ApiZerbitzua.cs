@@ -53,10 +53,18 @@ namespace TeknoBideTPV.Zerbitzuak
             var eskariak = await _httpClient.GetFromJsonAsync<List<EskariaDto>>("api/eskariak");
             return eskariak ?? new List<EskariaDto>();
         }
-        public async Task<List<MahaiDto>> MahaiakLortuAsync()
+
+        public async Task<List<MahaiaDto>> MahaiakLortuAsync()
         {
-            var mahaiak = await _httpClient.GetFromJsonAsync<List<MahaiDto>>("api/mahaiak");
-            return mahaiak ?? new List<MahaiDto>();
+            var mahaiak = await _httpClient.GetFromJsonAsync<List<MahaiaDto>>("api/mahaiak");
+            return mahaiak ?? new List<MahaiaDto>();
         }
+
+        public async Task<bool> SortuErreserbaAsync(ErreserbaSortuDto dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/erreserbak", dto);
+            return response.IsSuccessStatusCode;
+        }
+
     }
 }

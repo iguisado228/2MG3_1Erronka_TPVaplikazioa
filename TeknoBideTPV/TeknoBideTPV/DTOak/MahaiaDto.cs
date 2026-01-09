@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeknoBideTPV.DTOak
 {
-    public class MahaiDto
+    public class MahaiaDto
     {
         public int Id { get; set; }
         public int Zenbakia { get; set; }
