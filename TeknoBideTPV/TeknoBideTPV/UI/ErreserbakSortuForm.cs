@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
@@ -14,6 +15,12 @@ namespace TeknoBideTPV.UI
         public ErreserbakSortuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+
+            //minimizatu maximizatu eta itxi botoiak ezkutatu
+            this.ControlBox = false;
+            this.Text = "";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             _AurrekoPantaila = AurrekoPantaila;
 
             _langileaId = SesioZerbitzua.LangileaId;
@@ -26,12 +33,39 @@ namespace TeknoBideTPV.UI
         {
             lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
 
+            OrduakEzarri();
+
             var mahaiak = await _api.MahaiakLortuAsync();
-            comboBox1.DataSource = mahaiak;
-            comboBox1.DisplayMember = "Zenbakia";
-            comboBox1.ValueMember = "Id";
+
+            cmb_Mahaiak.DataSource = mahaiak;
+            cmb_Mahaiak.DisplayMember = "Zenbakia";
+            cmb_Mahaiak.ValueMember = "Id";
         }
 
+        private void OrduakEzarri()
+        {
+            cmb_Ordua.Items.Clear();
+
+            TimeSpan bazkariHasiera = new TimeSpan(12, 30, 0);
+            TimeSpan bazkariAmaiera = new TimeSpan(15, 30, 0);
+
+            TimeSpan afariHasiera = new TimeSpan(20, 0, 0);
+            TimeSpan afariAmaiera = new TimeSpan(23, 0, 0);
+
+            TimeSpan denboraTartea = new TimeSpan(0, 30, 0);
+
+            for (TimeSpan ordua = bazkariHasiera; ordua <= bazkariAmaiera; ordua += denboraTartea)
+            {
+                cmb_Ordua.Items.Add(ordua.ToString(@"hh\:mm"));
+            }
+
+            for (TimeSpan ordua = afariHasiera; ordua <= afariAmaiera; ordua += denboraTartea)
+            {
+                cmb_Ordua.Items.Add(ordua.ToString(@"hh\:mm"));
+            }
+
+            cmb_Ordua.SelectedIndex = 0;
+        }
 
         private void btn_Atzera_Click(object sender, EventArgs e)
         {
@@ -53,20 +87,28 @@ namespace TeknoBideTPV.UI
                 return;
             }
 
-            if (comboBox1.SelectedItem == null)
+            if (cmb_Mahaiak.SelectedItem == null)
             {
                 MessageBox.Show("Aukeratu mahaia.");
                 return;
             }
 
-            var mahaia = (MahaiaDto)comboBox1.SelectedItem;
+            var mahaia = (MahaiaDto)cmb_Mahaiak.SelectedItem;
+
+            if (!Regex.IsMatch(txt_Telefonoa.Text, @"^\d{9}$"))
+            {
+                MessageBox.Show("Telefonoak 9 zenbaki izan behar ditu.");
+                return;
+            }
+
+            var AukeratutakoOrdua = TimeSpan.Parse(cmb_Ordua.SelectedItem.ToString());
 
             var dto = new ErreserbaSortuDto
             {
                 BezeroIzena = txt_BezeroIzena.Text.Trim(),
                 Telefonoa = txt_Telefonoa.Text.Trim(),
                 PertsonaKopurua = (int)nud_PertsonaKopurua.Value,
-                EgunaOrdua = dtp_Eguna.Value.Date + dtp_Ordua.Value.TimeOfDay,
+                EgunaOrdua = dtp_Eguna.Value.Date + AukeratutakoOrdua,
                 PrezioTotala = 0,
                 FakturaRuta = "",
                 LangileaId = _langileaId,

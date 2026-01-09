@@ -18,12 +18,18 @@ namespace TeknoBideTPV.UI
         public EskariakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+
+            //minimizatu maximizatu eta itxi botoiak ezkutatu
+            this.ControlBox = false;
+            this.Text = "";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             _AurrekoPantaila = AurrekoPantaila;
             EskariakForm_Load(this, EventArgs.Empty);
             this.Load += EskariakForm_Load;
         }
 
-      
+
 
         private async void EskariakForm_Load(object sender, EventArgs e)
         {
@@ -31,6 +37,8 @@ namespace TeknoBideTPV.UI
             KargatuEskariak(eskariak);
 
             EzarriEskariakLayout();
+
+            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
         }
 
         private void EzarriEskariakLayout()
@@ -173,8 +181,13 @@ namespace TeknoBideTPV.UI
 
         private void btn_Atzera_Click(object sender, EventArgs e)
         {
-            _AurrekoPantaila.Show(); 
+            _AurrekoPantaila.Show();
             this.Close();
+        }
+
+        private void btn_Guztiak_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

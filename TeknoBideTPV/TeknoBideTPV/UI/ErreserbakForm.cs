@@ -21,6 +21,12 @@ namespace TeknoBideTPV.UI
         public ErreserbakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+
+            //minimizatu maximizatu eta itxi botoiak ezkutatu
+            this.ControlBox = false;
+            this.Text = "";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             _AurrekoPantaila = AurrekoPantaila;
             this.Load += ErreserbakForm_Load;
         }
@@ -30,6 +36,8 @@ namespace TeknoBideTPV.UI
             await KargatuMahaiak();
             await KargatuErreserbak();
             EstilatuDataGridView();
+
+            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
         }
 
         private async Task KargatuMahaiak()

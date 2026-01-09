@@ -42,8 +42,10 @@
             lbl_Erabiltzailea = new Label();
             lbl_Izena = new Label();
             pnl_FooterEskariak = new Panel();
+            btn_Logout = new Button();
             tlp_Menua.SuspendLayout();
             pnl_HeaderErreserbak.SuspendLayout();
+            pnl_FooterEskariak.SuspendLayout();
             SuspendLayout();
             // 
             // tlp_Menua
@@ -190,11 +192,23 @@
             // pnl_FooterEskariak
             // 
             pnl_FooterEskariak.BackColor = Color.Silver;
+            pnl_FooterEskariak.Controls.Add(btn_Logout);
             pnl_FooterEskariak.Dock = DockStyle.Bottom;
             pnl_FooterEskariak.Location = new Point(0, 953);
             pnl_FooterEskariak.Name = "pnl_FooterEskariak";
             pnl_FooterEskariak.Size = new Size(1902, 80);
             pnl_FooterEskariak.TabIndex = 13;
+            // 
+            // btn_Logout
+            // 
+            btn_Logout.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Logout.Location = new Point(1770, 13);
+            btn_Logout.Name = "btn_Logout";
+            btn_Logout.Size = new Size(120, 55);
+            btn_Logout.TabIndex = 0;
+            btn_Logout.Text = "Atera";
+            btn_Logout.UseVisualStyleBackColor = true;
+            btn_Logout.Click += btn_Logout_Click;
             // 
             // MenuNagusia
             // 
@@ -211,6 +225,7 @@
             tlp_Menua.ResumeLayout(false);
             pnl_HeaderErreserbak.ResumeLayout(false);
             pnl_HeaderErreserbak.PerformLayout();
+            pnl_FooterEskariak.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -230,5 +245,6 @@
         private Label lbl_Erabiltzailea;
         private Label lbl_Izena;
         private Panel pnl_FooterEskariak;
+        private Button btn_Logout;
     }
 }

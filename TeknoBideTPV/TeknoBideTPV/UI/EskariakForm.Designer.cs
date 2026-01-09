@@ -157,6 +157,7 @@
             btn_Guztiak.TabIndex = 0;
             btn_Guztiak.Text = "Guztiak";
             btn_Guztiak.UseVisualStyleBackColor = false;
+            btn_Guztiak.Click += btn_Guztiak_Click;
             // 
             // bnt_Bidaliak
             // 

@@ -26,6 +26,12 @@ namespace TeknoBideTPV.UI
         public EskariakSortuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+
+            //minimizatu maximizatu eta itxi botoiak ezkutatu
+            this.ControlBox = false;
+            this.Text = "";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             _AurrekoPantaila = AurrekoPantaila;
             dgv_EskariaProduktua.CellClick += dgv_EskariaProduktua_CellClick;
         }
@@ -34,6 +40,8 @@ namespace TeknoBideTPV.UI
         {
             erreserbak = await api.ErreserbakLortuAsync();
             cbo_Erreserba.DataSource = erreserbak;
+
+            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
 
             dgv_EskariaProduktua.EnableHeadersVisualStyles = false;
             dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);

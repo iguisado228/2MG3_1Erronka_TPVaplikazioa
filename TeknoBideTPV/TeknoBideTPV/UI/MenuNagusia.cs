@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using TeknoBideTPV.UI;
+using TeknoBideTPV.Zerbitzuak;
 
 namespace TeknoBideTPV.UI
 {
@@ -9,7 +10,20 @@ namespace TeknoBideTPV.UI
         public MenuNagusia()
         {
             InitializeComponent();
+
+            //minimizatu maximizatu eta itxi botoiak ezkutatu
+            this.ControlBox = false;        
+            this.Text = "";                
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; 
+
+            this.Load += MenuNagusia_Load;
         }
+
+        private async void MenuNagusia_Load(object sender, EventArgs e)
+        {
+            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
+        }
+
         private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
         {
             var ErreserbakForm = new ErreserbakForm(this);
@@ -36,5 +50,16 @@ namespace TeknoBideTPV.UI
             this.Hide();
             ErreserbakSortuForm.Show();
         }
+
+        private void btn_Logout_Click(object sender, EventArgs e)
+        {
+            SesioZerbitzua.Logout();
+
+            var login = new LoginForm();
+            login.Show();
+
+            this.Close();
+        }
+
     }
 }

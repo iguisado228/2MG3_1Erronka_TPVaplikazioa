@@ -42,9 +42,9 @@
             txt_BezeroIzena = new TextBox();
             lbl_BezeroIzena = new Label();
             pnl_EskubikoPanela = new Panel();
-            comboBox1 = new ComboBox();
+            cmb_Ordua = new ComboBox();
+            cmb_Mahaiak = new ComboBox();
             lbl_Mahaia = new Label();
-            dtp_Ordua = new DateTimePicker();
             lbl_Ordua = new Label();
             dtp_Eguna = new DateTimePicker();
             lbl_Eguna = new Label();
@@ -188,9 +188,9 @@
             // pnl_EskubikoPanela
             // 
             pnl_EskubikoPanela.BorderStyle = BorderStyle.FixedSingle;
-            pnl_EskubikoPanela.Controls.Add(comboBox1);
+            pnl_EskubikoPanela.Controls.Add(cmb_Ordua);
+            pnl_EskubikoPanela.Controls.Add(cmb_Mahaiak);
             pnl_EskubikoPanela.Controls.Add(lbl_Mahaia);
-            pnl_EskubikoPanela.Controls.Add(dtp_Ordua);
             pnl_EskubikoPanela.Controls.Add(lbl_Ordua);
             pnl_EskubikoPanela.Controls.Add(dtp_Eguna);
             pnl_EskubikoPanela.Controls.Add(lbl_Eguna);
@@ -200,14 +200,23 @@
             pnl_EskubikoPanela.Size = new Size(800, 700);
             pnl_EskubikoPanela.TabIndex = 12;
             // 
-            // comboBox1
+            // cmb_Ordua
             // 
-            comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(20, 280);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(300, 36);
-            comboBox1.TabIndex = 5;
+            cmb_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmb_Ordua.FormattingEnabled = true;
+            cmb_Ordua.Location = new Point(20, 170);
+            cmb_Ordua.Name = "cmb_Ordua";
+            cmb_Ordua.Size = new Size(300, 36);
+            cmb_Ordua.TabIndex = 6;
+            // 
+            // cmb_Mahaiak
+            // 
+            cmb_Mahaiak.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmb_Mahaiak.FormattingEnabled = true;
+            cmb_Mahaiak.Location = new Point(20, 280);
+            cmb_Mahaiak.Name = "cmb_Mahaiak";
+            cmb_Mahaiak.Size = new Size(300, 36);
+            cmb_Mahaiak.TabIndex = 5;
             // 
             // lbl_Mahaia
             // 
@@ -218,15 +227,6 @@
             lbl_Mahaia.Size = new Size(76, 28);
             lbl_Mahaia.TabIndex = 4;
             lbl_Mahaia.Text = "Mahaia";
-            // 
-            // dtp_Ordua
-            // 
-            dtp_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtp_Ordua.Format = DateTimePickerFormat.Time;
-            dtp_Ordua.Location = new Point(20, 170);
-            dtp_Ordua.Name = "dtp_Ordua";
-            dtp_Ordua.Size = new Size(200, 34);
-            dtp_Ordua.TabIndex = 3;
             // 
             // lbl_Ordua
             // 
@@ -309,11 +309,11 @@
         private Label lbl_PertsonaKopurua;
         private Panel pnl_EskubikoPanela;
         private Label lbl_Eguna;
-        private ComboBox comboBox1;
+        private ComboBox cmb_Mahaiak;
         private Label lbl_Mahaia;
-        private DateTimePicker dtp_Ordua;
         private Label lbl_Ordua;
         private DateTimePicker dtp_Eguna;
         private Button btn_Gorde;
+        private ComboBox cmb_Ordua;
     }
 }
