@@ -34,18 +34,13 @@
             btn_EskariakIkusi = new Button();
             button5 = new Button();
             button7 = new Button();
-            button8 = new Button();
             btn_ErreserbaSortu = new Button();
             button6 = new Button();
-            pnl_HeaderErreserbak = new Panel();
-            lbl_DataOrdua = new Label();
-            lbl_Erreserbak = new Label();
-            lbl_Erabiltzailea = new Label();
-            lbl_Izena = new Label();
+            button8 = new Button();
             pnl_FooterEskariak = new Panel();
             btn_Logout = new Button();
+            headerControl_Menua = new TeknoBideTPV.UI.Controls.HeaderControl();
             tlp_Menua.SuspendLayout();
-            pnl_HeaderErreserbak.SuspendLayout();
             pnl_FooterEskariak.SuspendLayout();
             SuspendLayout();
             // 
@@ -64,21 +59,23 @@
             tlp_Menua.Controls.Add(btn_ErreserbaSortu, 3, 0);
             tlp_Menua.Controls.Add(button6, 1, 1);
             tlp_Menua.Controls.Add(button8, 3, 1);
-            tlp_Menua.Location = new Point(0, 99);
+            tlp_Menua.Dock = DockStyle.Fill;
+            tlp_Menua.Location = new Point(0, 100);
             tlp_Menua.Name = "tlp_Menua";
             tlp_Menua.RowCount = 2;
             tlp_Menua.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlp_Menua.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlp_Menua.Size = new Size(1902, 856);
+            tlp_Menua.Size = new Size(1541, 665);
             tlp_Menua.TabIndex = 0;
             // 
             // btn_ErreserbakIkusi
             // 
+            btn_ErreserbakIkusi.BackColor = Color.White;
             btn_ErreserbakIkusi.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_ErreserbakIkusi.Location = new Point(30, 30);
-            btn_ErreserbakIkusi.Margin = new Padding(30);
+            btn_ErreserbakIkusi.Location = new Point(30, 29);
+            btn_ErreserbakIkusi.Margin = new Padding(30, 29, 30, 29);
             btn_ErreserbakIkusi.Name = "btn_ErreserbakIkusi";
-            btn_ErreserbakIkusi.Size = new Size(415, 368);
+            btn_ErreserbakIkusi.Size = new Size(325, 273);
             btn_ErreserbakIkusi.TabIndex = 0;
             btn_ErreserbakIkusi.Text = "Erreserbak ikusi";
             btn_ErreserbakIkusi.UseVisualStyleBackColor = false;
@@ -87,10 +84,10 @@
             // btn_EskariakSortu
             // 
             btn_EskariakSortu.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_EskariakSortu.Location = new Point(505, 30);
-            btn_EskariakSortu.Margin = new Padding(30);
+            btn_EskariakSortu.Location = new Point(415, 29);
+            btn_EskariakSortu.Margin = new Padding(30, 29, 30, 29);
             btn_EskariakSortu.Name = "btn_EskariakSortu";
-            btn_EskariakSortu.Size = new Size(415, 368);
+            btn_EskariakSortu.Size = new Size(325, 273);
             btn_EskariakSortu.TabIndex = 1;
             btn_EskariakSortu.Text = "Eskaria Sortu";
             btn_EskariakSortu.UseVisualStyleBackColor = true;
@@ -99,10 +96,10 @@
             // btn_EskariakIkusi
             // 
             btn_EskariakIkusi.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_EskariakIkusi.Location = new Point(980, 30);
-            btn_EskariakIkusi.Margin = new Padding(30);
+            btn_EskariakIkusi.Location = new Point(800, 29);
+            btn_EskariakIkusi.Margin = new Padding(30, 29, 30, 29);
             btn_EskariakIkusi.Name = "btn_EskariakIkusi";
-            btn_EskariakIkusi.Size = new Size(415, 368);
+            btn_EskariakIkusi.Size = new Size(325, 273);
             btn_EskariakIkusi.TabIndex = 2;
             btn_EskariakIkusi.Text = "Eskariak Ikusi";
             btn_EskariakIkusi.UseVisualStyleBackColor = true;
@@ -111,10 +108,10 @@
             // button5
             // 
             button5.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Location = new Point(30, 458);
-            button5.Margin = new Padding(30);
+            button5.Location = new Point(30, 361);
+            button5.Margin = new Padding(30, 29, 30, 29);
             button5.Name = "button5";
-            button5.Size = new Size(415, 368);
+            button5.Size = new Size(325, 275);
             button5.TabIndex = 4;
             button5.Text = "button5";
             button5.UseVisualStyleBackColor = true;
@@ -122,32 +119,21 @@
             // button7
             // 
             button7.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button7.Location = new Point(980, 458);
-            button7.Margin = new Padding(30);
+            button7.Location = new Point(800, 361);
+            button7.Margin = new Padding(30, 29, 30, 29);
             button7.Name = "button7";
-            button7.Size = new Size(415, 368);
+            button7.Size = new Size(325, 275);
             button7.TabIndex = 6;
             button7.Text = "button7";
             button7.UseVisualStyleBackColor = true;
             // 
-            // button8
-            // 
-            button8.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button8.Location = new Point(1455, 458);
-            button8.Margin = new Padding(30);
-            button8.Name = "button8";
-            button8.Size = new Size(417, 368);
-            button8.TabIndex = 7;
-            button8.Text = "button8";
-            button8.UseVisualStyleBackColor = true;
-            // 
             // btn_ErreserbaSortu
             // 
             btn_ErreserbaSortu.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_ErreserbaSortu.Location = new Point(1455, 30);
-            btn_ErreserbaSortu.Margin = new Padding(30);
+            btn_ErreserbaSortu.Location = new Point(1185, 29);
+            btn_ErreserbaSortu.Margin = new Padding(30, 29, 30, 29);
             btn_ErreserbaSortu.Name = "btn_ErreserbaSortu";
-            btn_ErreserbaSortu.Size = new Size(417, 368);
+            btn_ErreserbaSortu.Size = new Size(326, 273);
             btn_ErreserbaSortu.TabIndex = 3;
             btn_ErreserbaSortu.Text = "Erreserba Sortu";
             btn_ErreserbaSortu.UseVisualStyleBackColor = true;
@@ -156,75 +142,33 @@
             // button6
             // 
             button6.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Location = new Point(505, 458);
-            button6.Margin = new Padding(30);
+            button6.Location = new Point(415, 361);
+            button6.Margin = new Padding(30, 29, 30, 29);
             button6.Name = "button6";
-            button6.Size = new Size(415, 368);
+            button6.Size = new Size(325, 275);
             button6.TabIndex = 5;
             button6.Text = "button6";
             button6.UseVisualStyleBackColor = true;
             // 
-            // pnl_HeaderErreserbak
+            // button8
             // 
-            pnl_HeaderErreserbak.BackColor = Color.Silver;
-            pnl_HeaderErreserbak.Controls.Add(lbl_DataOrdua);
-            pnl_HeaderErreserbak.Controls.Add(lbl_Erreserbak);
-            pnl_HeaderErreserbak.Controls.Add(lbl_Erabiltzailea);
-            pnl_HeaderErreserbak.Controls.Add(lbl_Izena);
-            pnl_HeaderErreserbak.Dock = DockStyle.Top;
-            pnl_HeaderErreserbak.Location = new Point(0, 0);
-            pnl_HeaderErreserbak.Name = "pnl_HeaderErreserbak";
-            pnl_HeaderErreserbak.Size = new Size(1902, 100);
-            pnl_HeaderErreserbak.TabIndex = 3;
-            // 
-            // lbl_DataOrdua
-            // 
-            lbl_DataOrdua.AutoSize = true;
-            lbl_DataOrdua.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_DataOrdua.Location = new Point(1543, 50);
-            lbl_DataOrdua.Name = "lbl_DataOrdua";
-            lbl_DataOrdua.Size = new Size(147, 31);
-            lbl_DataOrdua.TabIndex = 4;
-            lbl_DataOrdua.Text = "Data - Ordua";
-            // 
-            // lbl_Erreserbak
-            // 
-            lbl_Erreserbak.AutoSize = true;
-            lbl_Erreserbak.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Erreserbak.Location = new Point(785, 25);
-            lbl_Erreserbak.Name = "lbl_Erreserbak";
-            lbl_Erreserbak.Size = new Size(334, 54);
-            lbl_Erreserbak.TabIndex = 3;
-            lbl_Erreserbak.Text = "MENU NAGUSIA";
-            // 
-            // lbl_Erabiltzailea
-            // 
-            lbl_Erabiltzailea.AutoSize = true;
-            lbl_Erabiltzailea.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Erabiltzailea.Location = new Point(1686, 9);
-            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
-            lbl_Erabiltzailea.Size = new Size(174, 41);
-            lbl_Erabiltzailea.TabIndex = 1;
-            lbl_Erabiltzailea.Text = "Erabiltzailea";
-            // 
-            // lbl_Izena
-            // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(22, 25);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(195, 54);
-            lbl_Izena.TabIndex = 0;
-            lbl_Izena.Text = "TXAPELA";
+            button8.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(1185, 361);
+            button8.Margin = new Padding(30, 29, 30, 29);
+            button8.Name = "button8";
+            button8.Size = new Size(326, 275);
+            button8.TabIndex = 7;
+            button8.Text = "button8";
+            button8.UseVisualStyleBackColor = true;
             // 
             // pnl_FooterEskariak
             // 
             pnl_FooterEskariak.BackColor = Color.Silver;
             pnl_FooterEskariak.Controls.Add(btn_Logout);
             pnl_FooterEskariak.Dock = DockStyle.Bottom;
-            pnl_FooterEskariak.Location = new Point(0, 953);
+            pnl_FooterEskariak.Location = new Point(0, 765);
             pnl_FooterEskariak.Name = "pnl_FooterEskariak";
-            pnl_FooterEskariak.Size = new Size(1902, 80);
+            pnl_FooterEskariak.Size = new Size(1541, 80);
             pnl_FooterEskariak.TabIndex = 13;
             // 
             // btn_Logout
@@ -238,21 +182,31 @@
             btn_Logout.UseVisualStyleBackColor = true;
             btn_Logout.Click += btn_Logout_Click;
             // 
+            // headerControl_Menua
+            // 
+            headerControl_Menua.DataOrdua = "Data - Ordua";
+            headerControl_Menua.Dock = DockStyle.Top;
+            headerControl_Menua.Erabiltzailea = "Erabiltzailea";
+            headerControl_Menua.Izena = "TXAPELA";
+            headerControl_Menua.Location = new Point(0, 0);
+            headerControl_Menua.Name = "headerControl_Menua";
+            headerControl_Menua.Size = new Size(1541, 100);
+            headerControl_Menua.TabIndex = 5;
+            headerControl_Menua.Titulo = "TITULO";
+            // 
             // MenuNagusia
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1902, 1033);
-            Controls.Add(pnl_FooterEskariak);
-            Controls.Add(pnl_HeaderErreserbak);
+            ClientSize = new Size(1541, 845);
             Controls.Add(tlp_Menua);
+            Controls.Add(headerControl_Menua);
+            Controls.Add(pnl_FooterEskariak);
             Name = "MenuNagusia";
             StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "MenuNagusia";
             WindowState = FormWindowState.Maximized;
             tlp_Menua.ResumeLayout(false);
-            pnl_HeaderErreserbak.ResumeLayout(false);
-            pnl_HeaderErreserbak.PerformLayout();
             pnl_FooterEskariak.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -268,12 +222,8 @@
         private Button button6;
         private Button button7;
         private Button button8;
-        private Panel pnl_HeaderErreserbak;
-        private Label lbl_Erreserbak;
-        private Label lbl_Erabiltzailea;
-        private Label lbl_Izena;
         private Panel pnl_FooterEskariak;
         private Button btn_Logout;
-        private Label lbl_DataOrdua;
+        private Controls.HeaderControl headerControl_Menua;
     }
 }

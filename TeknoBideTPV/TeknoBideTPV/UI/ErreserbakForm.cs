@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
+using TeknoBideTPV.UI.Styles;
 using TeknoBideTPV.Zerbitzuak;
 
 namespace TeknoBideTPV.UI
@@ -29,6 +30,12 @@ namespace TeknoBideTPV.UI
 
             _AurrekoPantaila = AurrekoPantaila;
             this.Load += ErreserbakForm_Load;
+            this.Shown += ErreserbakForm_Shown;
+        }
+        private void ErreserbakForm_Shown(object sender, EventArgs e)
+        {
+            TPVEstiloaFinkoa.Prestatu(this);
+            TPVEstiloaFinkoa.Aplikatu(this);
         }
 
         private async void ErreserbakForm_Load(object sender, EventArgs e)
@@ -181,5 +188,7 @@ namespace TeknoBideTPV.UI
             _AurrekoPantaila.Show();
             this.Close();
         }
+
+     
     }
 }
