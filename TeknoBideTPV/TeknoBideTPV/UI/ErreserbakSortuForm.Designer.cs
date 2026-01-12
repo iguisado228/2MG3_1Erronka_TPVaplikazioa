@@ -136,52 +136,55 @@
             // 
             // nud_PertsonaKopurua
             // 
-            nud_PertsonaKopurua.Location = new Point(20, 280);
+            nud_PertsonaKopurua.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nud_PertsonaKopurua.Location = new Point(20, 405);
             nud_PertsonaKopurua.Name = "nud_PertsonaKopurua";
-            nud_PertsonaKopurua.Size = new Size(150, 27);
+            nud_PertsonaKopurua.Size = new Size(745, 61);
             nud_PertsonaKopurua.TabIndex = 5;
             // 
             // lbl_PertsonaKopurua
             // 
             lbl_PertsonaKopurua.AutoSize = true;
-            lbl_PertsonaKopurua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_PertsonaKopurua.Location = new Point(20, 240);
+            lbl_PertsonaKopurua.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_PertsonaKopurua.Location = new Point(20, 334);
             lbl_PertsonaKopurua.Name = "lbl_PertsonaKopurua";
-            lbl_PertsonaKopurua.Size = new Size(167, 28);
+            lbl_PertsonaKopurua.Size = new Size(336, 54);
             lbl_PertsonaKopurua.TabIndex = 4;
             lbl_PertsonaKopurua.Text = "Pertsona Kopurua";
             // 
             // txt_Telefonoa
             // 
-            txt_Telefonoa.Location = new Point(20, 170);
+            txt_Telefonoa.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_Telefonoa.Location = new Point(20, 246);
             txt_Telefonoa.Name = "txt_Telefonoa";
-            txt_Telefonoa.Size = new Size(300, 27);
+            txt_Telefonoa.Size = new Size(745, 61);
             txt_Telefonoa.TabIndex = 3;
             // 
             // lbl_Telefonoa
             // 
             lbl_Telefonoa.AutoSize = true;
-            lbl_Telefonoa.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Telefonoa.Location = new Point(20, 130);
+            lbl_Telefonoa.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Telefonoa.Location = new Point(20, 170);
             lbl_Telefonoa.Name = "lbl_Telefonoa";
-            lbl_Telefonoa.Size = new Size(96, 28);
+            lbl_Telefonoa.Size = new Size(194, 54);
             lbl_Telefonoa.TabIndex = 2;
             lbl_Telefonoa.Text = "Telefonoa";
             // 
             // txt_BezeroIzena
             // 
-            txt_BezeroIzena.Location = new Point(20, 60);
+            txt_BezeroIzena.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_BezeroIzena.Location = new Point(20, 88);
             txt_BezeroIzena.Name = "txt_BezeroIzena";
-            txt_BezeroIzena.Size = new Size(500, 27);
+            txt_BezeroIzena.Size = new Size(745, 61);
             txt_BezeroIzena.TabIndex = 1;
             // 
             // lbl_BezeroIzena
             // 
             lbl_BezeroIzena.AutoSize = true;
-            lbl_BezeroIzena.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_BezeroIzena.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_BezeroIzena.Location = new Point(20, 20);
             lbl_BezeroIzena.Name = "lbl_BezeroIzena";
-            lbl_BezeroIzena.Size = new Size(121, 28);
+            lbl_BezeroIzena.Size = new Size(247, 54);
             lbl_BezeroIzena.TabIndex = 0;
             lbl_BezeroIzena.Text = "Bezero Izena";
             // 
@@ -202,66 +205,66 @@
             // 
             // cmb_Ordua
             // 
-            cmb_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmb_Ordua.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmb_Ordua.FormattingEnabled = true;
-            cmb_Ordua.Location = new Point(20, 170);
+            cmb_Ordua.Location = new Point(20, 245);
             cmb_Ordua.Name = "cmb_Ordua";
-            cmb_Ordua.Size = new Size(300, 36);
+            cmb_Ordua.Size = new Size(723, 62);
             cmb_Ordua.TabIndex = 6;
             // 
             // cmb_Mahaiak
             // 
-            cmb_Mahaiak.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmb_Mahaiak.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmb_Mahaiak.FormattingEnabled = true;
-            cmb_Mahaiak.Location = new Point(20, 280);
+            cmb_Mahaiak.Location = new Point(20, 404);
             cmb_Mahaiak.Name = "cmb_Mahaiak";
-            cmb_Mahaiak.Size = new Size(300, 36);
+            cmb_Mahaiak.Size = new Size(723, 62);
             cmb_Mahaiak.TabIndex = 5;
             // 
             // lbl_Mahaia
             // 
             lbl_Mahaia.AutoSize = true;
-            lbl_Mahaia.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Mahaia.Location = new Point(20, 240);
+            lbl_Mahaia.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Mahaia.Location = new Point(20, 334);
             lbl_Mahaia.Name = "lbl_Mahaia";
-            lbl_Mahaia.Size = new Size(76, 28);
+            lbl_Mahaia.Size = new Size(152, 54);
             lbl_Mahaia.TabIndex = 4;
             lbl_Mahaia.Text = "Mahaia";
             // 
             // lbl_Ordua
             // 
             lbl_Ordua.AutoSize = true;
-            lbl_Ordua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Ordua.Location = new Point(20, 130);
+            lbl_Ordua.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Ordua.Location = new Point(20, 170);
             lbl_Ordua.Name = "lbl_Ordua";
-            lbl_Ordua.Size = new Size(67, 28);
+            lbl_Ordua.Size = new Size(134, 54);
             lbl_Ordua.TabIndex = 2;
             lbl_Ordua.Text = "Ordua";
             // 
             // dtp_Eguna
             // 
-            dtp_Eguna.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtp_Eguna.Location = new Point(20, 60);
+            dtp_Eguna.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtp_Eguna.Location = new Point(20, 88);
             dtp_Eguna.Name = "dtp_Eguna";
-            dtp_Eguna.Size = new Size(365, 34);
+            dtp_Eguna.Size = new Size(723, 61);
             dtp_Eguna.TabIndex = 1;
             // 
             // lbl_Eguna
             // 
             lbl_Eguna.AutoSize = true;
-            lbl_Eguna.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Eguna.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_Eguna.Location = new Point(20, 20);
             lbl_Eguna.Name = "lbl_Eguna";
-            lbl_Eguna.Size = new Size(66, 28);
+            lbl_Eguna.Size = new Size(133, 54);
             lbl_Eguna.TabIndex = 0;
             lbl_Eguna.Text = "Eguna";
             // 
             // btn_Gorde
             // 
-            btn_Gorde.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_Gorde.Location = new Point(1676, 876);
+            btn_Gorde.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Gorde.Location = new Point(1663, 865);
             btn_Gorde.Name = "btn_Gorde";
-            btn_Gorde.Size = new Size(141, 44);
+            btn_Gorde.Size = new Size(177, 71);
             btn_Gorde.TabIndex = 13;
             btn_Gorde.Text = "Gorde";
             btn_Gorde.UseVisualStyleBackColor = true;
