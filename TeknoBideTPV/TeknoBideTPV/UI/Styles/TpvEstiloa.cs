@@ -11,22 +11,32 @@ public static class TPVEstiloa
         public float FontSize;
     }
 
-    
-    private static readonly Dictionary<Form, Dictionary<Control, KontrolenInformazioa>> _originales
-        = new();
+    private class FormInfo
+    {
+        public Size HasierakoTamaina;
+        public Dictionary<Control, KontrolenInformazioa> Kontrolak;
+    }
+
+    private static readonly Dictionary<Form, FormInfo> hasierakoak = new();
 
     public static void PantailarenEskalatuaHasi(Form form)
     {
-        if (_originales.ContainsKey(form))
+        if (hasierakoak.ContainsKey(form))
             return;
 
         var dic = new Dictionary<Control, KontrolenInformazioa>();
         HasierakoPosizioakGorde(form.Controls, dic);
-        _originales[form] = dic;
+
+        hasierakoak[form] = new FormInfo
+        {
+            HasierakoTamaina = form.ClientSize, 
+            Kontrolak = dic
+        };
     }
 
-    private static void HasierakoPosizioakGorde(Control.ControlCollection controls,
-                                          Dictionary<Control, KontrolenInformazioa> dic)
+    private static void HasierakoPosizioakGorde(
+        Control.ControlCollection controls,
+        Dictionary<Control, KontrolenInformazioa> dic)
     {
         foreach (Control c in controls)
         {
@@ -43,14 +53,18 @@ public static class TPVEstiloa
 
     public static void EskalatuaAplikatu(Form form)
     {
-        if (!_originales.TryGetValue(form, out var dic))
+        if (!hasierakoak.TryGetValue(form, out var info))
             return;
 
-        float hasieraZabalera = 1920;
-        float hasieraAltuera = 1080;
+        var dic = info.Kontrolak;
+        float hasieraZabalera = info.HasierakoTamaina.Width;
+        float hasieraAltuera = info.HasierakoTamaina.Height;
 
-        float Xeskala = form.ClientSize.Width / hasieraZabalera;
-        float Yeskala = form.ClientSize.Height / hasieraAltuera;
+        if (hasieraZabalera <= 0 || hasieraAltuera <= 0)
+            return;
+
+        float Xeskala = (float)form.ClientSize.Width / hasieraZabalera;
+        float Yeskala = (float)form.ClientSize.Height / hasieraAltuera;
         float eskala = Math.Min(Xeskala, Yeskala);
 
         if (eskala < 0.7f) eskala = 0.7f;
@@ -58,18 +72,18 @@ public static class TPVEstiloa
         foreach (var kvp in dic)
         {
             var c = kvp.Key;
-            var info = kvp.Value;
+            var kInfo = kvp.Value;
 
             c.SetBounds(
-                x: (int)(info.Bounds.X * eskala),
-                y: (int)(info.Bounds.Y * eskala),
-                width: (int)(info.Bounds.Width * eskala),
-                height: (int)(info.Bounds.Height * eskala)
+                (int)(kInfo.Bounds.X * eskala),
+                (int)(kInfo.Bounds.Y * eskala),
+                (int)(kInfo.Bounds.Width * eskala),
+                (int)(kInfo.Bounds.Height * eskala)
             );
 
             c.Font = new Font(
                 c.Font.FontFamily,
-                info.FontSize * eskala,
+                kInfo.FontSize * eskala,
                 c.Font.Style
             );
         }
