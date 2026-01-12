@@ -12,9 +12,9 @@ namespace TeknoBideTPV.UI
             InitializeComponent();
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
-            this.ControlBox = false;        
-            this.Text = "";                
-            this.FormBorderStyle = FormBorderStyle.FixedSingle; 
+            this.ControlBox = false;
+            this.Text = "";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             this.Load += MenuNagusia_Load;
         }
@@ -22,6 +22,7 @@ namespace TeknoBideTPV.UI
         private async void MenuNagusia_Load(object sender, EventArgs e)
         {
             lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
+            lbl_DataOrdua.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
         }
 
         private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
@@ -60,6 +61,5 @@ namespace TeknoBideTPV.UI
 
             this.Close();
         }
-
     }
 }

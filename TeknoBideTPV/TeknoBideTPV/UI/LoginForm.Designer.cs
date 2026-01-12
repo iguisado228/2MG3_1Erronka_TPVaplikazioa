@@ -29,98 +29,107 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            btnSartu = new Button();
-            lblErabiltzailea = new Label();
-            lblPasahitza = new Label();
-            txtErabiltzailea = new TextBox();
-            txtPasahitza = new TextBox();
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btn_Sartu = new Button();
+            lbl_Erabiltzailea = new Label();
+            lbl_Pasahitza = new Label();
+            txt_Erabiltzailea = new TextBox();
+            txt_Pasahitza = new TextBox();
+            img_Logoa = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)img_Logoa).BeginInit();
             SuspendLayout();
             // 
-            // btnSartu
+            // btn_Sartu
             // 
-            btnSartu.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSartu.Location = new Point(690, 541);
-            btnSartu.Name = "btnSartu";
-            btnSartu.Size = new Size(345, 96);
-            btnSartu.TabIndex = 0;
-            btnSartu.Text = "Sartu";
-            btnSartu.UseVisualStyleBackColor = true;
-            btnSartu.Click += btnSartu_Click;
+            btn_Sartu.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Sartu.Location = new Point(690, 541);
+            btn_Sartu.Name = "btn_Sartu";
+            btn_Sartu.Size = new Size(345, 96);
+            btn_Sartu.TabIndex = 0;
+            btn_Sartu.Text = "Sartu";
+            btn_Sartu.UseVisualStyleBackColor = true;
+            btn_Sartu.Click += btn_Sartu_Click;
             // 
-            // lblErabiltzailea
+            // lbl_Erabiltzailea
             // 
-            lblErabiltzailea.AutoSize = true;
-            lblErabiltzailea.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblErabiltzailea.Location = new Point(396, 374);
-            lblErabiltzailea.Name = "lblErabiltzailea";
-            lblErabiltzailea.Size = new Size(283, 62);
-            lblErabiltzailea.TabIndex = 1;
-            lblErabiltzailea.Text = "Erabiltzailea:";
+            lbl_Erabiltzailea.AutoSize = true;
+            lbl_Erabiltzailea.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Erabiltzailea.Location = new Point(396, 374);
+            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
+            lbl_Erabiltzailea.Size = new Size(283, 62);
+            lbl_Erabiltzailea.TabIndex = 1;
+            lbl_Erabiltzailea.Text = "Erabiltzailea:";
             // 
-            // lblPasahitza
+            // lbl_Pasahitza
             // 
-            lblPasahitza.AutoSize = true;
-            lblPasahitza.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPasahitza.Location = new Point(396, 450);
-            lblPasahitza.Name = "lblPasahitza";
-            lblPasahitza.Size = new Size(228, 62);
-            lblPasahitza.TabIndex = 2;
-            lblPasahitza.Text = "Pasahitza:";
+            lbl_Pasahitza.AutoSize = true;
+            lbl_Pasahitza.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Pasahitza.Location = new Point(396, 450);
+            lbl_Pasahitza.Name = "lbl_Pasahitza";
+            lbl_Pasahitza.Size = new Size(228, 62);
+            lbl_Pasahitza.TabIndex = 2;
+            lbl_Pasahitza.Text = "Pasahitza:";
             // 
-            // txtErabiltzailea
+            // txt_Erabiltzailea
             // 
-            txtErabiltzailea.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtErabiltzailea.Location = new Point(672, 366);
-            txtErabiltzailea.Name = "txtErabiltzailea";
-            txtErabiltzailea.Size = new Size(381, 70);
-            txtErabiltzailea.TabIndex = 3;
+            txt_Erabiltzailea.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_Erabiltzailea.Location = new Point(672, 366);
+            txt_Erabiltzailea.Name = "txt_Erabiltzailea";
+            txt_Erabiltzailea.Size = new Size(381, 70);
+            txt_Erabiltzailea.TabIndex = 3;
             // 
-            // txtPasahitza
+            // txt_Pasahitza
             // 
-            txtPasahitza.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPasahitza.Location = new Point(672, 442);
-            txtPasahitza.Name = "txtPasahitza";
-            txtPasahitza.PasswordChar = '*';
-            txtPasahitza.Size = new Size(381, 70);
-            txtPasahitza.TabIndex = 4;
+            txt_Pasahitza.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_Pasahitza.Location = new Point(672, 442);
+            txt_Pasahitza.Name = "txt_Pasahitza";
+            txt_Pasahitza.PasswordChar = '*';
+            txt_Pasahitza.Size = new Size(381, 70);
+            txt_Pasahitza.TabIndex = 4;
             // 
-            // pictureBox1
+            // img_Logoa
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1211, 230);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(512, 481);
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
+            img_Logoa.Image = (Image)resources.GetObject("img_Logoa.Image");
+            img_Logoa.Location = new Point(1211, 230);
+            img_Logoa.Name = "img_Logoa";
+            img_Logoa.Size = new Size(512, 481);
+            img_Logoa.TabIndex = 5;
+            img_Logoa.TabStop = false;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
-            Controls.Add(pictureBox1);
-            Controls.Add(txtPasahitza);
-            Controls.Add(txtErabiltzailea);
-            Controls.Add(lblPasahitza);
-            Controls.Add(lblErabiltzailea);
-            Controls.Add(btnSartu);
+            Controls.Add(img_Logoa);
+            Controls.Add(txt_Pasahitza);
+            Controls.Add(txt_Erabiltzailea);
+            Controls.Add(lbl_Pasahitza);
+            Controls.Add(lbl_Erabiltzailea);
+            Controls.Add(btn_Sartu);
             Name = "LoginForm";
             Text = "LoginForm";
             WindowState = FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)img_Logoa).EndInit();
             ResumeLayout(false);
             PerformLayout();
+
+            btn_Sartu.Anchor = AnchorStyles.None;
+            lbl_Erabiltzailea.Anchor = AnchorStyles.None;
+            lbl_Pasahitza.Anchor = AnchorStyles.None;
+            txt_Erabiltzailea.Anchor = AnchorStyles.None;
+            txt_Pasahitza.Anchor = AnchorStyles.None;
+            img_Logoa.Anchor = AnchorStyles.None;
+
+            img_Logoa.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         #endregion
 
-        private Button btnSartu;
-        private Label lblErabiltzailea;
-        private Label lblPasahitza;
-        private TextBox txtErabiltzailea;
-        private TextBox txtPasahitza;
-        private PictureBox pictureBox1;
+        private Button btn_Sartu;
+        private Label lbl_Erabiltzailea;
+        private Label lbl_Pasahitza;
+        private TextBox txt_Erabiltzailea;
+        private TextBox txt_Pasahitza;
+        private PictureBox img_Logoa;
     }
 }

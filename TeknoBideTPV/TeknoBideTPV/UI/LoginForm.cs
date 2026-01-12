@@ -15,46 +15,65 @@ namespace TeknoBideTPV.UI
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
-        {
-            InitializeComponent();
-        }
-        private async void btnSartu_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(txtErabiltzailea.Text, out int langileKodea))
+            public LoginForm()
             {
-                MessageBox.Show("Langile kodea zenbaki bat izan behar da", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                InitializeComponent();
+
+                this.Load += LoginForm_Load;
+                this.Resize += LoginForm_Resize;
+
+                this.MaximizeBox = false;
+                img_Logoa.SizeMode = PictureBoxSizeMode.Zoom;
             }
 
-            string pasahitza = txtPasahitza.Text;
-
-            var api = new ApiZerbitzua();
-            var erantzuna = await api.LoginAsync(langileKodea, pasahitza);
-
-            if (erantzuna == null)
+            private void LoginForm_Load(object sender, EventArgs e)
             {
-                MessageBox.Show("Errorea APIarekin konektatzean", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                TPVEstiloa.PantailarenEskalatuaHasi(this);
+                TPVEstiloa.EskalatuaAplikatu(this);
             }
 
-            if (erantzuna.Ok)
+            private void LoginForm_Resize(object sender, EventArgs e)
             {
-
-                SesioZerbitzua.LangileaId = erantzuna.Data.Id; 
-
-                SesioZerbitzua.Izena = erantzuna.Data.Izena;
-
-                MessageBox.Show(erantzuna.Message, "Sarrera", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                var menuNagusia = new MenuNagusia();
-                menuNagusia.Show();
-                this.Hide();
+                TPVEstiloa.EskalatuaAplikatu(this);
             }
-            else
+
+            private async void btn_Sartu_Click(object sender, EventArgs e)
             {
-                MessageBox.Show(erantzuna.Message, "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!int.TryParse(txt_Erabiltzailea.Text, out int langileKodea))
+                {
+                    MessageBox.Show("Langile kodea zenbaki bat izan behar da", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string pasahitza = txt_Pasahitza.Text;
+
+                var api = new ApiZerbitzua();
+                var erantzuna = await api.LoginAsync(langileKodea, pasahitza);
+
+                if (erantzuna == null)
+                {
+                    MessageBox.Show("Errorea APIarekin konektatzean", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (erantzuna.Ok)
+                {
+
+                    SesioZerbitzua.LangileaId = erantzuna.Data.Id;
+
+                    SesioZerbitzua.Izena = erantzuna.Data.Izena;
+
+                    MessageBox.Show(erantzuna.Message, "Sarrera", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var menuNagusia = new MenuNagusia();
+                    menuNagusia.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show(erantzuna.Message, "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        }
     }
 }
+
 

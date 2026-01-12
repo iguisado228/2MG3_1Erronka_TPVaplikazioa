@@ -70,10 +70,10 @@
             // lbl_Erreserbak
             // 
             lbl_Erreserbak.AutoSize = true;
-            lbl_Erreserbak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Erreserbak.Location = new Point(860, 35);
+            lbl_Erreserbak.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Erreserbak.Location = new Point(854, 20);
             lbl_Erreserbak.Name = "lbl_Erreserbak";
-            lbl_Erreserbak.Size = new Size(227, 46);
+            lbl_Erreserbak.Size = new Size(266, 54);
             lbl_Erreserbak.TabIndex = 3;
             lbl_Erreserbak.Text = "ERRESERBAK";
             // 
