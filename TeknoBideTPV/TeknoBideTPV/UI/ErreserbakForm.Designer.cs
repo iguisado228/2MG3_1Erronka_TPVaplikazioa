@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             dgv_ErreserbakIkusi = new DataGridView();
-            pnl_HeaderErreserbak = new Panel();
-            lbl_Erreserbak = new Label();
-            lbl_Erabiltzailea = new Label();
-            lbl_Izena = new Label();
             btn_Atzera = new Button();
             lbl_Bilatu = new Label();
             txt_Bilatu = new TextBox();
@@ -42,8 +38,8 @@
             btn_Garbitu = new Button();
             pnl_FooterEskariak = new Panel();
             pnl_Filtroak = new Panel();
+            headerControl_Erreserbak = new TeknoBideTPV.UI.Controls.HeaderControl();
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).BeginInit();
-            pnl_HeaderErreserbak.SuspendLayout();
             pnl_FooterEskariak.SuspendLayout();
             pnl_Filtroak.SuspendLayout();
             SuspendLayout();
@@ -52,53 +48,11 @@
             // 
             dgv_ErreserbakIkusi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_ErreserbakIkusi.Dock = DockStyle.Fill;
-            dgv_ErreserbakIkusi.Location = new Point(0, 244);
+            dgv_ErreserbakIkusi.Location = new Point(0, 249);
             dgv_ErreserbakIkusi.Name = "dgv_ErreserbakIkusi";
             dgv_ErreserbakIkusi.RowHeadersWidth = 51;
-            dgv_ErreserbakIkusi.Size = new Size(1541, 521);
+            dgv_ErreserbakIkusi.Size = new Size(1541, 516);
             dgv_ErreserbakIkusi.TabIndex = 0;
-            // 
-            // pnl_HeaderErreserbak
-            // 
-            pnl_HeaderErreserbak.BackColor = Color.Silver;
-            pnl_HeaderErreserbak.Controls.Add(lbl_Erreserbak);
-            pnl_HeaderErreserbak.Controls.Add(lbl_Erabiltzailea);
-            pnl_HeaderErreserbak.Controls.Add(lbl_Izena);
-            pnl_HeaderErreserbak.Dock = DockStyle.Top;
-            pnl_HeaderErreserbak.Location = new Point(0, 0);
-            pnl_HeaderErreserbak.Name = "pnl_HeaderErreserbak";
-            pnl_HeaderErreserbak.Size = new Size(1541, 100);
-            pnl_HeaderErreserbak.TabIndex = 2;
-            // 
-            // lbl_Erreserbak
-            // 
-            lbl_Erreserbak.AutoSize = true;
-            lbl_Erreserbak.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Erreserbak.Location = new Point(854, 20);
-            lbl_Erreserbak.Name = "lbl_Erreserbak";
-            lbl_Erreserbak.Size = new Size(266, 54);
-            lbl_Erreserbak.TabIndex = 3;
-            lbl_Erreserbak.Text = "ERRESERBAK";
-            // 
-            // lbl_Erabiltzailea
-            // 
-            lbl_Erabiltzailea.AutoSize = true;
-            lbl_Erabiltzailea.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Erabiltzailea.Location = new Point(1701, 40);
-            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
-            lbl_Erabiltzailea.Size = new Size(117, 28);
-            lbl_Erabiltzailea.TabIndex = 1;
-            lbl_Erabiltzailea.Text = "Erabiltzailea";
-            // 
-            // lbl_Izena
-            // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(40, 29);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(195, 54);
-            lbl_Izena.TabIndex = 0;
-            lbl_Izena.Text = "TXAPELA";
             // 
             // btn_Atzera
             // 
@@ -190,10 +144,22 @@
             pnl_Filtroak.Controls.Add(lbl_Eguna);
             pnl_Filtroak.Controls.Add(dtp_Eguna);
             pnl_Filtroak.Dock = DockStyle.Top;
-            pnl_Filtroak.Location = new Point(0, 100);
+            pnl_Filtroak.Location = new Point(0, 105);
             pnl_Filtroak.Name = "pnl_Filtroak";
             pnl_Filtroak.Size = new Size(1541, 144);
             pnl_Filtroak.TabIndex = 10;
+            // 
+            // headerControl_Erreserbak
+            // 
+            headerControl_Erreserbak.DataOrdua = "Data - Ordua";
+            headerControl_Erreserbak.Dock = DockStyle.Top;
+            headerControl_Erreserbak.Erabiltzailea = "Erabiltzailea";
+            headerControl_Erreserbak.Izena = "TXAPELA";
+            headerControl_Erreserbak.Location = new Point(0, 0);
+            headerControl_Erreserbak.Name = "headerControl_Erreserbak";
+            headerControl_Erreserbak.Size = new Size(1541, 105);
+            headerControl_Erreserbak.TabIndex = 11;
+            headerControl_Erreserbak.Titulo = "IZENBURUA";
             // 
             // ErreserbakForm
             // 
@@ -202,15 +168,13 @@
             ClientSize = new Size(1541, 845);
             Controls.Add(dgv_ErreserbakIkusi);
             Controls.Add(pnl_Filtroak);
-            Controls.Add(pnl_HeaderErreserbak);
+            Controls.Add(headerControl_Erreserbak);
             Controls.Add(pnl_FooterEskariak);
             Name = "ErreserbakForm";
             Text = "Erreserbak";
             WindowState = FormWindowState.Maximized;
             Load += ErreserbakForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).EndInit();
-            pnl_HeaderErreserbak.ResumeLayout(false);
-            pnl_HeaderErreserbak.PerformLayout();
             pnl_FooterEskariak.ResumeLayout(false);
             pnl_Filtroak.ResumeLayout(false);
             pnl_Filtroak.PerformLayout();
@@ -220,10 +184,6 @@
         #endregion
 
         private DataGridView dgv_ErreserbakIkusi;
-        private Panel pnl_HeaderErreserbak;
-        private Label lbl_Erabiltzailea;
-        private Label lbl_Izena;
-        private Label lbl_Erreserbak;
         private Label lbl_Bilatu;
         private TextBox txt_Bilatu;
         private Label lbl_Eguna;
@@ -233,5 +193,6 @@
         private Panel pnl_FooterEskariak;
         private Button btn_Atzera;
         private Panel pnl_Filtroak;
+        private Controls.HeaderControl headerControl_Erreserbak;
     }
 }

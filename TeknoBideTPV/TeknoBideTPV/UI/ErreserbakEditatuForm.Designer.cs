@@ -28,57 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnl_HeaderEskariak = new Panel();
-            lbl_Erreserbak = new Label();
-            lbl_Erabiltzailea = new Label();
-            lbl_Izena = new Label();
             pnl_FooterEskariak = new Panel();
             btn_Atzera = new Button();
-            pnl_HeaderEskariak.SuspendLayout();
+            headerControl1 = new TeknoBideTPV.UI.Controls.HeaderControl();
             pnl_FooterEskariak.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnl_HeaderEskariak
-            // 
-            pnl_HeaderEskariak.BackColor = Color.Silver;
-            pnl_HeaderEskariak.Controls.Add(lbl_Erreserbak);
-            pnl_HeaderEskariak.Controls.Add(lbl_Erabiltzailea);
-            pnl_HeaderEskariak.Controls.Add(lbl_Izena);
-            pnl_HeaderEskariak.Dock = DockStyle.Top;
-            pnl_HeaderEskariak.Location = new Point(0, 0);
-            pnl_HeaderEskariak.Name = "pnl_HeaderEskariak";
-            pnl_HeaderEskariak.Size = new Size(1902, 100);
-            pnl_HeaderEskariak.TabIndex = 2;
-            // 
-            // lbl_Erreserbak
-            // 
-            lbl_Erreserbak.AutoSize = true;
-            lbl_Erreserbak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Erreserbak.Location = new Point(860, 27);
-            lbl_Erreserbak.Name = "lbl_Erreserbak";
-            lbl_Erreserbak.Size = new Size(325, 46);
-            lbl_Erreserbak.TabIndex = 4;
-            lbl_Erreserbak.Text = "ERRESERBA SORTU";
-            // 
-            // lbl_Erabiltzailea
-            // 
-            lbl_Erabiltzailea.AutoSize = true;
-            lbl_Erabiltzailea.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Erabiltzailea.Location = new Point(1700, 40);
-            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
-            lbl_Erabiltzailea.Size = new Size(117, 28);
-            lbl_Erabiltzailea.TabIndex = 1;
-            lbl_Erabiltzailea.Text = "Erabiltzailea";
-            // 
-            // lbl_Izena
-            // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(40, 30);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(195, 54);
-            lbl_Izena.TabIndex = 0;
-            lbl_Izena.Text = "TXAPELA";
             // 
             // pnl_FooterEskariak
             // 
@@ -100,31 +54,36 @@
             btn_Atzera.Text = "⬅ Atzera";
             btn_Atzera.UseVisualStyleBackColor = true;
             // 
+            // headerControl1
+            // 
+            headerControl1.DataOrdua = "Data - Ordua";
+            headerControl1.Dock = DockStyle.Top;
+            headerControl1.Erabiltzailea = "Erabiltzailea";
+            headerControl1.Izena = "TXAPELA";
+            headerControl1.Location = new Point(0, 0);
+            headerControl1.Name = "headerControl1";
+            headerControl1.Size = new Size(1902, 100);
+            headerControl1.TabIndex = 12;
+            headerControl1.Titulo = "IZENBURUA";
+            // 
             // ErreserbakEditatuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(headerControl1);
             Controls.Add(pnl_FooterEskariak);
-            Controls.Add(pnl_HeaderEskariak);
             Name = "ErreserbakEditatuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ErreserbakEditatuForm";
             WindowState = FormWindowState.Maximized;
-            Load += ErreserbakEditatuForm_Load;
-            pnl_HeaderEskariak.ResumeLayout(false);
-            pnl_HeaderEskariak.PerformLayout();
             pnl_FooterEskariak.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel pnl_HeaderEskariak;
-        private Label lbl_Erreserbak;
-        private Label lbl_Erabiltzailea;
-        private Label lbl_Izena;
         private Panel pnl_FooterEskariak;
         private Button btn_Atzera;
+        private Controls.HeaderControl headerControl1;
     }
 }

@@ -29,14 +29,6 @@ namespace TeknoBideTPV.UI
             _AurrekoPantaila = AurrekoPantaila;
 
             _langileaId = SesioZerbitzua.LangileaId;
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
-        }
-
-        private void ErreserbakEditatuForm_Load(object sender, EventArgs e)
-        {
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
-
-
         }
     }
 }

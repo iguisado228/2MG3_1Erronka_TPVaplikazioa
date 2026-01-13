@@ -24,15 +24,12 @@ namespace TeknoBideTPV.UI
             _AurrekoPantaila = AurrekoPantaila;
 
             _langileaId = SesioZerbitzua.LangileaId;
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
 
             this.Load += ErreserbakSortuForm_Load;
         }
 
         private async void ErreserbakSortuForm_Load(object sender, EventArgs e)
         {
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
-
             OrduakEzarri();
 
             var mahaiak = await _api.MahaiakLortuAsync();
@@ -40,6 +37,11 @@ namespace TeknoBideTPV.UI
             cmb_Mahaiak.DataSource = mahaiak;
             cmb_Mahaiak.DisplayMember = "Zenbakia";
             cmb_Mahaiak.ValueMember = "Id";
+
+            headerControl_ErreserbakSortu.Izena = "TXAPELA";
+            headerControl_ErreserbakSortu.Titulo = "ERRESERBA SORTU";
+            headerControl_ErreserbakSortu.Erabiltzailea = SesioZerbitzua.Izena;
+            headerControl_ErreserbakSortu.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
         }
 
         private void OrduakEzarri()

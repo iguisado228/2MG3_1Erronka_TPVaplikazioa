@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnl_HeaderEskariak = new Panel();
-            lbl_Erreserbak = new Label();
-            lbl_Erabiltzailea = new Label();
-            lbl_Izena = new Label();
             pnl_FooterEskariak = new Panel();
             btn_Atzera = new Button();
             pnl_EzkerrekoPanela = new Panel();
@@ -49,54 +45,12 @@
             dtp_Eguna = new DateTimePicker();
             lbl_Eguna = new Label();
             btn_Gorde = new Button();
-            pnl_HeaderEskariak.SuspendLayout();
+            headerControl_ErreserbakSortu = new TeknoBideTPV.UI.Controls.HeaderControl();
             pnl_FooterEskariak.SuspendLayout();
             pnl_EzkerrekoPanela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nud_PertsonaKopurua).BeginInit();
             pnl_EskubikoPanela.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnl_HeaderEskariak
-            // 
-            pnl_HeaderEskariak.BackColor = Color.Silver;
-            pnl_HeaderEskariak.Controls.Add(lbl_Erreserbak);
-            pnl_HeaderEskariak.Controls.Add(lbl_Erabiltzailea);
-            pnl_HeaderEskariak.Controls.Add(lbl_Izena);
-            pnl_HeaderEskariak.Dock = DockStyle.Top;
-            pnl_HeaderEskariak.Location = new Point(0, 0);
-            pnl_HeaderEskariak.Name = "pnl_HeaderEskariak";
-            pnl_HeaderEskariak.Size = new Size(1902, 100);
-            pnl_HeaderEskariak.TabIndex = 1;
-            // 
-            // lbl_Erreserbak
-            // 
-            lbl_Erreserbak.AutoSize = true;
-            lbl_Erreserbak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Erreserbak.Location = new Point(860, 27);
-            lbl_Erreserbak.Name = "lbl_Erreserbak";
-            lbl_Erreserbak.Size = new Size(325, 46);
-            lbl_Erreserbak.TabIndex = 4;
-            lbl_Erreserbak.Text = "ERRESERBA SORTU";
-            // 
-            // lbl_Erabiltzailea
-            // 
-            lbl_Erabiltzailea.AutoSize = true;
-            lbl_Erabiltzailea.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Erabiltzailea.Location = new Point(1700, 40);
-            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
-            lbl_Erabiltzailea.Size = new Size(117, 28);
-            lbl_Erabiltzailea.TabIndex = 1;
-            lbl_Erabiltzailea.Text = "Erabiltzailea";
-            // 
-            // lbl_Izena
-            // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(40, 30);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(195, 54);
-            lbl_Izena.TabIndex = 0;
-            lbl_Izena.Text = "TXAPELA";
             // 
             // pnl_FooterEskariak
             // 
@@ -270,22 +224,33 @@
             btn_Gorde.UseVisualStyleBackColor = true;
             btn_Gorde.Click += btn_Gorde_Click;
             // 
+            // headerControl_ErreserbakSortu
+            // 
+            headerControl_ErreserbakSortu.BackColor = Color.FromArgb(210, 210, 210);
+            headerControl_ErreserbakSortu.DataOrdua = "Data - Ordua";
+            headerControl_ErreserbakSortu.Dock = DockStyle.Top;
+            headerControl_ErreserbakSortu.Erabiltzailea = "Erabiltzailea";
+            headerControl_ErreserbakSortu.Izena = "TXAPELA";
+            headerControl_ErreserbakSortu.Location = new Point(0, 0);
+            headerControl_ErreserbakSortu.Name = "headerControl_ErreserbakSortu";
+            headerControl_ErreserbakSortu.Size = new Size(1902, 100);
+            headerControl_ErreserbakSortu.TabIndex = 14;
+            headerControl_ErreserbakSortu.Titulo = "IZENBURUA";
+            // 
             // ErreserbakSortuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(headerControl_ErreserbakSortu);
             Controls.Add(btn_Gorde);
             Controls.Add(pnl_EskubikoPanela);
             Controls.Add(pnl_EzkerrekoPanela);
             Controls.Add(pnl_FooterEskariak);
-            Controls.Add(pnl_HeaderEskariak);
             Name = "ErreserbakSortuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ErreserbakSortuForm";
             WindowState = FormWindowState.Maximized;
-            pnl_HeaderEskariak.ResumeLayout(false);
-            pnl_HeaderEskariak.PerformLayout();
             pnl_FooterEskariak.ResumeLayout(false);
             pnl_EzkerrekoPanela.ResumeLayout(false);
             pnl_EzkerrekoPanela.PerformLayout();
@@ -296,11 +261,6 @@
         }
 
         #endregion
-
-        private Panel pnl_HeaderEskariak;
-        private Label lbl_Erreserbak;
-        private Label lbl_Erabiltzailea;
-        private Label lbl_Izena;
         private Panel pnl_FooterEskariak;
         private Button btn_Atzera;
         private Panel pnl_EzkerrekoPanela;
@@ -318,5 +278,6 @@
         private DateTimePicker dtp_Eguna;
         private Button btn_Gorde;
         private ComboBox cmb_Ordua;
+        private Controls.HeaderControl headerControl_ErreserbakSortu;
     }
 }

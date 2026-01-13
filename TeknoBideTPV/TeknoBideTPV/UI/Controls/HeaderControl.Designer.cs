@@ -6,7 +6,7 @@
 
         private TableLayoutPanel tlp;
         private Label lbl_Izena;
-        private Label lbl_Titulo;
+        private Label lbl_Izenburua;
         private Panel pnlUser;
         private Label lbl_Erabiltzailea;
         private Label lbl_DataOrdua;
@@ -26,7 +26,7 @@
         {
             tlp = new TableLayoutPanel();
             lbl_Izena = new Label();
-            lbl_Titulo = new Label();
+            lbl_Izenburua = new Label();
             pnlUser = new Panel();
             tlpUser = new TableLayoutPanel();
             lbl_Erabiltzailea = new Label();
@@ -43,7 +43,7 @@
             tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34F));
             tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
             tlp.Controls.Add(lbl_Izena, 0, 0);
-            tlp.Controls.Add(lbl_Titulo, 1, 0);
+            tlp.Controls.Add(lbl_Izenburua, 1, 0);
             tlp.Controls.Add(pnlUser, 2, 0);
             tlp.Dock = DockStyle.Fill;
             tlp.Location = new Point(0, 0);
@@ -64,16 +64,16 @@
             lbl_Izena.Text = "TXAPELA";
             lbl_Izena.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lbl_Titulo
+            // lbl_Izenburua
             // 
-            lbl_Titulo.Dock = DockStyle.Fill;
-            lbl_Titulo.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            lbl_Titulo.Location = new Point(311, 0);
-            lbl_Titulo.Name = "lbl_Titulo";
-            lbl_Titulo.Size = new Size(311, 150);
-            lbl_Titulo.TabIndex = 1;
-            lbl_Titulo.Text = "IZENBURUA";
-            lbl_Titulo.TextAlign = ContentAlignment.MiddleCenter;
+            lbl_Izenburua.Dock = DockStyle.Fill;
+            lbl_Izenburua.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lbl_Izenburua.Location = new Point(311, 0);
+            lbl_Izenburua.Name = "lbl_Izenburua";
+            lbl_Izenburua.Size = new Size(311, 150);
+            lbl_Izenburua.TabIndex = 1;
+            lbl_Izenburua.Text = "IZENBURUA";
+            lbl_Izenburua.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlUser
             // 
@@ -123,6 +123,7 @@
             // 
             // HeaderControl
             // 
+            BackColor = Color.FromArgb(210, 210, 210);
             Controls.Add(tlp);
             Name = "HeaderControl";
             Size = new Size(934, 150);

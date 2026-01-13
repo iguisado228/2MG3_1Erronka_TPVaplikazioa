@@ -19,8 +19,8 @@ namespace TeknoBideTPV.UI.Controls
 
         public string Titulo
         {
-            get => lbl_Titulo.Text;
-            set => lbl_Titulo.Text = value;
+            get => lbl_Izenburua.Text;
+            set => lbl_Izenburua.Text = value;
         }
 
         public string Izena
@@ -41,5 +41,4 @@ namespace TeknoBideTPV.UI.Controls
             set => lbl_DataOrdua.Text = value;
         }
     }
-
 }

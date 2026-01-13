@@ -37,14 +37,10 @@
             btn_SortuEskaria = new Button();
             pnl_ProduktuMotak = new Panel();
             flp_ProduktuMotak = new FlowLayoutPanel();
-            pnl_HeaderEskariak = new Panel();
-            lbl_EskariaSortu = new Label();
-            lbl_Erabiltzailea = new Label();
-            lbl_Izena = new Label();
             btn_Atzera = new Button();
             pnl_FooterEskariak = new Panel();
+            headerControl_EskariakSortu = new TeknoBideTPV.UI.Controls.HeaderControl();
             ((System.ComponentModel.ISupportInitialize)dgv_EskariaProduktua).BeginInit();
-            pnl_HeaderEskariak.SuspendLayout();
             pnl_FooterEskariak.SuspendLayout();
             SuspendLayout();
             // 
@@ -128,48 +124,6 @@
             flp_ProduktuMotak.Size = new Size(1005, 125);
             flp_ProduktuMotak.TabIndex = 10;
             // 
-            // pnl_HeaderEskariak
-            // 
-            pnl_HeaderEskariak.BackColor = Color.Silver;
-            pnl_HeaderEskariak.Controls.Add(lbl_EskariaSortu);
-            pnl_HeaderEskariak.Controls.Add(lbl_Erabiltzailea);
-            pnl_HeaderEskariak.Controls.Add(lbl_Izena);
-            pnl_HeaderEskariak.Dock = DockStyle.Top;
-            pnl_HeaderEskariak.Location = new Point(0, 0);
-            pnl_HeaderEskariak.Name = "pnl_HeaderEskariak";
-            pnl_HeaderEskariak.Size = new Size(1902, 100);
-            pnl_HeaderEskariak.TabIndex = 11;
-            // 
-            // lbl_EskariaSortu
-            // 
-            lbl_EskariaSortu.AutoSize = true;
-            lbl_EskariaSortu.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_EskariaSortu.Location = new Point(820, 27);
-            lbl_EskariaSortu.Name = "lbl_EskariaSortu";
-            lbl_EskariaSortu.Size = new Size(280, 46);
-            lbl_EskariaSortu.TabIndex = 4;
-            lbl_EskariaSortu.Text = "ESKARIA SORTU";
-            // 
-            // lbl_Erabiltzailea
-            // 
-            lbl_Erabiltzailea.AutoSize = true;
-            lbl_Erabiltzailea.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Erabiltzailea.Location = new Point(1700, 40);
-            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
-            lbl_Erabiltzailea.Size = new Size(117, 28);
-            lbl_Erabiltzailea.TabIndex = 1;
-            lbl_Erabiltzailea.Text = "Erabiltzailea";
-            // 
-            // lbl_Izena
-            // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(40, 30);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(195, 54);
-            lbl_Izena.TabIndex = 0;
-            lbl_Izena.Text = "TXAPELA";
-            // 
             // btn_Atzera
             // 
             btn_Atzera.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -191,13 +145,26 @@
             pnl_FooterEskariak.Size = new Size(1902, 80);
             pnl_FooterEskariak.TabIndex = 12;
             // 
+            // headerControl_EskariakSortu
+            // 
+            headerControl_EskariakSortu.BackColor = Color.FromArgb(210, 210, 210);
+            headerControl_EskariakSortu.DataOrdua = "Data - Ordua";
+            headerControl_EskariakSortu.Dock = DockStyle.Top;
+            headerControl_EskariakSortu.Erabiltzailea = "Erabiltzailea";
+            headerControl_EskariakSortu.Izena = "TXAPELA";
+            headerControl_EskariakSortu.Location = new Point(0, 0);
+            headerControl_EskariakSortu.Name = "headerControl_EskariakSortu";
+            headerControl_EskariakSortu.Size = new Size(1902, 100);
+            headerControl_EskariakSortu.TabIndex = 13;
+            headerControl_EskariakSortu.Titulo = "IZENBURUA";
+            // 
             // EskariakSortuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(headerControl_EskariakSortu);
             Controls.Add(pnl_FooterEskariak);
-            Controls.Add(pnl_HeaderEskariak);
             Controls.Add(flp_ProduktuMotak);
             Controls.Add(pnl_ProduktuMotak);
             Controls.Add(btn_SortuEskaria);
@@ -212,8 +179,6 @@
             WindowState = FormWindowState.Maximized;
             Load += EskariakSortuForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_EskariaProduktua).EndInit();
-            pnl_HeaderEskariak.ResumeLayout(false);
-            pnl_HeaderEskariak.PerformLayout();
             pnl_FooterEskariak.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -229,11 +194,8 @@
         private Button btn_SortuEskaria;
         private Panel pnl_ProduktuMotak;
         private FlowLayoutPanel flp_ProduktuMotak;
-        private Panel pnl_HeaderEskariak;
-        private Label lbl_Erabiltzailea;
-        private Label lbl_Izena;
         private Panel pnl_FooterEskariak;
-        private Label lbl_EskariaSortu;
         private Button btn_Atzera;
+        private Controls.HeaderControl headerControl_EskariakSortu;
     }
 }

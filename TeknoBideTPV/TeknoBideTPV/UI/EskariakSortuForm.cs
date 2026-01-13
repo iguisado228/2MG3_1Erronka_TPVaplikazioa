@@ -41,8 +41,6 @@ namespace TeknoBideTPV.UI
             erreserbak = await api.ErreserbakLortuAsync();
             cbo_Erreserba.DataSource = erreserbak;
 
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
-
             dgv_EskariaProduktua.EnableHeadersVisualStyles = false;
             dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
             dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -72,6 +70,11 @@ namespace TeknoBideTPV.UI
 
             SortuProduktuMotaBotoiak();
             ErakutsiProduktuak(produktuak);
+
+            headerControl_EskariakSortu.Izena = "TXAPELA";
+            headerControl_EskariakSortu.Titulo = "ESKARIA SORTU";
+            headerControl_EskariakSortu.Erabiltzailea = SesioZerbitzua.Izena;
+            headerControl_EskariakSortu.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
         }
 
         private Button SortuTpvBotoia(string testua)

@@ -44,7 +44,10 @@ namespace TeknoBideTPV.UI
             await KargatuErreserbak();
             EstilatuDataGridView();
 
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
+            headerControl_Erreserbak.Izena = "TXAPELA";
+            headerControl_Erreserbak.Titulo = "ERRESERBAK";
+            headerControl_Erreserbak.Erabiltzailea = SesioZerbitzua.Izena;
+            headerControl_Erreserbak.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
         }
 
         private async Task KargatuMahaiak()
@@ -188,7 +191,5 @@ namespace TeknoBideTPV.UI
             _AurrekoPantaila.Show();
             this.Close();
         }
-
-     
     }
 }
