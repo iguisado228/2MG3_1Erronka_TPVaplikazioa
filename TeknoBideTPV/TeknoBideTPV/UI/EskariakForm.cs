@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
@@ -11,34 +10,63 @@ namespace TeknoBideTPV.UI
     public partial class EskariakForm : Form
     {
         private readonly ApiZerbitzua _api = new ApiZerbitzua();
-
-
         private Form _AurrekoPantaila;
+
+        private Panel overlayPanel;
 
         public EskariakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
 
-            //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
             this.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             _AurrekoPantaila = AurrekoPantaila;
-            EskariakForm_Load(this, EventArgs.Empty);
-            this.Load += EskariakForm_Load;
+
+            DoubleBufferingAktibatu(flp_Eskariak);
+
+            this.Shown += EskariakForm_Shown;
         }
 
-
-
-        private async void EskariakForm_Load(object sender, EventArgs e)
+        private void DoubleBufferingAktibatu(Control kontrola)
         {
-            var eskariak = await _api.LortuEskariakAsync();
-            KargatuEskariak(eskariak);
+            typeof(Control).InvokeMember(
+                "DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.NonPublic,
+                null,
+                kontrola,
+                new object[] { true }
+            );
+        }
+
+        private async void EskariakForm_Shown(object sender, EventArgs e)
+        {
+            overlayPanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = this.BackColor,
+                Visible = true
+            };
+
+            this.Controls.Add(overlayPanel);
+            overlayPanel.BringToFront();
 
             EzarriEskariakLayout();
 
-            lbl_Erabiltzailea.Text = SesioZerbitzua.Izena;
+            var eskariak = await _api.LortuEskariakAsync();
+            KargatuEskariak(eskariak);
+
+            headerControl_Eskariak.Izena = "TXAPELA";
+            headerControl_Eskariak.Titulo = "ESKARIAK";
+            headerControl_Eskariak.Erabiltzailea = SesioZerbitzua.Izena;
+            headerControl_Eskariak.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
+
+            overlayPanel.Visible = false;
+            this.Controls.Remove(overlayPanel);
+            overlayPanel.Dispose();
         }
 
         private void EzarriEskariakLayout()
@@ -54,12 +82,11 @@ namespace TeknoBideTPV.UI
             flp_Eskariak.WrapContents = true;
             flp_Eskariak.AutoScroll = true;
             flp_Eskariak.Padding = new Padding(10);
-
-            flp_Eskariak.ResumeLayout();
         }
 
         private void KargatuEskariak(List<EskariaDto> eskariak)
         {
+            flp_Eskariak.SuspendLayout();
             flp_Eskariak.Controls.Clear();
 
             foreach (var eskaria in eskariak)
@@ -67,6 +94,9 @@ namespace TeknoBideTPV.UI
                 Panel panel = SortuEskariaPanel(eskaria);
                 flp_Eskariak.Controls.Add(panel);
             }
+
+            flp_Eskariak.ResumeLayout();
+            flp_Eskariak.PerformLayout();
         }
 
         private Panel SortuEskariaPanel(EskariaDto eskaria)
@@ -111,7 +141,6 @@ namespace TeknoBideTPV.UI
             flp_Produktuak.HorizontalScroll.Maximum = 0;
             flp_Produktuak.AutoScrollMargin = new Size(0, 0);
 
-
             foreach (var p in eskaria.Produktuak)
             {
                 Label lblProd = new Label
@@ -123,7 +152,6 @@ namespace TeknoBideTPV.UI
 
                 flp_Produktuak.Controls.Add(lblProd);
             }
-
 
             Label lbl_Prezioa = new Label
             {
@@ -183,11 +211,6 @@ namespace TeknoBideTPV.UI
         {
             _AurrekoPantaila.Show();
             this.Close();
-        }
-
-        private void btn_Guztiak_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

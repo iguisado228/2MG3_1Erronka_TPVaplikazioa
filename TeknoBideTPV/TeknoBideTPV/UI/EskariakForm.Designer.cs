@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnl_HeaderEskariak = new Panel();
-            lbl_Eskariak = new Label();
-            lbl_Erabiltzailea = new Label();
-            lbl_Izena = new Label();
             btn_Atzera = new Button();
             pnl_FooterEskariak = new Panel();
             pnl_EdukiaEskariak = new Panel();
@@ -41,53 +37,16 @@
             bnt_Bidaliak = new Button();
             btn_Prest = new Button();
             btn_Zerbitzatuak = new Button();
-            pnl_HeaderEskariak.SuspendLayout();
+            lbl_Izena = new Label();
+            lbl_Erabiltzailea = new Label();
+            lbl_Eskariak = new Label();
+            headerControl_Eskariak = new TeknoBideTPV.UI.Controls.HeaderControl();
+            pnl_HeaderEskariak = new Panel();
             pnl_FooterEskariak.SuspendLayout();
             pnl_EdukiaEskariak.SuspendLayout();
             flp_Filtroak.SuspendLayout();
+            pnl_HeaderEskariak.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnl_HeaderEskariak
-            // 
-            pnl_HeaderEskariak.BackColor = Color.Silver;
-            pnl_HeaderEskariak.Controls.Add(lbl_Eskariak);
-            pnl_HeaderEskariak.Controls.Add(lbl_Erabiltzailea);
-            pnl_HeaderEskariak.Controls.Add(lbl_Izena);
-            pnl_HeaderEskariak.Dock = DockStyle.Top;
-            pnl_HeaderEskariak.Location = new Point(0, 0);
-            pnl_HeaderEskariak.Name = "pnl_HeaderEskariak";
-            pnl_HeaderEskariak.Size = new Size(1902, 100);
-            pnl_HeaderEskariak.TabIndex = 0;
-            // 
-            // lbl_Eskariak
-            // 
-            lbl_Eskariak.AutoSize = true;
-            lbl_Eskariak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Eskariak.Location = new Point(860, 27);
-            lbl_Eskariak.Name = "lbl_Eskariak";
-            lbl_Eskariak.Size = new Size(182, 46);
-            lbl_Eskariak.TabIndex = 4;
-            lbl_Eskariak.Text = "ESKARIAK";
-            // 
-            // lbl_Erabiltzailea
-            // 
-            lbl_Erabiltzailea.AutoSize = true;
-            lbl_Erabiltzailea.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Erabiltzailea.Location = new Point(1700, 40);
-            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
-            lbl_Erabiltzailea.Size = new Size(117, 28);
-            lbl_Erabiltzailea.TabIndex = 1;
-            lbl_Erabiltzailea.Text = "Erabiltzailea";
-            // 
-            // lbl_Izena
-            // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(40, 30);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(195, 54);
-            lbl_Izena.TabIndex = 0;
-            lbl_Izena.Text = "TXAPELA";
             // 
             // btn_Atzera
             // 
@@ -157,7 +116,6 @@
             btn_Guztiak.TabIndex = 0;
             btn_Guztiak.Text = "Guztiak";
             btn_Guztiak.UseVisualStyleBackColor = false;
-            btn_Guztiak.Click += btn_Guztiak_Click;
             // 
             // bnt_Bidaliak
             // 
@@ -195,6 +153,61 @@
             btn_Zerbitzatuak.Text = "Zerbitzatuak";
             btn_Zerbitzatuak.UseVisualStyleBackColor = false;
             // 
+            // lbl_Izena
+            // 
+            lbl_Izena.AutoSize = true;
+            lbl_Izena.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Izena.Location = new Point(40, 30);
+            lbl_Izena.Name = "lbl_Izena";
+            lbl_Izena.Size = new Size(195, 54);
+            lbl_Izena.TabIndex = 0;
+            lbl_Izena.Text = "TXAPELA";
+            // 
+            // lbl_Erabiltzailea
+            // 
+            lbl_Erabiltzailea.AutoSize = true;
+            lbl_Erabiltzailea.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Erabiltzailea.Location = new Point(1700, 40);
+            lbl_Erabiltzailea.Name = "lbl_Erabiltzailea";
+            lbl_Erabiltzailea.Size = new Size(117, 28);
+            lbl_Erabiltzailea.TabIndex = 1;
+            lbl_Erabiltzailea.Text = "Erabiltzailea";
+            // 
+            // lbl_Eskariak
+            // 
+            lbl_Eskariak.AutoSize = true;
+            lbl_Eskariak.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Eskariak.Location = new Point(860, 27);
+            lbl_Eskariak.Name = "lbl_Eskariak";
+            lbl_Eskariak.Size = new Size(182, 46);
+            lbl_Eskariak.TabIndex = 4;
+            lbl_Eskariak.Text = "ESKARIAK";
+            // 
+            // headerControl_Eskariak
+            // 
+            headerControl_Eskariak.BackColor = Color.FromArgb(210, 210, 210);
+            headerControl_Eskariak.DataOrdua = "Data - Ordua";
+            headerControl_Eskariak.Dock = DockStyle.Top;
+            headerControl_Eskariak.Erabiltzailea = "Erabiltzailea";
+            headerControl_Eskariak.Izena = "TXAPELA";
+            headerControl_Eskariak.Location = new Point(0, 0);
+            headerControl_Eskariak.Name = "headerControl_Eskariak";
+            headerControl_Eskariak.Size = new Size(1902, 100);
+            headerControl_Eskariak.TabIndex = 5;
+            headerControl_Eskariak.Titulo = "IZENBURUA";
+            // 
+            // pnl_HeaderEskariak
+            // 
+            pnl_HeaderEskariak.BackColor = Color.Silver;
+            pnl_HeaderEskariak.Controls.Add(lbl_Eskariak);
+            pnl_HeaderEskariak.Controls.Add(lbl_Erabiltzailea);
+            pnl_HeaderEskariak.Controls.Add(lbl_Izena);
+            pnl_HeaderEskariak.Dock = DockStyle.Top;
+            pnl_HeaderEskariak.Location = new Point(0, 0);
+            pnl_HeaderEskariak.Name = "pnl_HeaderEskariak";
+            pnl_HeaderEskariak.Size = new Size(1902, 100);
+            pnl_HeaderEskariak.TabIndex = 0;
+            // 
             // EskariakForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -202,23 +215,19 @@
             ClientSize = new Size(1902, 1033);
             Controls.Add(pnl_EdukiaEskariak);
             Controls.Add(pnl_FooterEskariak);
-            Controls.Add(pnl_HeaderEskariak);
+            Controls.Add(headerControl_Eskariak);
             Name = "EskariakForm";
             Text = "EskariakForm";
             WindowState = FormWindowState.Maximized;
-            pnl_HeaderEskariak.ResumeLayout(false);
-            pnl_HeaderEskariak.PerformLayout();
             pnl_FooterEskariak.ResumeLayout(false);
             pnl_EdukiaEskariak.ResumeLayout(false);
             flp_Filtroak.ResumeLayout(false);
+            pnl_HeaderEskariak.ResumeLayout(false);
+            pnl_HeaderEskariak.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel pnl_HeaderEskariak;
-        private Label lbl_Erabiltzailea;
-        private Label lbl_Izena;
         private Panel pnl_FooterEskariak;
         private Panel pnl_EdukiaEskariak;
         private FlowLayoutPanel flp_Filtroak;
@@ -227,7 +236,11 @@
         private FlowLayoutPanel flp_Eskariak;
         private Button btn_Prest;
         private Button btn_Zerbitzatuak;
-        private Label lbl_Eskariak;
         private Button btn_Atzera;
+        private Label lbl_Izena;
+        private Label lbl_Erabiltzailea;
+        private Label lbl_Eskariak;
+        private Controls.HeaderControl headerControl_Eskariak;
+        private Panel pnl_HeaderEskariak;
     }
 }
