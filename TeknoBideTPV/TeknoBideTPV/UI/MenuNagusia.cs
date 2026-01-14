@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
-using TeknoBideTPV.UI;
 using TeknoBideTPV.UI.Controls;
 using TeknoBideTPV.UI.Styles;
 using TeknoBideTPV.Zerbitzuak;
@@ -25,6 +25,14 @@ namespace TeknoBideTPV.UI
                 }
             }
 
+            PrestatuMenuBotoia(btn_EskariakIkusi, Properties.Resources.ico_eskariak_ikusi);
+            PrestatuMenuBotoia(btn_EskariakSortu, Properties.Resources.ico_eskaria_sortu);
+            PrestatuMenuBotoia(btn_ErreserbakIkusi, Properties.Resources.ico_erreserbak_ikusi);
+            PrestatuMenuBotoia(btn_ErreserbaSortu, Properties.Resources.ico_erreserba_sortu);
+            PrestatuMenuBotoia(btn_ErreserbaAmaitu, Properties.Resources.ico_erreserba_amaitu);
+            PrestatuMenuBotoia(btn_MahaiakKudeatu, Properties.Resources.ico_mahaiak_kudeatu);
+            PrestatuMenuBotoia(btn_Txostenak, Properties.Resources.ico_txostenak);
+            PrestatuMenuBotoia(btn_Ezarpenak, Properties.Resources.ico_ezarpenak);
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
@@ -49,11 +57,49 @@ namespace TeknoBideTPV.UI
             headerControl_Menua.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
         }
 
-        private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
+        private void PrestatuMenuBotoia(Button btn, Image ikonoOriginala)
         {
-            var ErreserbakForm = new ErreserbakForm(this);
+            btn.TextAlign = ContentAlignment.BottomCenter;
+            btn.ImageAlign = ContentAlignment.TopCenter;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 230, 230);
+            btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 210, 210);
+
+            btn.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            btn.BackColor = Color.White;
+
+            btn.Tag = ikonoOriginala;
+
+            btn.Padding = new Padding(10, 20, 10, 10);
+
+            btn.Resize += (s, e) => IkonoenTamainaAjustatu((Button)s);
+            IkonoenTamainaAjustatu(btn);
+        }
+
+        private void IkonoenTamainaAjustatu(Button btn)
+        {
+            if (btn.Tag is not Image original) return;
+
+            int ikonoZabalera = (int)(btn.Width * 0.6);
+            int ikonoAltuera = (int)(btn.Height * 0.6);
+
+            if (ikonoZabalera <= 0 || ikonoAltuera <= 0) return;
+
+            if (btn.Image != null && !ReferenceEquals(btn.Image, original))
+            {
+                btn.Image.Dispose();
+            }
+
+            var eskalatua = new Bitmap(original, new Size(ikonoZabalera, ikonoAltuera));
+            btn.Image = eskalatua;
+        }
+
+        private void btn_EskariakIkusi_Click(object sender, EventArgs e)
+        {
+            var EskariakForm = new EskariakForm(this);
             this.Hide();
-            ErreserbakForm.Show();
+            EskariakForm.Show();
         }
 
         private void btn_EskariakSortu_Click(object sender, EventArgs e)
@@ -63,17 +109,34 @@ namespace TeknoBideTPV.UI
             EskariakSortuForm.Show();
         }
 
-        private void btn_EskariakIkusi_Click(object sender, EventArgs e)
+        private void btn_ErreserbakIkusi_Click(object sender, EventArgs e)
         {
-            var EskariakForm = new EskariakForm(this);
+            var ErreserbakForm = new ErreserbakForm(this);
             this.Hide();
-            EskariakForm.Show();
+            ErreserbakForm.Show();
         }
+
         private void btn_ErreserbaSortu_Click(object sender, EventArgs e)
         {
             var ErreserbakSortuForm = new ErreserbakSortuForm(this);
             this.Hide();
             ErreserbakSortuForm.Show();
+        }
+
+        private void btn_ErreserbaAmaitu_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_MahaiakKudeatu_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_Txostenak_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_Ezarpenak_Click(object sender, EventArgs e)
+        {
         }
 
         private void btn_Logout_Click(object sender, EventArgs e)
