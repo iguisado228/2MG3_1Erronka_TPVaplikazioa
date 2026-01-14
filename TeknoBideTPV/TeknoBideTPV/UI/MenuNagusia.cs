@@ -125,6 +125,9 @@ namespace TeknoBideTPV.UI
 
         private void btn_ErreserbaAmaitu_Click(object sender, EventArgs e)
         {
+            var ErreserbaAmaituForm = new ErreserbaAmaituForm(this);
+            this.Hide();
+            ErreserbaAmaituForm.Show();
         }
 
         private void btn_MahaiakKudeatu_Click(object sender, EventArgs e)

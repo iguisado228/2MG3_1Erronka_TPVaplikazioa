@@ -30,5 +30,10 @@ namespace TeknoBideTPV.UI
 
             _langileaId = SesioZerbitzua.LangileaId;
         }
+
+        private void btn_Atzera_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

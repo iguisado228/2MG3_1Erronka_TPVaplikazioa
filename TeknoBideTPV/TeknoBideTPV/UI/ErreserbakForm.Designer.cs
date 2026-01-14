@@ -29,18 +29,16 @@
         private void InitializeComponent()
         {
             dgv_ErreserbakIkusi = new DataGridView();
-            btn_Atzera = new Button();
             lbl_Bilatu = new Label();
             txt_Bilatu = new TextBox();
             lbl_Eguna = new Label();
             dtp_Eguna = new DateTimePicker();
             btn_Bilatu = new Button();
             btn_Garbitu = new Button();
-            pnl_FooterEskariak = new Panel();
             pnl_Filtroak = new Panel();
             headerControl_Erreserbak = new TeknoBideTPV.UI.Controls.HeaderControl();
+            footerControl_Erreserbak = new TeknoBideTPV.UI.Controls.FooterControl();
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).BeginInit();
-            pnl_FooterEskariak.SuspendLayout();
             pnl_Filtroak.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,19 +49,8 @@
             dgv_ErreserbakIkusi.Location = new Point(0, 249);
             dgv_ErreserbakIkusi.Name = "dgv_ErreserbakIkusi";
             dgv_ErreserbakIkusi.RowHeadersWidth = 51;
-            dgv_ErreserbakIkusi.Size = new Size(1541, 516);
+            dgv_ErreserbakIkusi.Size = new Size(1541, 596);
             dgv_ErreserbakIkusi.TabIndex = 0;
-            // 
-            // btn_Atzera
-            // 
-            btn_Atzera.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_Atzera.Location = new Point(1741, 8);
-            btn_Atzera.Name = "btn_Atzera";
-            btn_Atzera.Size = new Size(149, 60);
-            btn_Atzera.TabIndex = 6;
-            btn_Atzera.Text = "⬅ Atzera";
-            btn_Atzera.UseVisualStyleBackColor = true;
-            btn_Atzera.Click += btn_Atzera_Click;
             // 
             // lbl_Bilatu
             // 
@@ -125,16 +112,6 @@
             btn_Garbitu.UseVisualStyleBackColor = true;
             btn_Garbitu.Click += btn_Garbitu_Click;
             // 
-            // pnl_FooterEskariak
-            // 
-            pnl_FooterEskariak.BackColor = Color.Silver;
-            pnl_FooterEskariak.Controls.Add(btn_Atzera);
-            pnl_FooterEskariak.Dock = DockStyle.Bottom;
-            pnl_FooterEskariak.Location = new Point(0, 765);
-            pnl_FooterEskariak.Name = "pnl_FooterEskariak";
-            pnl_FooterEskariak.Size = new Size(1541, 80);
-            pnl_FooterEskariak.TabIndex = 9;
-            // 
             // pnl_Filtroak
             // 
             pnl_Filtroak.Controls.Add(btn_Garbitu);
@@ -151,6 +128,7 @@
             // 
             // headerControl_Erreserbak
             // 
+            headerControl_Erreserbak.BackColor = Color.FromArgb(210, 210, 210);
             headerControl_Erreserbak.DataOrdua = "Data - Ordua";
             headerControl_Erreserbak.Dock = DockStyle.Top;
             headerControl_Erreserbak.Erabiltzailea = "Erabiltzailea";
@@ -161,6 +139,18 @@
             headerControl_Erreserbak.TabIndex = 11;
             headerControl_Erreserbak.Titulo = "IZENBURUA";
             // 
+            // footerControl_Erreserbak
+            // 
+            footerControl_Erreserbak.AtzeraTestua = "Atzera";
+            footerControl_Erreserbak.BackColor = Color.Silver;
+            footerControl_Erreserbak.Location = new Point(0, 745);
+            footerControl_Erreserbak.Name = "footerControl_Erreserbak";
+            footerControl_Erreserbak.Size = new Size(1556, 100);
+            footerControl_Erreserbak.TabIndex = 12;
+            footerControl_Erreserbak.Testua = "";
+            footerControl_Erreserbak.Dock = DockStyle.Bottom;
+
+            // 
             // ErreserbakForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -169,13 +159,12 @@
             Controls.Add(dgv_ErreserbakIkusi);
             Controls.Add(pnl_Filtroak);
             Controls.Add(headerControl_Erreserbak);
-            Controls.Add(pnl_FooterEskariak);
+            Controls.Add(footerControl_Erreserbak);
             Name = "ErreserbakForm";
             Text = "Erreserbak";
             WindowState = FormWindowState.Maximized;
             Load += ErreserbakForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_ErreserbakIkusi).EndInit();
-            pnl_FooterEskariak.ResumeLayout(false);
             pnl_Filtroak.ResumeLayout(false);
             pnl_Filtroak.PerformLayout();
             ResumeLayout(false);
@@ -190,9 +179,8 @@
         private DateTimePicker dtp_Eguna;
         private Button btn_Bilatu;
         private Button btn_Garbitu;
-        private Panel pnl_FooterEskariak;
-        private Button btn_Atzera;
         private Panel pnl_Filtroak;
         private Controls.HeaderControl headerControl_Erreserbak;
+        private Controls.FooterControl footerControl_Erreserbak;
     }
 }

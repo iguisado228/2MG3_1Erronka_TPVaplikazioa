@@ -63,6 +63,16 @@ namespace TeknoBideTPV.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ico_atzera {
+            get {
+                object obj = ResourceManager.GetObject("ico_atzera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ico_erreserba_amaitu {
             get {
                 object obj = ResourceManager.GetObject("ico_erreserba_amaitu", resourceCulture);

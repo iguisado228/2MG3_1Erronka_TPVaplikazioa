@@ -31,6 +31,8 @@ namespace TeknoBideTPV.UI
             _AurrekoPantaila = AurrekoPantaila;
             this.Load += ErreserbakForm_Load;
             this.Shown += ErreserbakForm_Shown;
+
+            PrestatuFooter();
         }
         private void ErreserbakForm_Shown(object sender, EventArgs e)
         {
@@ -49,6 +51,19 @@ namespace TeknoBideTPV.UI
             headerControl_Erreserbak.Erabiltzailea = SesioZerbitzua.Izena;
             headerControl_Erreserbak.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
         }
+
+        private void PrestatuFooter()
+        {
+            footerControl_Erreserbak.Testua = "Erreserbak ikusten";
+            footerControl_Erreserbak.AtzeraTestua = "Atzera";
+
+            footerControl_Erreserbak.AtzeraClick += (s, e) =>
+            {
+                _AurrekoPantaila.Show();
+                this.Close();
+            };
+        }
+       
 
         private async Task KargatuMahaiak()
         {
@@ -184,12 +199,6 @@ namespace TeknoBideTPV.UI
 
             dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak.ToList();
             EzarriKolumnak();
-        }
-
-        private void btn_Atzera_Click(object sender, EventArgs e)
-        {
-            _AurrekoPantaila.Show();
-            this.Close();
         }
     }
 }

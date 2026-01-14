@@ -1,6 +1,6 @@
 ﻿namespace TeknoBideTPV.UI
 {
-    partial class ErreserbakEditatuForm
+    partial class ErreserbaAmaituForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             headerControl1 = new TeknoBideTPV.UI.Controls.HeaderControl();
-            footerControl1 = new TeknoBideTPV.UI.Controls.FooterControl();
+            footerControl_ErreserbaAmaitu = new TeknoBideTPV.UI.Controls.FooterControl();
             SuspendLayout();
             // 
             // headerControl1
@@ -42,36 +42,37 @@
             headerControl1.Location = new Point(0, 0);
             headerControl1.Name = "headerControl1";
             headerControl1.Size = new Size(1902, 100);
-            headerControl1.TabIndex = 12;
+            headerControl1.TabIndex = 0;
             headerControl1.Titulo = "IZENBURUA";
             // 
-            // footerControl1
+            // footerControl_ErreserbaAmaitu
             // 
-            footerControl1.AtzeraTestua = "Atzera";
-            footerControl1.BackColor = Color.Silver;
-            footerControl1.Dock = DockStyle.Bottom;
-            footerControl1.Location = new Point(0, 933);
-            footerControl1.Name = "footerControl1";
-            footerControl1.Size = new Size(1902, 100);
-            footerControl1.TabIndex = 13;
-            footerControl1.Testua = "";
+            footerControl_ErreserbaAmaitu.AtzeraTestua = "Atzera";
+            footerControl_ErreserbaAmaitu.BackColor = Color.Silver;
+            footerControl_ErreserbaAmaitu.Dock = DockStyle.Bottom;
+            footerControl_ErreserbaAmaitu.Location = new Point(0, 933);
+            footerControl_ErreserbaAmaitu.Name = "footerControl_ErreserbaAmaitu";
+            footerControl_ErreserbaAmaitu.Size = new Size(1902, 100);
+            footerControl_ErreserbaAmaitu.TabIndex = 1;
+            footerControl_ErreserbaAmaitu.Testua = "";
             // 
-            // ErreserbakEditatuForm
+            // ErreserbaAmaituForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
-            Controls.Add(footerControl1);
+            Controls.Add(footerControl_ErreserbaAmaitu);
             Controls.Add(headerControl1);
-            Name = "ErreserbakEditatuForm";
+            Name = "ErreserbaAmaituForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ErreserbakEditatuForm";
+            Text = "ErreserbaAmaituForm";
             WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
         }
 
         #endregion
+
         private Controls.HeaderControl headerControl1;
-        private Controls.FooterControl footerControl1;
+        private Controls.FooterControl footerControl_ErreserbaAmaitu;
     }
 }
