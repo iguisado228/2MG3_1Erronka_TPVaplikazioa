@@ -11,6 +11,8 @@
         public string Ordua => EgunaOrdua.ToString("HH:mm");
 
         public double PrezioTotala { get; set; }
+        public int Ordainduta { get; set; }   
+
         public string FakturaRuta { get; set; } = string.Empty;
         public int LangileaId { get; set; }
         public int MahaiakId { get; set; }

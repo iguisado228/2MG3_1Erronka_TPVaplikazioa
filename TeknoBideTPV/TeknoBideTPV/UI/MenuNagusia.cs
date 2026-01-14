@@ -14,7 +14,7 @@ namespace TeknoBideTPV.UI
             InitializeComponent();
 
             this.Controls.SetChildIndex(tlp_Menua, 0);
-            this.Controls.SetChildIndex(pnl_FooterEskariak, 2);
+            this.Controls.SetChildIndex(footerControl_MenuNagusia, 2);
 
             foreach (Control c in tlp_Menua.Controls)
             {
@@ -41,6 +41,8 @@ namespace TeknoBideTPV.UI
 
             this.Load += MenuNagusia_Load;
             this.Shown += MenuNagusia_Shown;
+
+            PrestatuFooter();
         }
 
         private void MenuNagusia_Shown(object sender, EventArgs e)
@@ -55,6 +57,22 @@ namespace TeknoBideTPV.UI
             headerControl_Menua.Titulo = "MENU NAGUSIA";
             headerControl_Menua.Erabiltzailea = SesioZerbitzua.Izena;
             headerControl_Menua.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
+        }
+
+        private void PrestatuFooter()
+        {
+            footerControl_MenuNagusia.Testua = "Saioa amaitu";
+            footerControl_MenuNagusia.AtzeraTestua = "Atera";
+
+            footerControl_MenuNagusia.AtzeraClick += (s, e) =>
+            {
+                SesioZerbitzua.Logout();
+
+                var login = new LoginForm();
+                login.Show();
+
+                this.Close();
+            };
         }
 
         private void PrestatuMenuBotoia(Button btn, Image ikonoOriginala)

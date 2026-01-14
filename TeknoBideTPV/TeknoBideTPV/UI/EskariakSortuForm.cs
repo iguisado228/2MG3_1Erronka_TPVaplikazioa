@@ -34,6 +34,8 @@ namespace TeknoBideTPV.UI
 
             _AurrekoPantaila = AurrekoPantaila;
             dgv_EskariaProduktua.CellClick += dgv_EskariaProduktua_CellClick;
+
+            PrestatuFooter();
         }
 
         private async void EskariakSortuForm_Load(object sender, EventArgs e)
@@ -75,6 +77,18 @@ namespace TeknoBideTPV.UI
             headerControl_EskariakSortu.Titulo = "ESKARIA SORTU";
             headerControl_EskariakSortu.Erabiltzailea = SesioZerbitzua.Izena;
             headerControl_EskariakSortu.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
+        }
+
+        private void PrestatuFooter()
+        {
+            footerControl_EskariakSortu.Testua = "Erreserba amaitzen";
+            footerControl_EskariakSortu.AtzeraTestua = "Atzera";
+
+            footerControl_EskariakSortu.AtzeraClick += (s, e) =>
+            {
+                _AurrekoPantaila.Show();
+                this.Close();
+            };
         }
 
         private Button SortuTpvBotoia(string testua)

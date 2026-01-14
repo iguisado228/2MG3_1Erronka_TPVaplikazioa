@@ -37,11 +37,9 @@
             btn_SortuEskaria = new Button();
             pnl_ProduktuMotak = new Panel();
             flp_ProduktuMotak = new FlowLayoutPanel();
-            btn_Atzera = new Button();
-            pnl_FooterEskariak = new Panel();
             headerControl_EskariakSortu = new TeknoBideTPV.UI.Controls.HeaderControl();
+            footerControl_EskariakSortu = new TeknoBideTPV.UI.Controls.FooterControl();
             ((System.ComponentModel.ISupportInitialize)dgv_EskariaProduktua).BeginInit();
-            pnl_FooterEskariak.SuspendLayout();
             SuspendLayout();
             // 
             // flp_Produktuak
@@ -124,27 +122,6 @@
             flp_ProduktuMotak.Size = new Size(1005, 125);
             flp_ProduktuMotak.TabIndex = 10;
             // 
-            // btn_Atzera
-            // 
-            btn_Atzera.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_Atzera.Location = new Point(1741, 8);
-            btn_Atzera.Name = "btn_Atzera";
-            btn_Atzera.Size = new Size(149, 60);
-            btn_Atzera.TabIndex = 5;
-            btn_Atzera.Text = "⬅ Atzera";
-            btn_Atzera.UseVisualStyleBackColor = true;
-            btn_Atzera.Click += btn_Atzera_Click;
-            // 
-            // pnl_FooterEskariak
-            // 
-            pnl_FooterEskariak.BackColor = Color.Silver;
-            pnl_FooterEskariak.Controls.Add(btn_Atzera);
-            pnl_FooterEskariak.Dock = DockStyle.Bottom;
-            pnl_FooterEskariak.Location = new Point(0, 953);
-            pnl_FooterEskariak.Name = "pnl_FooterEskariak";
-            pnl_FooterEskariak.Size = new Size(1902, 80);
-            pnl_FooterEskariak.TabIndex = 12;
-            // 
             // headerControl_EskariakSortu
             // 
             headerControl_EskariakSortu.BackColor = Color.FromArgb(210, 210, 210);
@@ -158,13 +135,24 @@
             headerControl_EskariakSortu.TabIndex = 13;
             headerControl_EskariakSortu.Titulo = "IZENBURUA";
             // 
+            // footerControl_EskariakSortu
+            // 
+            footerControl_EskariakSortu.AtzeraTestua = "Atzera";
+            footerControl_EskariakSortu.BackColor = Color.Silver;
+            footerControl_EskariakSortu.Dock = DockStyle.Bottom;
+            footerControl_EskariakSortu.Location = new Point(0, 933);
+            footerControl_EskariakSortu.Name = "footerControl_EskariakSortu";
+            footerControl_EskariakSortu.Size = new Size(1902, 100);
+            footerControl_EskariakSortu.TabIndex = 14;
+            footerControl_EskariakSortu.Testua = "";
+            // 
             // EskariakSortuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(footerControl_EskariakSortu);
             Controls.Add(headerControl_EskariakSortu);
-            Controls.Add(pnl_FooterEskariak);
             Controls.Add(flp_ProduktuMotak);
             Controls.Add(pnl_ProduktuMotak);
             Controls.Add(btn_SortuEskaria);
@@ -179,7 +167,6 @@
             WindowState = FormWindowState.Maximized;
             Load += EskariakSortuForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_EskariaProduktua).EndInit();
-            pnl_FooterEskariak.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,8 +181,7 @@
         private Button btn_SortuEskaria;
         private Panel pnl_ProduktuMotak;
         private FlowLayoutPanel flp_ProduktuMotak;
-        private Panel pnl_FooterEskariak;
-        private Button btn_Atzera;
         private Controls.HeaderControl headerControl_EskariakSortu;
+        private Controls.FooterControl footerControl_EskariakSortu;
     }
 }

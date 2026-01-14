@@ -27,6 +27,20 @@ namespace TeknoBideTPV.UI
             DoubleBufferingAktibatu(flp_Eskariak);
 
             this.Shown += EskariakForm_Shown;
+
+            PrestatuFooter();
+        }
+
+        private void PrestatuFooter()
+        {
+            footerControl_Eskariak.Testua = "Erreserba amaitzen";
+            footerControl_Eskariak.AtzeraTestua = "Atzera";
+
+            footerControl_Eskariak.AtzeraClick += (s, e) =>
+            {
+                _AurrekoPantaila.Show();
+                this.Close();
+            };
         }
 
         private void DoubleBufferingAktibatu(Control kontrola)

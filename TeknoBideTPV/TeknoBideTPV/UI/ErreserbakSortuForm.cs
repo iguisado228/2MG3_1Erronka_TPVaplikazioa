@@ -26,6 +26,8 @@ namespace TeknoBideTPV.UI
             _langileaId = SesioZerbitzua.LangileaId;
 
             this.Load += ErreserbakSortuForm_Load;
+
+            PrestatuFooter();
         }
 
         private async void ErreserbakSortuForm_Load(object sender, EventArgs e)
@@ -42,6 +44,18 @@ namespace TeknoBideTPV.UI
             headerControl_ErreserbakSortu.Titulo = "ERRESERBA SORTU";
             headerControl_ErreserbakSortu.Erabiltzailea = SesioZerbitzua.Izena;
             headerControl_ErreserbakSortu.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
+        }
+
+        private void PrestatuFooter()
+        {
+            footerControl_ErreserbakSortu.Testua = "Erreserba sortzen";
+            footerControl_ErreserbakSortu.AtzeraTestua = "Atzera";
+
+            footerControl_ErreserbakSortu.AtzeraClick += (s, e) =>
+            {
+                _AurrekoPantaila.Show();
+                this.Close();
+            };
         }
 
         private void OrduakEzarri()

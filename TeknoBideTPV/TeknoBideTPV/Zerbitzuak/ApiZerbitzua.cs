@@ -65,6 +65,10 @@ namespace TeknoBideTPV.Zerbitzuak
             var response = await _httpClient.PostAsJsonAsync("api/erreserbak", dto);
             return response.IsSuccessStatusCode;
         }
-
+        public async Task<bool> OrdainduErreserbaAsync(ErreserbaOrdainduDto dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/erreserbak/ordaindu", dto);
+            return response.IsSuccessStatusCode;
+        }
     }
 }

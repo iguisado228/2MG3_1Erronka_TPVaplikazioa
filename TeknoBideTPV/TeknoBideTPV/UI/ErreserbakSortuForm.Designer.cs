@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnl_FooterEskariak = new Panel();
-            btn_Atzera = new Button();
             pnl_EzkerrekoPanela = new Panel();
             nud_PertsonaKopurua = new NumericUpDown();
             lbl_PertsonaKopurua = new Label();
@@ -46,32 +44,11 @@
             lbl_Eguna = new Label();
             btn_Gorde = new Button();
             headerControl_ErreserbakSortu = new TeknoBideTPV.UI.Controls.HeaderControl();
-            pnl_FooterEskariak.SuspendLayout();
+            footerControl_ErreserbakSortu = new TeknoBideTPV.UI.Controls.FooterControl();
             pnl_EzkerrekoPanela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nud_PertsonaKopurua).BeginInit();
             pnl_EskubikoPanela.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnl_FooterEskariak
-            // 
-            pnl_FooterEskariak.BackColor = Color.Silver;
-            pnl_FooterEskariak.Controls.Add(btn_Atzera);
-            pnl_FooterEskariak.Dock = DockStyle.Bottom;
-            pnl_FooterEskariak.Location = new Point(0, 953);
-            pnl_FooterEskariak.Name = "pnl_FooterEskariak";
-            pnl_FooterEskariak.Size = new Size(1902, 80);
-            pnl_FooterEskariak.TabIndex = 10;
-            // 
-            // btn_Atzera
-            // 
-            btn_Atzera.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_Atzera.Location = new Point(1741, 8);
-            btn_Atzera.Name = "btn_Atzera";
-            btn_Atzera.Size = new Size(149, 60);
-            btn_Atzera.TabIndex = 6;
-            btn_Atzera.Text = "⬅ Atzera";
-            btn_Atzera.UseVisualStyleBackColor = true;
-            btn_Atzera.Click += btn_Atzera_Click;
             // 
             // pnl_EzkerrekoPanela
             // 
@@ -237,21 +214,31 @@
             headerControl_ErreserbakSortu.TabIndex = 14;
             headerControl_ErreserbakSortu.Titulo = "IZENBURUA";
             // 
+            // footerControl_ErreserbakSortu
+            // 
+            footerControl_ErreserbakSortu.AtzeraTestua = "Atzera";
+            footerControl_ErreserbakSortu.BackColor = Color.Silver;
+            footerControl_ErreserbakSortu.Dock = DockStyle.Bottom;
+            footerControl_ErreserbakSortu.Location = new Point(0, 933);
+            footerControl_ErreserbakSortu.Name = "footerControl_ErreserbakSortu";
+            footerControl_ErreserbakSortu.Size = new Size(1902, 100);
+            footerControl_ErreserbakSortu.TabIndex = 15;
+            footerControl_ErreserbakSortu.Testua = "";
+            // 
             // ErreserbakSortuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(footerControl_ErreserbakSortu);
             Controls.Add(headerControl_ErreserbakSortu);
             Controls.Add(btn_Gorde);
             Controls.Add(pnl_EskubikoPanela);
             Controls.Add(pnl_EzkerrekoPanela);
-            Controls.Add(pnl_FooterEskariak);
             Name = "ErreserbakSortuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ErreserbakSortuForm";
             WindowState = FormWindowState.Maximized;
-            pnl_FooterEskariak.ResumeLayout(false);
             pnl_EzkerrekoPanela.ResumeLayout(false);
             pnl_EzkerrekoPanela.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nud_PertsonaKopurua).EndInit();
@@ -261,8 +248,6 @@
         }
 
         #endregion
-        private Panel pnl_FooterEskariak;
-        private Button btn_Atzera;
         private Panel pnl_EzkerrekoPanela;
         private TextBox txt_Telefonoa;
         private Label lbl_Telefonoa;
@@ -279,5 +264,6 @@
         private Button btn_Gorde;
         private ComboBox cmb_Ordua;
         private Controls.HeaderControl headerControl_ErreserbakSortu;
+        private Controls.FooterControl footerControl_ErreserbakSortu;
     }
 }
