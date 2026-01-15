@@ -12,7 +12,7 @@ namespace TeknoBideTPV.Zerbitzuak
     {
         private static readonly HttpClient _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("https://localhost:5001/")
+            BaseAddress = new Uri("http://192.168.1.112:5000/")
         };
 
         public async Task<List<ErreserbaDto>> ErreserbakLortuAsync()

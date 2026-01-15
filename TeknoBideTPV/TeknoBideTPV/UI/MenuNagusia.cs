@@ -150,6 +150,9 @@ namespace TeknoBideTPV.UI
 
         private void btn_MahaiakKudeatu_Click(object sender, EventArgs e)
         {
+            var MahaiakKudeatuForm = new MahaiakKudeatuForm(this);
+            this.Hide();
+            MahaiakKudeatuForm.Show();
         }
 
         private void btn_Txostenak_Click(object sender, EventArgs e)
