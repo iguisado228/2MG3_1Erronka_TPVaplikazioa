@@ -31,18 +31,19 @@
             footerControl_MahaiakKudeatu = new TeknoBideTPV.UI.Controls.FooterControl();
             headerControl_MahaiakKudeatu = new TeknoBideTPV.UI.Controls.HeaderControl();
             pnl_Edukia = new Panel();
-            flp_Mahaiak = new FlowLayoutPanel();
             pnl_Ezaugarriak = new Panel();
-            lbl_Izenburua = new Label();
-            lbl_Izena = new Label();
-            txt_Zenbakia = new TextBox();
-            lbl_PertsonaKopurua = new Label();
-            nud_PertsonaKopurua = new NumericUpDown();
-            lbl_Kokapena = new Label();
-            cmb_Kokapena = new ComboBox();
-            btn_Gorde = new Button();
-            btn_Ezabatu = new Button();
             btn_MahaiBerria = new Button();
+            btn_Ezabatu = new Button();
+            btn_Gorde = new Button();
+            cmb_Kokapena = new ComboBox();
+            lbl_Kokapena = new Label();
+            nud_PertsonaKopurua = new NumericUpDown();
+            lbl_PertsonaKopurua = new Label();
+            txt_Zenbakia = new TextBox();
+            lbl_Izena = new Label();
+            lbl_Izenburua = new Label();
+            flp_Mahaiak = new FlowLayoutPanel();
+            btn_Garbitu = new Button();
             pnl_Edukia.SuspendLayout();
             pnl_Ezaugarriak.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nud_PertsonaKopurua).BeginInit();
@@ -83,18 +84,9 @@
             pnl_Edukia.Size = new Size(1902, 833);
             pnl_Edukia.TabIndex = 0;
             // 
-            // flp_Mahaiak
-            // 
-            flp_Mahaiak.AutoScroll = true;
-            flp_Mahaiak.Dock = DockStyle.Left;
-            flp_Mahaiak.Location = new Point(0, 0);
-            flp_Mahaiak.Name = "flp_Mahaiak";
-            flp_Mahaiak.Padding = new Padding(10);
-            flp_Mahaiak.Size = new Size(1200, 833);
-            flp_Mahaiak.TabIndex = 0;
-            // 
             // pnl_Ezaugarriak
             // 
+            pnl_Ezaugarriak.Controls.Add(btn_Garbitu);
             pnl_Ezaugarriak.Controls.Add(btn_MahaiBerria);
             pnl_Ezaugarriak.Controls.Add(btn_Ezabatu);
             pnl_Ezaugarriak.Controls.Add(btn_Gorde);
@@ -111,65 +103,38 @@
             pnl_Ezaugarriak.Size = new Size(702, 833);
             pnl_Ezaugarriak.TabIndex = 1;
             // 
-            // lbl_Izenburua
+            // btn_MahaiBerria
             // 
-            lbl_Izenburua.AutoSize = true;
-            lbl_Izenburua.Font = new Font("Segoe UI Semibold", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Izenburua.Location = new Point(20, 20);
-            lbl_Izenburua.Name = "lbl_Izenburua";
-            lbl_Izenburua.Size = new Size(349, 60);
-            lbl_Izenburua.TabIndex = 0;
-            lbl_Izenburua.Text = "Mahaia kudeatu";
+            btn_MahaiBerria.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_MahaiBerria.Location = new Point(20, 450);
+            btn_MahaiBerria.Name = "btn_MahaiBerria";
+            btn_MahaiBerria.Size = new Size(520, 70);
+            btn_MahaiBerria.TabIndex = 9;
+            btn_MahaiBerria.Text = "MAHAI BERRIA";
+            btn_MahaiBerria.UseVisualStyleBackColor = true;
+            btn_MahaiBerria.Click += btn_MahaiBerria_Click;
             // 
-            // lbl_Izena
+            // btn_Ezabatu
             // 
-            lbl_Izena.AutoSize = true;
-            lbl_Izena.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Izena.Location = new Point(20, 110);
-            lbl_Izena.Name = "lbl_Izena";
-            lbl_Izena.Size = new Size(145, 41);
-            lbl_Izena.TabIndex = 1;
-            lbl_Izena.Text = "Zenbakia:";
+            btn_Ezabatu.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Ezabatu.Location = new Point(290, 360);
+            btn_Ezabatu.Name = "btn_Ezabatu";
+            btn_Ezabatu.Size = new Size(250, 70);
+            btn_Ezabatu.TabIndex = 8;
+            btn_Ezabatu.Text = "EZABATU";
+            btn_Ezabatu.UseVisualStyleBackColor = true;
+            btn_Ezabatu.Click += btn_Ezabatu_Click;
             // 
-            // txt_Zenbakia
+            // btn_Gorde
             // 
-            txt_Zenbakia.BackColor = Color.White;
-            txt_Zenbakia.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_Zenbakia.Location = new Point(240, 110);
-            txt_Zenbakia.Name = "txt_Zenbakia";
-            txt_Zenbakia.ReadOnly = true;
-            txt_Zenbakia.Size = new Size(350, 47);
-            txt_Zenbakia.TabIndex = 2;
-            // 
-            // lbl_PertsonaKopurua
-            // 
-            lbl_PertsonaKopurua.AutoSize = true;
-            lbl_PertsonaKopurua.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_PertsonaKopurua.Location = new Point(20, 180);
-            lbl_PertsonaKopurua.Name = "lbl_PertsonaKopurua";
-            lbl_PertsonaKopurua.RightToLeft = RightToLeft.No;
-            lbl_PertsonaKopurua.Size = new Size(240, 38);
-            lbl_PertsonaKopurua.TabIndex = 3;
-            lbl_PertsonaKopurua.Text = "Pertsona kopurua:";
-            // 
-            // nud_PertsonaKopurua
-            // 
-            nud_PertsonaKopurua.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nud_PertsonaKopurua.Location = new Point(266, 175);
-            nud_PertsonaKopurua.Name = "nud_PertsonaKopurua";
-            nud_PertsonaKopurua.Size = new Size(150, 47);
-            nud_PertsonaKopurua.TabIndex = 4;
-            // 
-            // lbl_Kokapena
-            // 
-            lbl_Kokapena.AutoSize = true;
-            lbl_Kokapena.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Kokapena.Location = new Point(20, 250);
-            lbl_Kokapena.Name = "lbl_Kokapena";
-            lbl_Kokapena.RightToLeft = RightToLeft.No;
-            lbl_Kokapena.Size = new Size(155, 41);
-            lbl_Kokapena.TabIndex = 5;
-            lbl_Kokapena.Text = "Kokapena:";
+            btn_Gorde.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Gorde.Location = new Point(20, 360);
+            btn_Gorde.Name = "btn_Gorde";
+            btn_Gorde.Size = new Size(250, 70);
+            btn_Gorde.TabIndex = 7;
+            btn_Gorde.Text = "GORDE";
+            btn_Gorde.UseVisualStyleBackColor = true;
+            btn_Gorde.Click += btn_Gorde_Click;
             // 
             // cmb_Kokapena
             // 
@@ -182,35 +147,86 @@
             cmb_Kokapena.Size = new Size(300, 49);
             cmb_Kokapena.TabIndex = 6;
             // 
-            // btn_Gorde
+            // lbl_Kokapena
             // 
-            btn_Gorde.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_Gorde.Location = new Point(20, 360);
-            btn_Gorde.Name = "btn_Gorde";
-            btn_Gorde.Size = new Size(250, 70);
-            btn_Gorde.TabIndex = 7;
-            btn_Gorde.Text = "GORDE";
-            btn_Gorde.UseVisualStyleBackColor = true;
+            lbl_Kokapena.AutoSize = true;
+            lbl_Kokapena.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Kokapena.Location = new Point(20, 250);
+            lbl_Kokapena.Name = "lbl_Kokapena";
+            lbl_Kokapena.RightToLeft = RightToLeft.No;
+            lbl_Kokapena.Size = new Size(155, 41);
+            lbl_Kokapena.TabIndex = 5;
+            lbl_Kokapena.Text = "Kokapena:";
             // 
-            // btn_Ezabatu
+            // nud_PertsonaKopurua
             // 
-            btn_Ezabatu.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_Ezabatu.Location = new Point(290, 360);
-            btn_Ezabatu.Name = "btn_Ezabatu";
-            btn_Ezabatu.Size = new Size(250, 70);
-            btn_Ezabatu.TabIndex = 8;
-            btn_Ezabatu.Text = "EZABATU";
-            btn_Ezabatu.UseVisualStyleBackColor = true;
+            nud_PertsonaKopurua.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nud_PertsonaKopurua.Location = new Point(266, 175);
+            nud_PertsonaKopurua.Name = "nud_PertsonaKopurua";
+            nud_PertsonaKopurua.Size = new Size(274, 47);
+            nud_PertsonaKopurua.TabIndex = 4;
             // 
-            // btn_MahaiBerria
+            // lbl_PertsonaKopurua
             // 
-            btn_MahaiBerria.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_MahaiBerria.Location = new Point(20, 450);
-            btn_MahaiBerria.Name = "btn_MahaiBerria";
-            btn_MahaiBerria.Size = new Size(520, 70);
-            btn_MahaiBerria.TabIndex = 9;
-            btn_MahaiBerria.Text = "MAHAI BERRIA";
-            btn_MahaiBerria.UseVisualStyleBackColor = true;
+            lbl_PertsonaKopurua.AutoSize = true;
+            lbl_PertsonaKopurua.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_PertsonaKopurua.Location = new Point(20, 180);
+            lbl_PertsonaKopurua.Name = "lbl_PertsonaKopurua";
+            lbl_PertsonaKopurua.RightToLeft = RightToLeft.No;
+            lbl_PertsonaKopurua.Size = new Size(240, 38);
+            lbl_PertsonaKopurua.TabIndex = 3;
+            lbl_PertsonaKopurua.Text = "Pertsona kopurua:";
+            // 
+            // txt_Zenbakia
+            // 
+            txt_Zenbakia.BackColor = Color.White;
+            txt_Zenbakia.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_Zenbakia.Location = new Point(190, 104);
+            txt_Zenbakia.Name = "txt_Zenbakia";
+            txt_Zenbakia.ReadOnly = true;
+            txt_Zenbakia.Size = new Size(350, 47);
+            txt_Zenbakia.TabIndex = 2;
+            // 
+            // lbl_Izena
+            // 
+            lbl_Izena.AutoSize = true;
+            lbl_Izena.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Izena.Location = new Point(20, 110);
+            lbl_Izena.Name = "lbl_Izena";
+            lbl_Izena.Size = new Size(145, 41);
+            lbl_Izena.TabIndex = 1;
+            lbl_Izena.Text = "Zenbakia:";
+            // 
+            // lbl_Izenburua
+            // 
+            lbl_Izenburua.AutoSize = true;
+            lbl_Izenburua.Font = new Font("Segoe UI Semibold", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Izenburua.Location = new Point(20, 20);
+            lbl_Izenburua.Name = "lbl_Izenburua";
+            lbl_Izenburua.Size = new Size(349, 60);
+            lbl_Izenburua.TabIndex = 0;
+            lbl_Izenburua.Text = "Mahaia kudeatu";
+            // 
+            // flp_Mahaiak
+            // 
+            flp_Mahaiak.AutoScroll = true;
+            flp_Mahaiak.Dock = DockStyle.Left;
+            flp_Mahaiak.Location = new Point(0, 0);
+            flp_Mahaiak.Name = "flp_Mahaiak";
+            flp_Mahaiak.Padding = new Padding(10);
+            flp_Mahaiak.Size = new Size(1200, 833);
+            flp_Mahaiak.TabIndex = 0;
+            // 
+            // btn_Garbitu
+            // 
+            btn_Garbitu.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_Garbitu.Location = new Point(447, 27);
+            btn_Garbitu.Name = "btn_Garbitu";
+            btn_Garbitu.Size = new Size(188, 53);
+            btn_Garbitu.TabIndex = 10;
+            btn_Garbitu.Text = "GARBITU";
+            btn_Garbitu.UseVisualStyleBackColor = true;
+            btn_Garbitu.Click += btn_Garbitu_Click;
             // 
             // MahaiakKudeatuForm
             // 
@@ -248,5 +264,6 @@
         private Button btn_MahaiBerria;
         private Button btn_Ezabatu;
         private Button btn_Gorde;
+        private Button btn_Garbitu;
     }
 }

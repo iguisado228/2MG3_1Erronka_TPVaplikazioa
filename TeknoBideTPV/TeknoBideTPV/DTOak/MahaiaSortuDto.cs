@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TeknoBideTPV.DTOak
 {
-    public class MahaiaDto
+    public class MahaiaSortuDto
     {
-        public int Id { get; set; }
-        public int Zenbakia { get; set; } = 0;
+        public string Zenbakia { get; set; } = "";
         public int PertsonaKopurua { get; set; }
-        public string Kokapena { get; set; } = string.Empty;
+        public string Kokapena { get; set; } = "";
     }
 }
+

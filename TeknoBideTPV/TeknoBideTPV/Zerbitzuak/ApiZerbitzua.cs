@@ -12,14 +12,9 @@ namespace TeknoBideTPV.Zerbitzuak
     {
         private static readonly HttpClient _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("http://192.168.1.112:5000/")
+            BaseAddress = new Uri("http://192.168.1.112:5000/") 
+            //BaseAddress = new Uri("http://localhost:5000/") 
         };
-
-        public async Task<List<ErreserbaDto>> ErreserbakLortuAsync()
-        {
-            var erreserbak = await _httpClient.GetFromJsonAsync<List<ErreserbaDto>>("api/erreserbak");
-            return erreserbak ?? new List<ErreserbaDto>();
-        }
 
         public async Task<LoginErantzunaDto?> LoginAsync(int langileKodea, string pasahitza)
         {
@@ -54,10 +49,10 @@ namespace TeknoBideTPV.Zerbitzuak
             return eskariak ?? new List<EskariaDto>();
         }
 
-        public async Task<List<MahaiaDto>> MahaiakLortuAsync()
+        public async Task<List<ErreserbaDto>> ErreserbakLortuAsync()
         {
-            var mahaiak = await _httpClient.GetFromJsonAsync<List<MahaiaDto>>("api/mahaiak");
-            return mahaiak ?? new List<MahaiaDto>();
+            var erreserbak = await _httpClient.GetFromJsonAsync<List<ErreserbaDto>>("api/erreserbak");
+            return erreserbak ?? new List<ErreserbaDto>();
         }
 
         public async Task<bool> SortuErreserbaAsync(ErreserbaSortuDto dto)
@@ -65,9 +60,31 @@ namespace TeknoBideTPV.Zerbitzuak
             var response = await _httpClient.PostAsJsonAsync("api/erreserbak", dto);
             return response.IsSuccessStatusCode;
         }
+
         public async Task<bool> OrdainduErreserbaAsync(ErreserbaOrdainduDto dto)
         {
             var response = await _httpClient.PostAsJsonAsync("api/erreserbak/ordaindu", dto);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<List<MahaiaDto>> MahaiakLortuAsync()
+        {
+            var mahaiak = await _httpClient.GetFromJsonAsync<List<MahaiaDto>>("api/mahaiak");
+            return mahaiak ?? new List<MahaiaDto>();
+        }
+        public async Task<bool> SortuMahaiaAsync(MahaiaSortuDto dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/mahaiak", dto);
+            return response.IsSuccessStatusCode;
+        }
+        public async Task<bool> AktualizatuMahaiaAsync(MahaiaDto dto)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/mahaiak/{dto.Id}", dto);
+            return response.IsSuccessStatusCode;
+        }
+        public async Task<bool> EzabatuMahaiaAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/mahaiak/{id}");
             return response.IsSuccessStatusCode;
         }
     }
