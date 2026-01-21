@@ -49,7 +49,7 @@
             dgv_ErreserbakIkusi.Location = new Point(0, 249);
             dgv_ErreserbakIkusi.Name = "dgv_ErreserbakIkusi";
             dgv_ErreserbakIkusi.RowHeadersWidth = 51;
-            dgv_ErreserbakIkusi.Size = new Size(1541, 596);
+            dgv_ErreserbakIkusi.Size = new Size(1541, 496);
             dgv_ErreserbakIkusi.TabIndex = 0;
             // 
             // lbl_Bilatu
@@ -138,17 +138,18 @@
             headerControl_Erreserbak.Size = new Size(1541, 105);
             headerControl_Erreserbak.TabIndex = 11;
             headerControl_Erreserbak.Titulo = "IZENBURUA";
+            headerControl_Erreserbak.Load += headerControl_Erreserbak_Load;
             // 
             // footerControl_Erreserbak
             // 
             footerControl_Erreserbak.AtzeraTestua = "Atzera";
             footerControl_Erreserbak.BackColor = Color.Silver;
+            footerControl_Erreserbak.Dock = DockStyle.Bottom;
             footerControl_Erreserbak.Location = new Point(0, 745);
             footerControl_Erreserbak.Name = "footerControl_Erreserbak";
-            footerControl_Erreserbak.Size = new Size(1556, 100);
+            footerControl_Erreserbak.Size = new Size(1541, 100);
             footerControl_Erreserbak.TabIndex = 12;
-            footerControl_Erreserbak.Dock = DockStyle.Bottom;
-
+            footerControl_Erreserbak.TxataTestua = "Txata";
             // 
             // ErreserbakForm
             // 

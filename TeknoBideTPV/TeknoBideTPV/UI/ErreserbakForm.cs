@@ -62,7 +62,7 @@ namespace TeknoBideTPV.UI
                 this.Close();
             };
         }
-       
+
 
         private async Task KargatuMahaiak()
         {
@@ -198,6 +198,11 @@ namespace TeknoBideTPV.UI
 
             dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak.ToList();
             EzarriKolumnak();
+        }
+
+        private void headerControl_Erreserbak_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

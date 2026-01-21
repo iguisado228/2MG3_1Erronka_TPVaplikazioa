@@ -41,6 +41,7 @@
             BidaliBotoia.TabIndex = 0;
             BidaliBotoia.Text = "Bidali";
             BidaliBotoia.UseVisualStyleBackColor = true;
+            BidaliBotoia.Click += BidaliBotoia_Click;
             // 
             // MezuIdazlea
             // 
@@ -57,6 +58,7 @@
             MezuPantaila.Name = "MezuPantaila";
             MezuPantaila.Size = new Size(565, 505);
             MezuPantaila.TabIndex = 2;
+            MezuPantaila.TextChanged += MezuPantaila_TextChanged;
             // 
             // TxatPantaila
             // 
@@ -68,6 +70,7 @@
             Controls.Add(BidaliBotoia);
             Name = "TxatPantaila";
             Size = new Size(600, 600);
+            Load += TxatPantaila_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }
