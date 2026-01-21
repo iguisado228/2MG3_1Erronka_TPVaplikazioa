@@ -58,7 +58,6 @@
             footerControl_MahaiakKudeatu.Name = "footerControl_MahaiakKudeatu";
             footerControl_MahaiakKudeatu.Size = new Size(1902, 100);
             footerControl_MahaiakKudeatu.TabIndex = 0;
-            footerControl_MahaiakKudeatu.Testua = "";
             // 
             // headerControl_MahaiakKudeatu
             // 

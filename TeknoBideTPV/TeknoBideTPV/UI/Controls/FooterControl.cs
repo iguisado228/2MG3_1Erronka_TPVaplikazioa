@@ -8,6 +8,7 @@ namespace TeknoBideTPV.UI.Controls
     public partial class FooterControl : UserControl
     {
         public event EventHandler AtzeraClick;
+        public event EventHandler TxataClick;
 
         public FooterControl()
         {
@@ -29,17 +30,25 @@ namespace TeknoBideTPV.UI.Controls
 
             this.Resize += (s, e) =>
             {
-                btn_Atzera.Location = new Point(this.Width - btn_Atzera.Width - 20, (this.Height - btn_Atzera.Height) / 2);
+                btn_Atzera.Location = new Point(
+                    this.Width - btn_Atzera.Width - 20,
+                    (this.Height - btn_Atzera.Height) / 2
+                );
             };
 
-
             EskalatuIkonoa(btn_Atzera);
+
+            btn_Txata.Region = new Region(IskinakRedondeatu(btn_Txata.ClientRectangle, 20));
+            btn_Txata.Resize += (s, e) =>
+            {
+                btn_Txata.Region = new Region(IskinakRedondeatu(btn_Txata.ClientRectangle, 20));
+            };
         }
 
-        public string Testua
+        public string TxataTestua
         {
-            get => lbl_Testua.Text;
-            set => lbl_Testua.Text = value;
+            get => btn_Txata.Text;
+            set => btn_Txata.Text = value;
         }
 
         public string AtzeraTestua
@@ -51,6 +60,11 @@ namespace TeknoBideTPV.UI.Controls
         private void btn_Atzera_Click(object sender, EventArgs e)
         {
             AtzeraClick?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btn_Txata_Click(object sender, EventArgs e)
+        {
+            TxataClick?.Invoke(this, EventArgs.Empty);
         }
 
         private void EskalatuIkonoa(Button btn)

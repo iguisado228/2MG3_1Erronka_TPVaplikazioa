@@ -54,7 +54,6 @@
             footerControl1.Name = "footerControl1";
             footerControl1.Size = new Size(1902, 100);
             footerControl1.TabIndex = 13;
-            footerControl1.Testua = "";
             // 
             // ErreserbakEditatuForm
             // 

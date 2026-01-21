@@ -195,7 +195,6 @@
             footerControl_Eskariak.Name = "footerControl_Eskariak";
             footerControl_Eskariak.Size = new Size(234, 100);
             footerControl_Eskariak.TabIndex = 0;
-            footerControl_Eskariak.Testua = "";
             // 
             // EskariakForm
             // 

@@ -61,7 +61,6 @@ namespace TeknoBideTPV.UI
 
         private void PrestatuFooter()
         {
-            footerControl_MenuNagusia.Testua = "Saioa amaitu";
             footerControl_MenuNagusia.AtzeraTestua = "Atera";
 
             footerControl_MenuNagusia.AtzeraClick += (s, e) =>

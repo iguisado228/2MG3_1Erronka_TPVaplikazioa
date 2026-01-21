@@ -144,7 +144,6 @@
             footerControl_EskariakSortu.Name = "footerControl_EskariakSortu";
             footerControl_EskariakSortu.Size = new Size(1902, 100);
             footerControl_EskariakSortu.TabIndex = 14;
-            footerControl_EskariakSortu.Testua = "";
             // 
             // EskariakSortuForm
             // 

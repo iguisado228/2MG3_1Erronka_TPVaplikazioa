@@ -3,7 +3,8 @@
     partial class FooterControl
     {
         private System.ComponentModel.IContainer components = null;
-        private Label lbl_Testua;
+
+        private Button btn_Txata;
         private Button btn_Atzera;
 
         protected override void Dispose(bool disposing)
@@ -15,25 +16,30 @@
 
         private void InitializeComponent()
         {
-            lbl_Testua = new Label();
+            btn_Txata = new Button();
             btn_Atzera = new Button();
             SuspendLayout();
+
             // 
-            // lbl_Testua
+            // btn_Txata
             // 
-            lbl_Testua.Dock = DockStyle.Left;
-            lbl_Testua.Font = new Font("Segoe UI", 14F);
-            lbl_Testua.Location = new Point(0, 0);
-            lbl_Testua.Name = "lbl_Testua";
-            lbl_Testua.Padding = new Padding(20, 0, 0, 0);
-            lbl_Testua.Size = new Size(600, 80);
-            lbl_Testua.TabIndex = 0;
-            lbl_Testua.TextAlign = ContentAlignment.MiddleLeft;
+            btn_Txata.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btn_Txata.Name = "btn_Txata";
+            btn_Txata.Text = "Txata";
+            btn_Txata.Size = new Size(180, 50);
+            btn_Txata.Location = new Point(20, 15);
+            btn_Txata.BackColor = Color.White;
+            btn_Txata.FlatStyle = FlatStyle.Flat;
+            btn_Txata.FlatAppearance.BorderSize = 0;
+            btn_Txata.TextAlign = ContentAlignment.MiddleCenter;
+            btn_Txata.Padding = new Padding(10, 0, 10, 0);
+            btn_Txata.Click += btn_Txata_Click;
+
             // 
             // btn_Atzera
-            //
-            btn_Atzera.Size = new Size(200, 60); 
-            btn_Atzera.Location = new Point(this.Width - 220, 20); 
+            // 
+            btn_Atzera.Size = new Size(200, 60);
+            btn_Atzera.Location = new Point(this.Width - 220, 10);
             btn_Atzera.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
             btn_Atzera.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
@@ -51,7 +57,7 @@
             // FooterControl
             // 
             BackColor = Color.Silver;
-            Controls.Add(lbl_Testua);
+            Controls.Add(btn_Txata);
             Controls.Add(btn_Atzera);
             Name = "FooterControl";
             Size = new Size(1245, 80);

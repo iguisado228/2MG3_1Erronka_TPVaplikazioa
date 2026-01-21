@@ -147,7 +147,6 @@
             footerControl_Erreserbak.Name = "footerControl_Erreserbak";
             footerControl_Erreserbak.Size = new Size(1556, 100);
             footerControl_Erreserbak.TabIndex = 12;
-            footerControl_Erreserbak.Testua = "";
             footerControl_Erreserbak.Dock = DockStyle.Bottom;
 
             // 

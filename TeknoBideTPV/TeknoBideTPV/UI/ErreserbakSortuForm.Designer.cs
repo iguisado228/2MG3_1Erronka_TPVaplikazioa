@@ -223,7 +223,6 @@
             footerControl_ErreserbakSortu.Name = "footerControl_ErreserbakSortu";
             footerControl_ErreserbakSortu.Size = new Size(1902, 100);
             footerControl_ErreserbakSortu.TabIndex = 15;
-            footerControl_ErreserbakSortu.Testua = "";
             // 
             // ErreserbakSortuForm
             // 

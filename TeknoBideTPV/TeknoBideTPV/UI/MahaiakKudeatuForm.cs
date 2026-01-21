@@ -44,7 +44,6 @@ namespace TeknoBideTPV.UI
 
         private void PrestatuFooter()
         {
-            footerControl_MahaiakKudeatu.Testua = "Mahaiak kudeatzen";
             footerControl_MahaiakKudeatu.AtzeraTestua = "Atzera";
 
             footerControl_MahaiakKudeatu.AtzeraClick += (s, e) =>

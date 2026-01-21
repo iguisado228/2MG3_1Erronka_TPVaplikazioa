@@ -185,7 +185,6 @@
             footerControl_MenuNagusia.Name = "footerControl_MenuNagusia";
             footerControl_MenuNagusia.Size = new Size(1541, 100);
             footerControl_MenuNagusia.TabIndex = 6;
-            footerControl_MenuNagusia.Testua = "";
             // 
             // MenuNagusia
             // 

@@ -81,7 +81,6 @@ namespace TeknoBideTPV.UI
 
         private void PrestatuFooter()
         {
-            footerControl_EskariakSortu.Testua = "Erreserba amaitzen";
             footerControl_EskariakSortu.AtzeraTestua = "Atzera";
 
             footerControl_EskariakSortu.AtzeraClick += (s, e) =>

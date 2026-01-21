@@ -72,7 +72,6 @@
             footerControl_ErreserbaAmaitu.Name = "footerControl_ErreserbaAmaitu";
             footerControl_ErreserbaAmaitu.Size = new Size(1902, 100);
             footerControl_ErreserbaAmaitu.TabIndex = 1;
-            footerControl_ErreserbaAmaitu.Testua = "";
             // 
             // pnl_Eskariak
             // 
