@@ -1,6 +1,6 @@
 ﻿namespace TeknoBideTPV.Txata
 {
-    partial class UserControl1
+    partial class TxatPantaila
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,45 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Bidali = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            BidaliBotoia = new Button();
+            MezuIdazlea = new TextBox();
+            MezuPantaila = new TextBox();
             SuspendLayout();
             // 
-            // Bidali
+            // BidaliBotoia
             // 
-            Bidali.Location = new Point(481, 539);
-            Bidali.Name = "Bidali";
-            Bidali.Size = new Size(111, 50);
-            Bidali.TabIndex = 0;
-            Bidali.Text = "button1";
-            Bidali.UseVisualStyleBackColor = true;
+            BidaliBotoia.Location = new Point(470, 539);
+            BidaliBotoia.Name = "BidaliBotoia";
+            BidaliBotoia.Size = new Size(111, 50);
+            BidaliBotoia.TabIndex = 0;
+            BidaliBotoia.Text = "Bidali";
+            BidaliBotoia.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // MezuIdazlea
             // 
-            textBox1.Location = new Point(20, 539);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(455, 50);
-            textBox1.TabIndex = 1;
+            MezuIdazlea.Location = new Point(16, 539);
+            MezuIdazlea.Multiline = true;
+            MezuIdazlea.Name = "MezuIdazlea";
+            MezuIdazlea.Size = new Size(445, 50);
+            MezuIdazlea.TabIndex = 1;
             // 
-            // textBox2
+            // MezuPantaila
             // 
-            textBox2.Location = new Point(16, 16);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(565, 505);
-            textBox2.TabIndex = 2;
+            MezuPantaila.Location = new Point(16, 16);
+            MezuPantaila.Multiline = true;
+            MezuPantaila.Name = "MezuPantaila";
+            MezuPantaila.Size = new Size(565, 505);
+            MezuPantaila.TabIndex = 2;
             // 
-            // UserControl1
+            // TxatPantaila
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(Bidali);
-            Name = "UserControl1";
+            Controls.Add(MezuPantaila);
+            Controls.Add(MezuIdazlea);
+            Controls.Add(BidaliBotoia);
+            Name = "TxatPantaila";
             Size = new Size(600, 600);
             ResumeLayout(false);
             PerformLayout();
@@ -74,8 +74,8 @@
 
         #endregion
 
-        private Button Bidali;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private Button BidaliBotoia;
+        private TextBox MezuIdazlea;
+        private TextBox MezuPantaila;
     }
 }

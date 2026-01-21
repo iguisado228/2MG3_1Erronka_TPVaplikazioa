@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TeknoBideTPV.Txata
 {
-    public partial class UserControl1 : UserControl
+    public partial class TxatPantaila : UserControl
     {
-        public UserControl1()
+        public TxatPantaila()
         {
             InitializeComponent();
         }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using TeknoBideTPV.Txata;
 
 namespace TeknoBideTPV.UI.Controls
 {
@@ -64,6 +65,13 @@ namespace TeknoBideTPV.UI.Controls
 
         private void btn_Txata_Click(object sender, EventArgs e)
         {
+            Form f = new Form(); 
+            f.Text = "Txata"; 
+            f.Size = new Size(615, 650); 
+            var txat = new TxatPantaila(); 
+            txat.Dock = DockStyle.Fill; 
+            f.Controls.Add(txat); 
+            f.ShowDialog(); 
             TxataClick?.Invoke(this, EventArgs.Empty);
         }
 
