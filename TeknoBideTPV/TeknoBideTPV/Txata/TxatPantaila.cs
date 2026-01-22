@@ -61,7 +61,7 @@ namespace TeknoBideTPV.Txata
                 string lerroa;
                 while ((lerroa = irakurlea.ReadLine()) != null)
                 {
-                    idatziMezua(SesioZerbitzua.Izena + ":  " + lerroa);
+                    idatziMezua(lerroa);
                 }
             }
             catch
@@ -89,18 +89,8 @@ namespace TeknoBideTPV.Txata
             string mezua = MezuIdazlea.Text.Trim();
             if (mezua == "") return;
 
-            idazlea.WriteLine(mezua);
+            idazlea.WriteLine(SesioZerbitzua.Izena + ":  " + mezua);
             MezuIdazlea.Text = "";
-        }
-
-        private void MezuPantaila_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxatPantaila_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
