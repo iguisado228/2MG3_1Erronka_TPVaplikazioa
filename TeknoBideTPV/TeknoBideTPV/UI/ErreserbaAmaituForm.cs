@@ -34,7 +34,6 @@ namespace TeknoBideTPV.UI
             dgv_Eskariak.MultiSelect = false;
             dgv_Eskariak.ReadOnly = true;
 
-
             lbl_Guztira.AutoSize = false;
             lbl_Guztira.Size = new Size(650, 80);
             lbl_Guztira.TextAlign = ContentAlignment.MiddleRight;
@@ -91,7 +90,7 @@ namespace TeknoBideTPV.UI
             var erreserbak = await _api.ErreserbakLortuAsync();
 
             var aukeragarriak = erreserbak
-                .Where(e => e.PrezioTotala > 0)
+                .Where(e => e.Ordainduta == 0)
                 .ToList();
 
             cmb_Erreserbak.DisplayMember = "BezeroIzena";
@@ -148,7 +147,6 @@ namespace TeknoBideTPV.UI
             txt_JasoDenDirua.Text = "";
             lbl_Itzulia.Text = "0,00 €";
         }
-
 
         private void btn_Eskudirua_Click(object sender, EventArgs e)
         {
@@ -248,7 +246,6 @@ namespace TeknoBideTPV.UI
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
 
             MessageBox.Show("Erreserba ongi ordaindu da.", "Informazioa",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
