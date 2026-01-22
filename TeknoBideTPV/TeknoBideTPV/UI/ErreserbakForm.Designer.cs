@@ -138,7 +138,6 @@
             headerControl_Erreserbak.Size = new Size(1541, 105);
             headerControl_Erreserbak.TabIndex = 11;
             headerControl_Erreserbak.Titulo = "IZENBURUA";
-            headerControl_Erreserbak.Load += headerControl_Erreserbak_Load;
             // 
             // footerControl_Erreserbak
             // 

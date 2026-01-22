@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TeknoBideTPV.Zerbitzuak;
@@ -66,7 +66,6 @@ namespace TeknoBideTPV.UI
             {
                 SesioZerbitzua.LangileaId = erantzuna.Data.Id;
                 SesioZerbitzua.Izena = erantzuna.Data.Izena;
-                SesioZerbitzua.Gerentea = erantzuna.Data.Gerentea;
 
                 MessageBox.Show(erantzuna.Message, "Sarrera",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

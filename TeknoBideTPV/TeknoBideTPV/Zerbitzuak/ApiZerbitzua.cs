@@ -1,4 +1,4 @@
-﻿using _1Erronka_API.DTOak;
+using _1Erronka_API.DTOak;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,10 +10,12 @@ namespace TeknoBideTPV.Zerbitzuak
 {
     public class ApiZerbitzua
     {
+        //public static readonly string BASE_URL = "http://192.168.1.112:5000/";
+        public static readonly string BASE_URL = "http://localhost:5000/";
+
         private static readonly HttpClient _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("http://192.168.1.112:5000/") 
-            //BaseAddress = new Uri("http://localhost:5000/") 
+            BaseAddress = new Uri(BASE_URL)
         };
 
         public async Task<LoginErantzunaDto?> LoginAsync(int langileKodea, string pasahitza)
