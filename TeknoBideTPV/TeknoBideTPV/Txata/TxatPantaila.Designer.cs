@@ -30,7 +30,7 @@
         {
             BidaliBotoia = new Button();
             MezuIdazlea = new TextBox();
-            MezuPantaila = new TextBox();
+            MezuPantaila = new RichTextBox();
             SuspendLayout();
             // 
             // BidaliBotoia
@@ -77,6 +77,6 @@
 
         private Button BidaliBotoia;
         private TextBox MezuIdazlea;
-        private TextBox MezuPantaila;
+        private RichTextBox MezuPantaila;
     }
 }

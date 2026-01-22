@@ -120,6 +120,7 @@
             lbl_DataOrdua.TabIndex = 1;
             lbl_DataOrdua.Text = "Data - Ordua";
             lbl_DataOrdua.TextAlign = ContentAlignment.MiddleRight;
+            lbl_DataOrdua.Click += lbl_DataOrdua_Click;
             // 
             // HeaderControl
             // 

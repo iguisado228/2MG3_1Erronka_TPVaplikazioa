@@ -40,5 +40,10 @@ namespace TeknoBideTPV.UI.Controls
             get => lbl_DataOrdua.Text;
             set => lbl_DataOrdua.Text = value;
         }
+
+        private void lbl_DataOrdua_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

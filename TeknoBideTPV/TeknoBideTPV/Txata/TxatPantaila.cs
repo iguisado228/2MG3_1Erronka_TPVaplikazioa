@@ -9,7 +9,7 @@ namespace TeknoBideTPV.Txata
 {
     public partial class TxatPantaila : UserControl
     {
-        private string erabiltzaileIzena = SesioZerbitzua.Izena;
+        private string erabiltzaileIzena = SesioZerbitzua.Izena + " txat-ean sartu da!";
         private TcpClient erabiltzailea;
         private StreamReader irakurlea;
         private StreamWriter idazlea;
@@ -72,25 +72,50 @@ namespace TeknoBideTPV.Txata
 
         private void idatziMezua(string msg)
         {
+            bool NireMezua = msg.StartsWith(SesioZerbitzua.Izena + ":");
+
             if (MezuPantaila.InvokeRequired)
             {
                 MezuPantaila.Invoke(new Action(() =>
-                    MezuPantaila.AppendText(msg + Environment.NewLine)
+                    GehituRTFBorde(msg, NireMezua)
                 ));
             }
             else
             {
-                MezuPantaila.AppendText(msg + Environment.NewLine);
+                GehituRTFBorde(msg, NireMezua);
+
             }
         }
 
+        private void GehituRTFBorde(string msg, bool NireMezua)
+        {
+            string alineacion = NireMezua ? @"\qr" : @"\ql";
+
+            Color fondo = NireMezua ? Color.LightGreen : Color.LightGray;
+
+            string rtf = @"{\rtf1\ansi
+{\pard" + alineacion + @" 
+\box " + msg.Replace("\n", "\\line ") + @"\par}
+}";
+
+            MezuPantaila.SelectionBackColor = fondo;
+            MezuPantaila.SelectedRtf = rtf;
+
+            MezuPantaila.AppendText("\n");
+        }
+
+
+
         private void BidaliBotoia_Click(object sender, EventArgs e)
         {
+           
             string mezua = MezuIdazlea.Text.Trim();
             if (mezua == "") return;
+            
 
             idazlea.WriteLine(SesioZerbitzua.Izena + ":  " + mezua);
             MezuIdazlea.Text = "";
         }
+
     }
 }
