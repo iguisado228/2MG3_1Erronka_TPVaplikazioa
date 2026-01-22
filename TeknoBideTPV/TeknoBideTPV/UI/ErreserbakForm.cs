@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.UI.Styles;
 using TeknoBideTPV.Zerbitzuak;
+using System.Diagnostics;
 
 namespace TeknoBideTPV.UI
 {
@@ -27,6 +28,8 @@ namespace TeknoBideTPV.UI
             this.ControlBox = false;
             this.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            dgv_ErreserbakIkusi.CellClick += dgv_ErreserbakIkusi_CellClick;
 
             _AurrekoPantaila = AurrekoPantaila;
             this.Load += ErreserbakForm_Load;
@@ -123,13 +126,26 @@ namespace TeknoBideTPV.UI
                     Name = "Editatu"
                 };
                 dgv_ErreserbakIkusi.Columns.Add(editatuCol);
+
+                var tiketaCol = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Tiketa",
+                    Text = "Ikusi",
+                    UseColumnTextForButtonValue = true,
+                    Width = 80,
+                    Name = "Tiketa"
+                };
+                dgv_ErreserbakIkusi.Columns.Add(tiketaCol);
+
                 _editatuKolumnaGehituta = true;
             }
         }
 
         private void dgv_ErreserbakIkusi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgv_ErreserbakIkusi.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
+            if (e.RowIndex < 0) return;
+
+            if (dgv_ErreserbakIkusi.Columns[e.ColumnIndex].Name == "Editatu")
             {
                 var dto = dgv_ErreserbakIkusi.Rows[e.RowIndex].DataBoundItem as ErreserbaDto;
                 if (dto != null)
@@ -137,6 +153,52 @@ namespace TeknoBideTPV.UI
                     //var editForm = new ErreserbaEditatuForm(dto);
                     //editForm.ShowDialog();
                     //await KargatuErreserbak(); // refrescar después de editar
+                }
+            }
+            else if (dgv_ErreserbakIkusi.Columns[e.ColumnIndex].Name == "Tiketa")
+            {
+                var dto = dgv_ErreserbakIkusi.Rows[e.RowIndex].DataBoundItem as ErreserbaDto;
+                
+                if (dto == null)
+                {
+                    MessageBox.Show("Errorea: Ezin izan da erreserba identifikatu.");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(dto.FakturaRuta))
+                {
+                    if (dto.Ordainduta == 1)
+                    {
+                        string baseUrl = ApiZerbitzua.BASE_URL.TrimEnd('/');
+                        string url = $"{baseUrl}/api/erreserbak/tiket/{dto.Id}";
+                        try
+                        {
+                            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Errorea tiketa irekitzean: {ex.Message}");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreserba hau oraindik ez da ordaindu, beraz ez du tiketarik.");
+                    }
+                    return;
+                }
+
+                {
+                    string baseUrl = ApiZerbitzua.BASE_URL.TrimEnd('/');
+                    string url = $"{baseUrl}/api/erreserbak/tiket/{dto.Id}";
+
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Errorea nabigatzailea irekitzean: {ex.Message}");
+                    }
                 }
             }
         }
@@ -198,11 +260,6 @@ namespace TeknoBideTPV.UI
 
             dgv_ErreserbakIkusi.DataSource = _erreserbakOriginalak.ToList();
             EzarriKolumnak();
-        }
-
-        private void headerControl_Erreserbak_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,6 +38,13 @@ namespace TeknoBideTPV.UI
             headerControl_MahaiakKudeatu.Titulo = "MAHAIAK KUDEATU";
             headerControl_MahaiakKudeatu.Erabiltzailea = SesioZerbitzua.Izena;
             headerControl_MahaiakKudeatu.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
+
+            if (!SesioZerbitzua.Gerentea)
+            {
+                btn_Gorde.Enabled = false;
+                btn_Ezabatu.Enabled = false;
+                btn_MahaiBerria.Enabled = false;
+            }
 
             await KargatuMahaiakAsync();
         }
