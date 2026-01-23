@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using TeknoBideTPV.Txata;
+using TeknoBideTPV.UI.Styles;
 
 namespace TeknoBideTPV.UI.Controls
 {
@@ -44,6 +45,14 @@ namespace TeknoBideTPV.UI.Controls
             {
                 btn_Txata.Region = new Region(IskinakRedondeatu(btn_Txata.ClientRectangle, 20));
             };
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            this.BackColor = TPVEstiloa.Koloreak.Primary;
+            this.ForeColor = TPVEstiloa.Koloreak.TextTitle;
         }
 
         public string TxataTestua

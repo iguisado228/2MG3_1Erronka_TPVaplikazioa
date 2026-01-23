@@ -1,4 +1,4 @@
-﻿namespace TeknoBideTPV.DTOak
+namespace TeknoBideTPV.DTOak
 {
     public class ErreserbaDto
     {
@@ -15,8 +15,11 @@
 
         public string FakturaRuta { get; set; } = string.Empty;
         public int LangileaId { get; set; }
+        public string LangileaIzena { get; set; } = string.Empty;
         public int MahaiakId { get; set; }
 
         public int MahaiaZenbakia { get; set; }
+
+        public string OrdaindutaTestua => Ordainduta == 1 ? "Bai" : "Ez";
     }
 }

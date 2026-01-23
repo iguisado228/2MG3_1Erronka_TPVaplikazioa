@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TeknoBideTPV.Zerbitzuak;
@@ -12,6 +12,19 @@ namespace TeknoBideTPV.UI
         public LoginForm()
         {
             InitializeComponent();
+
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            
+            btn_Sartu.BackColor = TPVEstiloa.Koloreak.Primary;
+            btn_Sartu.ForeColor = TPVEstiloa.Koloreak.White;
+            btn_Sartu.FlatStyle = FlatStyle.Flat;
+            btn_Sartu.FlatAppearance.BorderSize = 0;
+            
+            lbl_Erabiltzailea.ForeColor = TPVEstiloa.Koloreak.Text;
+            lbl_Pasahitza.ForeColor = TPVEstiloa.Koloreak.Text;
+
+            txt_Erabiltzailea.BorderStyle = BorderStyle.FixedSingle;
+            txt_Pasahitza.BorderStyle = BorderStyle.FixedSingle;
 
             this.WindowState = FormWindowState.Maximized;
 

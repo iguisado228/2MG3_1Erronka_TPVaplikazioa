@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TeknoBideTPV.UI.Styles;
 
 namespace TeknoBideTPV.UI.Controls
 {
@@ -15,6 +16,14 @@ namespace TeknoBideTPV.UI.Controls
         public HeaderControl()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            
+            this.BackColor = TPVEstiloa.Koloreak.Primary;
+            this.ForeColor = TPVEstiloa.Koloreak.White;
         }
 
         public string Titulo

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -198,6 +198,30 @@ namespace TeknoBideTPV.UI
                 btn.Click += ProduktuaGehitu_Click;
                 flp_Produktuak.Controls.Add(btn);
             }
+            EguneratuBotoiak();
+        }
+
+        private void EguneratuBotoiak()
+        {
+            foreach (Control c in flp_Produktuak.Controls)
+            {
+                if (c is Button btn && btn.Tag is ProduktuaDto p)
+                {
+                    var inCart = produktuakEskarian.FirstOrDefault(x => x.ProduktuaId == p.Id);
+                    int quantityInCart = inCart?.Kantitatea ?? 0;
+
+                    if (p.Stock <= quantityInCart)
+                    {
+                        btn.Enabled = false;
+                        btn.BackColor = Color.Gray;
+                    }
+                    else
+                    {
+                        btn.Enabled = true;
+                        btn.BackColor = Color.LightSteelBlue;
+                    }
+                }
+            }
         }
 
         private void ProduktuaGehitu_Click(object sender, EventArgs e)
@@ -221,6 +245,7 @@ namespace TeknoBideTPV.UI
             }
 
             EskariakGridEguneratu();
+            EguneratuBotoiak();
         }
 
         private void EskariakGridEguneratu()
@@ -301,6 +326,7 @@ namespace TeknoBideTPV.UI
                 }
 
                 EskariakGridEguneratu();
+                EguneratuBotoiak();
             }
         }
 
@@ -347,6 +373,8 @@ namespace TeknoBideTPV.UI
                 EskariakGridEguneratu();
             else
                 dgv_EskariaProduktua.DataSource = null;
+
+            EguneratuBotoiak();
         }
 
         private void btn_Atzera_Click(object sender, EventArgs e)

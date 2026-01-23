@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -87,5 +87,18 @@ public static class TPVEstiloa
                 c.Font.Style
             );
         }
+    }
+
+    public static class Koloreak
+    {
+        public static readonly Color Background = ColorTranslator.FromHtml("#FFF3E0"); 
+        public static readonly Color Primary = ColorTranslator.FromHtml("#F57C00");
+        public static readonly Color PrimaryDark = ColorTranslator.FromHtml("#E65100");
+        public static readonly Color Secondary = ColorTranslator.FromHtml("#FFCCBC");
+        public static readonly Color Error = ColorTranslator.FromHtml("#D32F2F"); 
+        public static readonly Color Text = ColorTranslator.FromHtml("#E65100"); 
+        public static readonly Color TextTitle = ColorTranslator.FromHtml("#3E2723"); 
+        public static readonly Color TextNormal = Color.Black; 
+        public static readonly Color White = Color.White;
     }
 }

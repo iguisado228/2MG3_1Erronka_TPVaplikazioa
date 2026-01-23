@@ -111,7 +111,10 @@ namespace TeknoBideTPV.UI
             dgv_ErreserbakIkusi.Columns["Eguna"].HeaderText = "Eguna";
             dgv_ErreserbakIkusi.Columns["Ordua"].HeaderText = "Ordua";
             dgv_ErreserbakIkusi.Columns["PrezioTotala"].HeaderText = "Prezioa";
-            dgv_ErreserbakIkusi.Columns["LangileaId"].HeaderText = "Langilea";
+            dgv_ErreserbakIkusi.Columns["LangileaId"].Visible = false;
+            dgv_ErreserbakIkusi.Columns["LangileaIzena"].HeaderText = "Langilea";
+            dgv_ErreserbakIkusi.Columns["Ordainduta"].Visible = false;
+            dgv_ErreserbakIkusi.Columns["OrdaindutaTestua"].HeaderText = "Ordaindua";
 
             dgv_ErreserbakIkusi.Columns["MahaiaZenbakia"].HeaderText = "Mahaia";
 
@@ -141,7 +144,7 @@ namespace TeknoBideTPV.UI
             }
         }
 
-        private void dgv_ErreserbakIkusi_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgv_ErreserbakIkusi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
@@ -150,9 +153,9 @@ namespace TeknoBideTPV.UI
                 var dto = dgv_ErreserbakIkusi.Rows[e.RowIndex].DataBoundItem as ErreserbaDto;
                 if (dto != null)
                 {
-                    //var editForm = new ErreserbaEditatuForm(dto);
-                    //editForm.ShowDialog();
-                    //await KargatuErreserbak(); // refrescar después de editar
+                    var editForm = new ErreserbakEditatuForm(this, dto);
+                    editForm.ShowDialog();
+                    await KargatuErreserbak();
                 }
             }
             else if (dgv_ErreserbakIkusi.Columns[e.ColumnIndex].Name == "Tiketa")

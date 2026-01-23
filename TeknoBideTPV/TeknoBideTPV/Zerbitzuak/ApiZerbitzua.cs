@@ -1,5 +1,4 @@
-using _1Erronka_API.DTOak;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -87,6 +86,12 @@ namespace TeknoBideTPV.Zerbitzuak
         public async Task<bool> EzabatuMahaiaAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"api/mahaiak/{id}");
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> UpdateErreserbaAsync(int id, ErreserbaSortuDto dto)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/erreserbak/{id}", dto);
             return response.IsSuccessStatusCode;
         }
     }

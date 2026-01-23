@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TeknoBideTPV.UI.Controls;
@@ -53,6 +53,8 @@ namespace TeknoBideTPV.UI
 
         private async void MenuNagusia_Load(object sender, EventArgs e)
         {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+
             headerControl_Menua.Izena = "TXAPELA";
             headerControl_Menua.Titulo = "MENU NAGUSIA";
             headerControl_Menua.Erabiltzailea = SesioZerbitzua.Izena;
@@ -79,12 +81,14 @@ namespace TeknoBideTPV.UI
             btn.TextAlign = ContentAlignment.BottomCenter;
             btn.ImageAlign = ContentAlignment.TopCenter;
             btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 0;
-            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 230, 230);
-            btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 210, 210);
+            btn.FlatAppearance.BorderSize = 1; 
+            btn.FlatAppearance.BorderColor = TPVEstiloa.Koloreak.Primary; 
+            btn.FlatAppearance.MouseOverBackColor = TPVEstiloa.Koloreak.Secondary; 
+            btn.FlatAppearance.MouseDownBackColor = TPVEstiloa.Koloreak.Primary; 
 
             btn.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             btn.BackColor = Color.White;
+            btn.ForeColor = TPVEstiloa.Koloreak.TextTitle; 
 
             btn.Tag = ikonoOriginala;
 
