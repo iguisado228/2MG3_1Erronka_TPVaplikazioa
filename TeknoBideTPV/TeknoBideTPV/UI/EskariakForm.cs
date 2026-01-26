@@ -15,6 +15,9 @@ namespace TeknoBideTPV.UI
 
         private Panel overlayPanel;
 
+        private List<EskariaDto> _eskariakGuztiak = new List<EskariaDto>();
+        private string _filtroa = "Guztiak";
+
         public EskariakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
@@ -31,12 +34,38 @@ namespace TeknoBideTPV.UI
             this.Activated += EskariakForm_Activated;
 
             PrestatuFooter();
+            PrestatuFiltroak();
+        }
+
+        private void PrestatuFiltroak()
+        {
+            btn_Guztiak.Click += (s, e) => EzarriFiltroa("Guztiak", btn_Guztiak);
+            bnt_Bidaliak.Click += (s, e) => EzarriFiltroa("Bidalita", bnt_Bidaliak);
+            btn_Prest.Click += (s, e) => EzarriFiltroa("Prest", btn_Prest);
+            btn_Zerbitzatuak.Click += (s, e) => EzarriFiltroa("Zerbitzatuta", btn_Zerbitzatuak);
+        }
+
+        private void EzarriFiltroa(string filtroa, Button botoia)
+        {
+            _filtroa = filtroa;
+
+            Button[] filtroBotoiak = { btn_Guztiak, bnt_Bidaliak, btn_Prest, btn_Zerbitzatuak };
+            foreach (var btn in filtroBotoiak)
+            {
+                btn.BackColor = TPVEstiloa.Koloreak.Primary;
+            }
+            botoia.BackColor = TPVEstiloa.Koloreak.PrimaryDark;
+
+            ErakutsiEskariak();
         }
 
         private async void EskariakForm_Activated(object sender, EventArgs e)
         {
-             var eskariak = await _api.LortuEskariakAsync();
-             KargatuEskariak(eskariak);
+             if (_eskariakGuztiak == null || _eskariakGuztiak.Count == 0)
+             {
+                 var eskariak = await _api.LortuEskariakAsync();
+                 KargatuEskariak(eskariak);
+             }
         }
 
         private void PrestatuFooter()
@@ -81,6 +110,7 @@ namespace TeknoBideTPV.UI
 
             EzarriEskariakLayout();
 
+            // Datuak Activated gertaeran kargatzen dira
             var eskariak = await _api.LortuEskariakAsync();
             KargatuEskariak(eskariak);
 
@@ -110,6 +140,7 @@ namespace TeknoBideTPV.UI
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             }
+            btn_Guztiak.BackColor = TPVEstiloa.Koloreak.PrimaryDark;
         }
 
         private void EzarriEskariakLayout()
@@ -129,10 +160,22 @@ namespace TeknoBideTPV.UI
 
         private void KargatuEskariak(List<EskariaDto> eskariak)
         {
+            _eskariakGuztiak = eskariak;
+            ErakutsiEskariak();
+        }
+
+        private void ErakutsiEskariak()
+        {
             flp_Eskariak.SuspendLayout();
             flp_Eskariak.Controls.Clear();
 
-            foreach (var eskaria in eskariak)
+            var erakustekoak = _eskariakGuztiak;
+            if (_filtroa != "Guztiak")
+            {
+                erakustekoak = _eskariakGuztiak.Where(e => e.Egoera == _filtroa).ToList();
+            }
+
+            foreach (var eskaria in erakustekoak)
             {
                 Panel panel = SortuEskariaPanel(eskaria);
                 flp_Eskariak.Controls.Add(panel);
