@@ -409,6 +409,10 @@ namespace TeknoBideTPV.UI
                 if (ondo)
                 {
                     MessageBox.Show("Eskaria ondo eguneratu da!", "Eskaria Eguneratuta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (_AurrekoPantaila is EskariakForm eskariakForm)
+                    {
+                        eskariakForm.BehartuEguneraketa();
+                    }
                     _AurrekoPantaila.Show();
                     this.Close();
                 }

@@ -17,6 +17,7 @@ namespace TeknoBideTPV.UI
 
         private List<EskariaDto> _eskariakGuztiak = new List<EskariaDto>();
         private string _filtroa = "Guztiak";
+        private bool _beharDituEguneraketa = false;
 
         public EskariakForm(Form AurrekoPantaila)
         {
@@ -61,11 +62,17 @@ namespace TeknoBideTPV.UI
 
         private async void EskariakForm_Activated(object sender, EventArgs e)
         {
-             if (_eskariakGuztiak == null || _eskariakGuztiak.Count == 0)
+             if (_eskariakGuztiak == null || _eskariakGuztiak.Count == 0 || _beharDituEguneraketa)
              {
                  var eskariak = await _api.LortuEskariakAsync();
                  KargatuEskariak(eskariak);
+                 _beharDituEguneraketa = false;
              }
+        }
+
+        public void BehartuEguneraketa()
+        {
+            _beharDituEguneraketa = true;
         }
 
         private void PrestatuFooter()
