@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -28,8 +28,15 @@ namespace TeknoBideTPV.UI
             DoubleBufferingAktibatu(flp_Eskariak);
 
             this.Shown += EskariakForm_Shown;
+            this.Activated += EskariakForm_Activated;
 
             PrestatuFooter();
+        }
+
+        private async void EskariakForm_Activated(object sender, EventArgs e)
+        {
+             var eskariak = await _api.LortuEskariakAsync();
+             KargatuEskariak(eskariak);
         }
 
         private void PrestatuFooter()
@@ -142,7 +149,7 @@ namespace TeknoBideTPV.UI
                 Width = 520,
                 Height = 280,
                 BackColor = Color.White,
-                BorderStyle = BorderStyle.None,
+                BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(8),
                 Padding = new Padding(10)
             };
@@ -214,11 +221,37 @@ namespace TeknoBideTPV.UI
                 Text = "ZERBITZATU",
                 Size = new Size(botoiZabalera, botoiAltuera),
                 Location = new Point(xHasiera, yPos),
-                BackColor = TPVEstiloa.Koloreak.Primary,
+                BackColor = TPVEstiloa.Koloreak.Baieztatu,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
             };
             btn_Zerbitzatu.FlatAppearance.BorderSize = 0;
+            btn_Zerbitzatu.Click += async (s, e) =>
+            {
+                var dto = new EskariaSortuDto
+                {
+                    ErreserbaId = eskaria.ErreserbaId,
+                    Prezioa = eskaria.Prezioa,
+                    Egoera = "Zerbitzatuta",
+                    Produktuak = eskaria.Produktuak.Select(p => new EskariaProduktuaSortuDto
+                    {
+                        ProduktuaId = p.ProduktuaId,
+                        Kantitatea = p.Kantitatea,
+                        Prezioa = p.Prezioa
+                    }).ToList()
+                };
+
+                bool ondo = await _api.EguneratuEskariaAsync(eskaria.Id, dto);
+                if (ondo)
+                {
+                    var eskariak = await _api.LortuEskariakAsync();
+                    KargatuEskariak(eskariak);
+                }
+                else
+                {
+                    MessageBox.Show("Errorea egoera aldatzean.");
+                }
+            };
 
             Button btn_Ezabatu = new Button
             {
@@ -230,6 +263,23 @@ namespace TeknoBideTPV.UI
                 FlatStyle = FlatStyle.Flat
             };
             btn_Ezabatu.FlatAppearance.BorderSize = 0;
+            btn_Ezabatu.Click += async (s, e) =>
+            {
+                var result = MessageBox.Show("Ziur zaude eskaria ezabatu nahi duzula?", "Ezabatu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    bool ondo = await _api.EzabatuEskariaAsync(eskaria.Id);
+                    if (ondo)
+                    {
+                        var eskariak = await _api.LortuEskariakAsync();
+                        KargatuEskariak(eskariak);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Errorea ezabatzean.");
+                    }
+                }
+            };
 
             Button btn_Editatu = new Button
             {
@@ -241,6 +291,12 @@ namespace TeknoBideTPV.UI
                 FlatStyle = FlatStyle.Flat
             };
             btn_Editatu.FlatAppearance.BorderSize = 0;
+            btn_Editatu.Click += (s, e) =>
+            {
+                var editForm = new EskariakSortuForm(this, eskaria);
+                editForm.Show();
+                this.Hide();
+            };
 
             pnl_Eskaria.Controls.Add(lbl_Mahaia);
             pnl_Eskaria.Controls.Add(lbl_Egoera);

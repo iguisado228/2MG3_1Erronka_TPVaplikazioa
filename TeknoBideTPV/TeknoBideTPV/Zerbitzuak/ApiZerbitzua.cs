@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -9,8 +9,8 @@ namespace TeknoBideTPV.Zerbitzuak
 {
     public class ApiZerbitzua
     {
-        public static readonly string BASE_URL = "http://192.168.1.112:5000/";
-        //public static readonly string BASE_URL = "http://localhost:5000/";
+        //public static readonly string BASE_URL = "http://192.168.1.112:5000/";
+        public static readonly string BASE_URL = "http://localhost:5000/";
 
         private static readonly HttpClient _httpClient = new HttpClient
         {
@@ -92,6 +92,18 @@ namespace TeknoBideTPV.Zerbitzuak
         public async Task<bool> UpdateErreserbaAsync(int id, ErreserbaSortuDto dto)
         {
             var response = await _httpClient.PutAsJsonAsync($"api/erreserbak/{id}", dto);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> EguneratuEskariaAsync(int id, EskariaSortuDto dto)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/eskariak/{id}", dto);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> EzabatuEskariaAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/eskariak/{id}");
             return response.IsSuccessStatusCode;
         }
     }

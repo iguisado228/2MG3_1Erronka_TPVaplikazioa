@@ -23,6 +23,7 @@ namespace TeknoBideTPV.UI
         private readonly Color KoloreAktiboa = TPVEstiloa.Koloreak.TextTitle;
 
         private Form _AurrekoPantaila;
+        private EskariaDto _eskariaEditatzeko;
 
         public EskariakSortuForm(Form AurrekoPantaila)
         {
@@ -38,6 +39,11 @@ namespace TeknoBideTPV.UI
             dgv_EskariaProduktua.CellClick += dgv_EskariaProduktua_CellClick;
 
             PrestatuFooter();
+        }
+
+        public EskariakSortuForm(Form AurrekoPantaila, EskariaDto eskaria) : this(AurrekoPantaila)
+        {
+            _eskariaEditatzeko = eskaria;
         }
 
         private async void EskariakSortuForm_Load(object sender, EventArgs e)
@@ -80,6 +86,27 @@ namespace TeknoBideTPV.UI
             headerControl_EskariakSortu.Titulo = "ESKARIA SORTU";
             headerControl_EskariakSortu.Erabiltzailea = SesioZerbitzua.Izena;
             headerControl_EskariakSortu.DataOrdua = DateTime.Now.ToString("dddd, dd MMMM yyyy - HH:mm");
+
+            if (_eskariaEditatzeko != null)
+            {
+                headerControl_EskariakSortu.Titulo = "ESKARIA EDITATU";
+                btn_SortuEskaria.Text = "GORDE";
+                
+                // Erreserba aukeratu eta blokeatu
+                cbo_Erreserba.SelectedValue = _eskariaEditatzeko.ErreserbaId;
+                cbo_Erreserba.Enabled = false;
+
+                // Produktuak kargatu
+                produktuakEskarian = _eskariaEditatzeko.Produktuak.Select(p => new EskariaProduktuaSortuDto
+                {
+                    ProduktuaId = p.ProduktuaId,
+                    Kantitatea = p.Kantitatea,
+                    Prezioa = p.Prezioa
+                }).ToList();
+
+                EskariakGridEguneratu();
+                EguneratuBotoiak();
+            }
         }
 
         private void PrestatuFooter()
@@ -218,8 +245,8 @@ namespace TeknoBideTPV.UI
                     Tag = p,
                     Width = 150,
                     Height = 80,
-                    BackColor = TPVEstiloa.Koloreak.Secondary,
-                    ForeColor = TPVEstiloa.Koloreak.TextTitle,
+                    BackColor = TPVEstiloa.Koloreak.Baieztatu,
+                    ForeColor = Color.White,
                     Font = new Font("Segoe UI", 10, FontStyle.Bold),
                     Margin = new Padding(5)
                 };
@@ -247,7 +274,7 @@ namespace TeknoBideTPV.UI
                     else
                     {
                         btn.Enabled = true;
-                        btn.BackColor = TPVEstiloa.Koloreak.Secondary;
+                        btn.BackColor = TPVEstiloa.Koloreak.Baieztatu;
                     }
                 }
             }
@@ -371,39 +398,57 @@ namespace TeknoBideTPV.UI
             {
                 ErreserbaId = ((ErreserbaDto)cbo_Erreserba.SelectedItem).Id,
                 Prezioa = double.Parse(txt_PrezioTotala.Text),
-                Egoera = "Bidalita",
+                Egoera = _eskariaEditatzeko != null ? _eskariaEditatzeko.Egoera : "Bidalita",
                 Produktuak = produktuakEskarian
             };
 
-            var emaitza = await api.SortuEskariaAsync(eskaria);
-
-            if (emaitza != null)
+            if (_eskariaEditatzeko != null)
             {
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine($"Eskaria sortuta!");
-                sb.AppendLine($"Prezio Totala: {emaitza.PrezioaTotala:0.00} €");
-                sb.AppendLine("Produktuak:");
-
-                foreach (var p in emaitza.Produktuak)
+                // EDITATU
+                var ondo = await api.EguneratuEskariaAsync(_eskariaEditatzeko.Id, eskaria);
+                if (ondo)
                 {
-                    sb.AppendLine($"{p.ProduktuaIzena} - {p.Kantitatea} x {p.ProduktuakPrezioaBakarka:0.00}€ = {p.ProduktuakPrezioaGuztira:0.00}€");
+                    MessageBox.Show("Eskaria ondo eguneratu da!", "Eskaria Eguneratuta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _AurrekoPantaila.Show();
+                    this.Close();
                 }
-
-                MessageBox.Show(sb.ToString(), "Eskaria sortuta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    MessageBox.Show("Errorea eskaria eguneratzean.");
+                }
             }
             else
             {
-                MessageBox.Show("Errorea eskaria sortzean.");
+                // SORTU
+                var emaitza = await api.SortuEskariaAsync(eskaria);
+
+                if (emaitza != null)
+                {
+                    var sb = new System.Text.StringBuilder();
+                    sb.AppendLine($"Eskaria sortuta!");
+                    sb.AppendLine($"Prezio Totala: {emaitza.PrezioaTotala:0.00} €");
+                    sb.AppendLine("Produktuak:");
+
+                    foreach (var p in emaitza.Produktuak)
+                    {
+                        sb.AppendLine($"{p.ProduktuaIzena} - {p.Kantitatea} x {p.ProduktuakPrezioaBakarka:0.00}€ = {p.ProduktuakPrezioaGuztira:0.00}€");
+                    }
+
+                    MessageBox.Show(sb.ToString(), "Eskaria sortuta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    produktuakEskarian.Clear();
+                    if (produktuakEskarian.Count > 0)
+                        EskariakGridEguneratu();
+                    else
+                        dgv_EskariaProduktua.DataSource = null;
+
+                    EguneratuBotoiak();
+                }
+                else
+                {
+                    MessageBox.Show("Errorea eskaria sortzean.");
+                }
             }
-
-            produktuakEskarian.Clear();
-
-            if (produktuakEskarian.Count > 0)
-                EskariakGridEguneratu();
-            else
-                dgv_EskariaProduktua.DataSource = null;
-
-            EguneratuBotoiak();
         }
 
         private void btn_Atzera_Click(object sender, EventArgs e)

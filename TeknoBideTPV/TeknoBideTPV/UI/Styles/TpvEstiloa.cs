@@ -100,5 +100,6 @@ public static class TPVEstiloa
         public static readonly Color TextTitle = ColorTranslator.FromHtml("#3E2723"); 
         public static readonly Color TextNormal = Color.Black; 
         public static readonly Color White = Color.White;
+        public static readonly Color Baieztatu = ColorTranslator.FromHtml("#43A047"); 
     }
 }
