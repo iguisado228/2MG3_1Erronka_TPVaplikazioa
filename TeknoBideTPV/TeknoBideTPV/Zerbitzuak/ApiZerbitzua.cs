@@ -9,8 +9,8 @@ namespace TeknoBideTPV.Zerbitzuak
 {
     public class ApiZerbitzua
     {
-        //public static readonly string BASE_URL = "http://192.168.1.112:5000/";
-        public static readonly string BASE_URL = "http://localhost:5000/";
+        public static readonly string BASE_URL = "http://192.168.1.112:5000/";
+        //public static readonly string BASE_URL = "http://localhost:5000/";
 
         private static readonly HttpClient _httpClient = new HttpClient
         {
@@ -86,6 +86,12 @@ namespace TeknoBideTPV.Zerbitzuak
         public async Task<bool> EzabatuMahaiaAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"api/mahaiak/{id}");
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> EzabatuErreserbaAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/erreserbak/{id}");
             return response.IsSuccessStatusCode;
         }
 

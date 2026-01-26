@@ -142,6 +142,16 @@ namespace TeknoBideTPV.UI
                 };
                 dgv_ErreserbakIkusi.Columns.Add(tiketaCol);
 
+                var ezabatuCol = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Ezabatu",
+                    Text = "Ezabatu",
+                    UseColumnTextForButtonValue = true,
+                    Width = 80,
+                    Name = "Ezabatu"
+                };
+                dgv_ErreserbakIkusi.Columns.Add(ezabatuCol);
+
                 _editatuKolumnaGehituta = true;
             }
         }
@@ -203,6 +213,32 @@ namespace TeknoBideTPV.UI
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Errorea nabigatzailea irekitzean: {ex.Message}");
+                    }
+                }
+            }
+            else if (dgv_ErreserbakIkusi.Columns[e.ColumnIndex].Name == "Ezabatu")
+            {
+                var dto = dgv_ErreserbakIkusi.Rows[e.RowIndex].DataBoundItem as ErreserbaDto;
+                if (dto != null)
+                {
+                    var result = MessageBox.Show(
+                        "Ziur zaude erreserba hau ezabatu nahi duzula? Lotutako eskariak ere ezabatuko dira.",
+                        "Erreserba Ezabatu",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        bool ondo = await _api.EzabatuErreserbaAsync(dto.Id);
+                        if (ondo)
+                        {
+                            MessageBox.Show("Erreserba ondo ezabatu da.", "Egina", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await KargatuErreserbak();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Errorea erreserba ezabatzean.", "Errorea", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
