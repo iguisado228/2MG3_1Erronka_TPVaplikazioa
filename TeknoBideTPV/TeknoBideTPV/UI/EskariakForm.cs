@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
+using TeknoBideTPV.UI.Styles;
 using TeknoBideTPV.Zerbitzuak;
 
 namespace TeknoBideTPV.UI
@@ -57,6 +58,10 @@ namespace TeknoBideTPV.UI
 
         private async void EskariakForm_Shown(object sender, EventArgs e)
         {
+            TPVEstiloaFinkoa.Prestatu(this);
+            TPVEstiloaFinkoa.Aplikatu(this);
+            EstilatuKontrolak();
+
             overlayPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -80,6 +85,24 @@ namespace TeknoBideTPV.UI
             overlayPanel.Visible = false;
             this.Controls.Remove(overlayPanel);
             overlayPanel.Dispose();
+        }
+
+        private void EstilatuKontrolak()
+        {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_EdukiaEskariak.BackColor = TPVEstiloa.Koloreak.Background;
+            flp_Filtroak.BackColor = TPVEstiloa.Koloreak.Background;
+            flp_Eskariak.BackColor = TPVEstiloa.Koloreak.Background;
+
+            Button[] filtroBotoiak = { btn_Guztiak, bnt_Bidaliak, btn_Prest, btn_Zerbitzatuak };
+            foreach (var btn in filtroBotoiak)
+            {
+                btn.BackColor = TPVEstiloa.Koloreak.Primary;
+                btn.ForeColor = Color.White;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+            }
         }
 
         private void EzarriEskariakLayout()
@@ -118,8 +141,8 @@ namespace TeknoBideTPV.UI
             {
                 Width = 520,
                 Height = 280,
-                BackColor = Color.FromArgb(245, 245, 235),
-                BorderStyle = BorderStyle.FixedSingle,
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.None,
                 Margin = new Padding(8),
                 Padding = new Padding(10)
             };
@@ -129,7 +152,8 @@ namespace TeknoBideTPV.UI
                 Text = $"Mahai: {eskaria.MahaiaZenbakia}",
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
                 Location = new Point(10, 10),
-                Size = new Size(300, 25)
+                Size = new Size(300, 25),
+                ForeColor = TPVEstiloa.Koloreak.TextTitle
             };
 
             Label lbl_Egoera = new Label
@@ -137,7 +161,8 @@ namespace TeknoBideTPV.UI
                 Text = $"Egoera: {eskaria.Egoera}",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 Location = new Point(10, 40),
-                Size = new Size(200, 25)
+                Size = new Size(200, 25),
+                ForeColor = TPVEstiloa.Koloreak.TextTitle
             };
 
             FlowLayoutPanel flp_Produktuak = new FlowLayoutPanel
@@ -160,7 +185,8 @@ namespace TeknoBideTPV.UI
                 {
                     Text = $"{p.ProduktuaIzena}   x{p.Kantitatea}   {p.Prezioa:0.00} €",
                     Font = new Font("Segoe UI", 10),
-                    Size = new Size(460, 25)
+                    Size = new Size(460, 25),
+                    ForeColor = TPVEstiloa.Koloreak.TextTitle
                 };
 
                 flp_Produktuak.Controls.Add(lblProd);
@@ -172,7 +198,8 @@ namespace TeknoBideTPV.UI
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 Location = new Point(300, 190),
                 Size = new Size(200, 25),
-                TextAlign = ContentAlignment.TopRight
+                TextAlign = ContentAlignment.TopRight,
+                ForeColor = TPVEstiloa.Koloreak.TextTitle
             };
 
             int botoiZabalera = 110;
@@ -187,27 +214,33 @@ namespace TeknoBideTPV.UI
                 Text = "ZERBITZATU",
                 Size = new Size(botoiZabalera, botoiAltuera),
                 Location = new Point(xHasiera, yPos),
-                BackColor = Color.LightGreen,
+                BackColor = TPVEstiloa.Koloreak.Primary,
+                ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
             };
+            btn_Zerbitzatu.FlatAppearance.BorderSize = 0;
 
             Button btn_Ezabatu = new Button
             {
                 Text = "EZABATU",
                 Size = new Size(botoiZabalera, botoiAltuera),
                 Location = new Point(xHasiera + botoiZabalera + espazioa, yPos),
-                BackColor = Color.LightCoral,
+                BackColor = TPVEstiloa.Koloreak.Error,
+                ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
             };
+            btn_Ezabatu.FlatAppearance.BorderSize = 0;
 
             Button btn_Editatu = new Button
             {
                 Text = "EDITATU",
                 Size = new Size(botoiZabalera, botoiAltuera),
                 Location = new Point(xHasiera + (botoiZabalera + espazioa) * 2, yPos),
-                BackColor = Color.LightGray,
+                BackColor = TPVEstiloa.Koloreak.Secondary,
+                ForeColor = TPVEstiloa.Koloreak.TextTitle,
                 FlatStyle = FlatStyle.Flat
             };
+            btn_Editatu.FlatAppearance.BorderSize = 0;
 
             pnl_Eskaria.Controls.Add(lbl_Mahaia);
             pnl_Eskaria.Controls.Add(lbl_Egoera);

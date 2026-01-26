@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
 using System.Drawing;
+using TeknoBideTPV.UI.Styles;
 
 namespace TeknoBideTPV.UI
 {
@@ -17,15 +18,16 @@ namespace TeknoBideTPV.UI
 
         private Button botoiAktiboa = null;
 
-        private readonly Color KoloreNormala = Color.FromArgb(52, 152, 219);
-        private readonly Color KoloreHover = Color.FromArgb(41, 128, 185);
-        private readonly Color KoloreAktiboa = Color.FromArgb(39, 174, 96);
+        private readonly Color KoloreNormala = TPVEstiloa.Koloreak.Primary;
+        private readonly Color KoloreHover = TPVEstiloa.Koloreak.PrimaryDark;
+        private readonly Color KoloreAktiboa = TPVEstiloa.Koloreak.TextTitle;
 
         private Form _AurrekoPantaila;
 
         public EskariakSortuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
@@ -40,21 +42,22 @@ namespace TeknoBideTPV.UI
 
         private async void EskariakSortuForm_Load(object sender, EventArgs e)
         {
+            EstilatuKontrolak();
             erreserbak = await api.ErreserbakLortuAsync();
             cbo_Erreserba.DataSource = erreserbak;
 
             dgv_EskariaProduktua.EnableHeadersVisualStyles = false;
-            dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
+            dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.BackColor = TPVEstiloa.Koloreak.Primary;
             dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv_EskariaProduktua.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
 
             dgv_EskariaProduktua.DefaultCellStyle.Font = new Font("Segoe UI", 10);
             dgv_EskariaProduktua.DefaultCellStyle.BackColor = Color.White;
             dgv_EskariaProduktua.DefaultCellStyle.ForeColor = Color.Black;
-            dgv_EskariaProduktua.DefaultCellStyle.SelectionBackColor = Color.FromArgb(39, 174, 96);
+            dgv_EskariaProduktua.DefaultCellStyle.SelectionBackColor = TPVEstiloa.Koloreak.PrimaryDark;
             dgv_EskariaProduktua.DefaultCellStyle.SelectionForeColor = Color.White;
 
-            dgv_EskariaProduktua.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
+            dgv_EskariaProduktua.AlternatingRowsDefaultCellStyle.BackColor = TPVEstiloa.Koloreak.Background;
             dgv_EskariaProduktua.GridColor = Color.LightGray;
             dgv_EskariaProduktua.RowHeadersVisible = false;
 
@@ -88,6 +91,31 @@ namespace TeknoBideTPV.UI
                 _AurrekoPantaila.Show();
                 this.Close();
             };
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            TPVEstiloa.EskalatuaAplikatu(this);
+        }
+
+        private void EstilatuKontrolak()
+        {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            flp_Produktuak.BackColor = TPVEstiloa.Koloreak.Background;
+            flp_ProduktuMotak.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_ProduktuMotak.BackColor = TPVEstiloa.Koloreak.Background;
+
+            label1.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            lbl_PrezioTotala.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+
+            btn_SortuEskaria.BackColor = TPVEstiloa.Koloreak.Primary;
+            btn_SortuEskaria.ForeColor = Color.White;
+            btn_SortuEskaria.FlatStyle = FlatStyle.Flat;
+            btn_SortuEskaria.FlatAppearance.BorderSize = 0;
+
+            cbo_Erreserba.BackColor = Color.White;
+            txt_PrezioTotala.BackColor = Color.White;
         }
 
         private Button SortuTpvBotoia(string testua)
@@ -190,7 +218,8 @@ namespace TeknoBideTPV.UI
                     Tag = p,
                     Width = 150,
                     Height = 80,
-                    BackColor = Color.LightSteelBlue,
+                    BackColor = TPVEstiloa.Koloreak.Secondary,
+                    ForeColor = TPVEstiloa.Koloreak.TextTitle,
                     Font = new Font("Segoe UI", 10, FontStyle.Bold),
                     Margin = new Padding(5)
                 };
@@ -218,7 +247,7 @@ namespace TeknoBideTPV.UI
                     else
                     {
                         btn.Enabled = true;
-                        btn.BackColor = Color.LightSteelBlue;
+                        btn.BackColor = TPVEstiloa.Koloreak.Secondary;
                     }
                 }
             }

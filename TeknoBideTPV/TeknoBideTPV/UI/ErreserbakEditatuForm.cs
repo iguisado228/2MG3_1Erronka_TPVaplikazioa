@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Drawing;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
+using TeknoBideTPV.UI.Styles;
 
 namespace TeknoBideTPV.UI
 {
@@ -17,8 +19,8 @@ namespace TeknoBideTPV.UI
         public ErreserbakEditatuForm(Form AurrekoPantaila, ErreserbaDto erreserba)
         {
             InitializeComponent();
+            TPVEstiloa.PantailarenEskalatuaHasi(this);
 
-            //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
             this.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -33,6 +35,8 @@ namespace TeknoBideTPV.UI
 
         private async void ErreserbakEditatuForm_Load(object sender, EventArgs e)
         {
+            EstilatuKontrolak();
+
             OrduakEzarri();
             await KargatuMahaiak();
 
@@ -61,6 +65,36 @@ namespace TeknoBideTPV.UI
                 _AurrekoPantaila.Show();
                 this.Close();
             };
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            TPVEstiloa.EskalatuaAplikatu(this);
+        }
+
+        private void EstilatuKontrolak()
+        {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_EzkerrekoPanela.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_EskubikoPanela.BackColor = TPVEstiloa.Koloreak.Background;
+
+            Label[] labels = { lbl_BezeroIzena, lbl_Telefonoa, lbl_PertsonaKopurua, lbl_Eguna, lbl_Ordua, lbl_Mahaia };
+            foreach (var lbl in labels)
+            {
+                lbl.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            }
+
+            Control[] inputs = { txt_BezeroIzena, txt_Telefonoa, nud_PertsonaKopurua, dtp_Eguna, cmb_Ordua, cmb_Mahaiak };
+            foreach (var input in inputs)
+            {
+                input.BackColor = Color.White;
+            }
+
+            btn_Gorde.BackColor = TPVEstiloa.Koloreak.Primary;
+            btn_Gorde.ForeColor = Color.White;
+            btn_Gorde.FlatStyle = FlatStyle.Flat;
+            btn_Gorde.FlatAppearance.BorderSize = 0;
         }
 
         private void OrduakEzarri()

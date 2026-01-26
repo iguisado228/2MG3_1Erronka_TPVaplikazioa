@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
 using TeknoBideTPV.UI.Controls;
+using TeknoBideTPV.UI.Styles;
 
 namespace TeknoBideTPV.UI
 {
@@ -23,6 +24,7 @@ namespace TeknoBideTPV.UI
         public ErreserbaAmaituForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             dgv_Eskariak.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_Eskariak.RowTemplate.Height = 50;
@@ -66,6 +68,8 @@ namespace TeknoBideTPV.UI
 
         private async void ErreserbaAmaituForm_Load(object sender, EventArgs e)
         {
+            EstilatuKontrolak();
+
             headerControl_ErreserbaAmaitu.Izena = "TXAPELA";
             headerControl_ErreserbaAmaitu.Titulo = "ERRESERBA AMAITU";
             headerControl_ErreserbaAmaitu.Erabiltzailea = SesioZerbitzua.Izena;
@@ -83,6 +87,57 @@ namespace TeknoBideTPV.UI
                 _AurrekoPantaila.Show();
                 this.Close();
             };
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            TPVEstiloa.EskalatuaAplikatu(this);
+        }
+
+        private void EstilatuKontrolak()
+        {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_Eskariak.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_Ordainketa.BackColor = TPVEstiloa.Koloreak.Background;
+
+            Label[] labels =
+            {
+                lbl_ErreserbaAukeratu,
+                lbl_GuztiraIzenburua,
+                lbl_Guztira,
+                lbl_OrdainketaMetodoa,
+                lbl_JasoDenDirua,
+                lbl_ItzuliIzenburua,
+                lbl_Itzulia
+            };
+
+            foreach (var lbl in labels)
+            {
+                lbl.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            }
+
+            txt_JasoDenDirua.BackColor = Color.White;
+            cmb_Erreserbak.BackColor = Color.White;
+
+            dgv_Eskariak.BackgroundColor = TPVEstiloa.Koloreak.Background;
+            dgv_Eskariak.BorderStyle = BorderStyle.None;
+            dgv_Eskariak.ColumnHeadersDefaultCellStyle.BackColor = TPVEstiloa.Koloreak.Primary;
+            dgv_Eskariak.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv_Eskariak.EnableHeadersVisualStyles = false;
+            dgv_Eskariak.DefaultCellStyle.BackColor = Color.White;
+            dgv_Eskariak.DefaultCellStyle.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            dgv_Eskariak.DefaultCellStyle.SelectionBackColor = TPVEstiloa.Koloreak.Secondary;
+            dgv_Eskariak.DefaultCellStyle.SelectionForeColor = TPVEstiloa.Koloreak.TextTitle;
+
+            Button[] botoiak = { btn_Eskudirua, btn_Txartela, btn_Ordaindu };
+            foreach (var btn in botoiak)
+            {
+                btn.BackColor = TPVEstiloa.Koloreak.Primary;
+                btn.ForeColor = Color.White;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+            }
         }
 
         private async Task KargatuErreserbakAsync()

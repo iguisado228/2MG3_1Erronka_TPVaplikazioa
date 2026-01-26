@@ -6,6 +6,7 @@ using TeknoBideTPV.DTOak;
 using TeknoBideTPV.UI.Styles;
 using TeknoBideTPV.Zerbitzuak;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace TeknoBideTPV.UI
 {
@@ -23,6 +24,7 @@ namespace TeknoBideTPV.UI
         public ErreserbakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
@@ -39,12 +41,12 @@ namespace TeknoBideTPV.UI
         }
         private void ErreserbakForm_Shown(object sender, EventArgs e)
         {
-            TPVEstiloaFinkoa.Prestatu(this);
-            TPVEstiloaFinkoa.Aplikatu(this);
+            TPVEstiloa.EskalatuaAplikatu(this);
         }
 
         private async void ErreserbakForm_Load(object sender, EventArgs e)
         {
+            EstilatuKontrolak();
             await KargatuMahaiak();
             await KargatuErreserbak();
             EstilatuDataGridView();
@@ -210,18 +212,42 @@ namespace TeknoBideTPV.UI
         private void EstilatuDataGridView()
         {
             dgv_ErreserbakIkusi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_ErreserbakIkusi.BackgroundColor = Color.White;
+            dgv_ErreserbakIkusi.BackgroundColor = TPVEstiloa.Koloreak.Background;
             dgv_ErreserbakIkusi.BorderStyle = BorderStyle.None;
 
-            dgv_ErreserbakIkusi.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(230, 230, 230);
+            dgv_ErreserbakIkusi.ColumnHeadersDefaultCellStyle.BackColor = TPVEstiloa.Koloreak.Primary;
+            dgv_ErreserbakIkusi.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv_ErreserbakIkusi.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             dgv_ErreserbakIkusi.EnableHeadersVisualStyles = false;
 
+            dgv_ErreserbakIkusi.DefaultCellStyle.BackColor = Color.White;
+            dgv_ErreserbakIkusi.DefaultCellStyle.ForeColor = TPVEstiloa.Koloreak.TextTitle;
             dgv_ErreserbakIkusi.DefaultCellStyle.Font = new Font("Segoe UI", 11);
-            dgv_ErreserbakIkusi.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
-            dgv_ErreserbakIkusi.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv_ErreserbakIkusi.DefaultCellStyle.SelectionBackColor = TPVEstiloa.Koloreak.Secondary;
+            dgv_ErreserbakIkusi.DefaultCellStyle.SelectionForeColor = TPVEstiloa.Koloreak.TextTitle;
 
             dgv_ErreserbakIkusi.RowTemplate.Height = 40;
+        }
+
+        private void EstilatuKontrolak()
+        {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_Filtroak.BackColor = TPVEstiloa.Koloreak.Background;
+
+            lbl_Bilatu.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            lbl_Eguna.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+
+            txt_Bilatu.BackColor = Color.White;
+            dtp_Eguna.BackColor = Color.White;
+
+            Button[] botoiak = { btn_Bilatu, btn_Garbitu };
+            foreach (var btn in botoiak)
+            {
+                btn.BackColor = TPVEstiloa.Koloreak.Primary;
+                btn.ForeColor = Color.White;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+            }
         }
 
         private void btn_Bilatu_Click(object sender, EventArgs e)

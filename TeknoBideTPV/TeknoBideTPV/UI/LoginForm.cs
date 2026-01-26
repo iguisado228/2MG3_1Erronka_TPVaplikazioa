@@ -79,6 +79,7 @@ namespace TeknoBideTPV.UI
             {
                 SesioZerbitzua.LangileaId = erantzuna.Data.Id;
                 SesioZerbitzua.Izena = erantzuna.Data.Izena;
+                SesioZerbitzua.Gerentea = erantzuna.Data.Gerentea;
 
                 MessageBox.Show(erantzuna.Message, "Sarrera",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

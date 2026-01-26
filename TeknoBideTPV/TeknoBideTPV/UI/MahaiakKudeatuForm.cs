@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TeknoBideTPV.DTOak;
 using TeknoBideTPV.Zerbitzuak;
+using TeknoBideTPV.UI.Styles;
 
 namespace TeknoBideTPV.UI
 {
@@ -19,6 +20,7 @@ namespace TeknoBideTPV.UI
         public MahaiakKudeatuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
+            TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             this.ControlBox = false;
             this.Text = "";
@@ -32,8 +34,16 @@ namespace TeknoBideTPV.UI
             PrestatuHasierakoEgoera();
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            TPVEstiloa.EskalatuaAplikatu(this);
+        }
+
         private async void MahaiakKudeatuForm_Load(object sender, EventArgs e)
         {
+            EstilatuKontrolak();
+
             headerControl_MahaiakKudeatu.Izena = "TXAPELA";
             headerControl_MahaiakKudeatu.Titulo = "MAHAIAK KUDEATU";
             headerControl_MahaiakKudeatu.Erabiltzailea = SesioZerbitzua.Izena;
@@ -47,6 +57,41 @@ namespace TeknoBideTPV.UI
             }
 
             await KargatuMahaiakAsync();
+        }
+
+        private void EstilatuKontrolak()
+        {
+            this.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_Edukia.BackColor = TPVEstiloa.Koloreak.Background;
+            pnl_Ezaugarriak.BackColor = TPVEstiloa.Koloreak.Background;
+
+            // Labels
+            Label[] labels = { lbl_Izena, lbl_Izenburua, lbl_PertsonaKopurua, lbl_Kokapena };
+            foreach (var lbl in labels)
+            {
+                lbl.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            }
+
+            // Buttons
+            btn_Gorde.BackColor = TPVEstiloa.Koloreak.Primary;
+            btn_Gorde.ForeColor = TPVEstiloa.Koloreak.White;
+            btn_Gorde.FlatStyle = FlatStyle.Flat;
+            btn_Gorde.FlatAppearance.BorderSize = 0;
+
+            btn_MahaiBerria.BackColor = TPVEstiloa.Koloreak.Primary;
+            btn_MahaiBerria.ForeColor = TPVEstiloa.Koloreak.White;
+            btn_MahaiBerria.FlatStyle = FlatStyle.Flat;
+            btn_MahaiBerria.FlatAppearance.BorderSize = 0;
+
+            btn_Ezabatu.BackColor = TPVEstiloa.Koloreak.Error;
+            btn_Ezabatu.ForeColor = TPVEstiloa.Koloreak.White;
+            btn_Ezabatu.FlatStyle = FlatStyle.Flat;
+            btn_Ezabatu.FlatAppearance.BorderSize = 0;
+
+            btn_Garbitu.BackColor = TPVEstiloa.Koloreak.Secondary;
+            btn_Garbitu.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            btn_Garbitu.FlatStyle = FlatStyle.Flat;
+            btn_Garbitu.FlatAppearance.BorderSize = 0;
         }
 
         private void PrestatuFooter()
@@ -93,13 +138,13 @@ namespace TeknoBideTPV.UI
 
         private void PanelariEsatiloaEman(Panel p)
         {
-            p.BackColor = Color.LightGray;
+            p.BackColor = Color.White;
             p.BorderStyle = BorderStyle.None;
         }
 
         private void EstilatuPanelAukeratua(Panel p)
         {
-            p.BackColor = Color.FromArgb(180, 220, 255);
+            p.BackColor = TPVEstiloa.Koloreak.Secondary;
             p.BorderStyle = BorderStyle.FixedSingle;
         }
 
@@ -113,14 +158,14 @@ namespace TeknoBideTPV.UI
                 Cursor = Cursors.Hand,
                 Tag = mahaia,
                 BackColor = Color.White,
-                BorderStyle = BorderStyle.FixedSingle
+                BorderStyle = BorderStyle.None
             };
 
             panel.Paint += (s, e) =>
             {
                 var g = e.Graphics;
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                g.FillRectangle(new SolidBrush(Color.White), panel.ClientRectangle);
+                // g.FillRectangle(new SolidBrush(Color.White), panel.ClientRectangle); // Not needed if BackColor is set
             };
 
             var lblZenbakia = new Label
@@ -129,7 +174,8 @@ namespace TeknoBideTPV.UI
                 Dock = DockStyle.Top,
                 Font = new Font("Segoe UI", 14, FontStyle.Bold),
                 TextAlign = ContentAlignment.MiddleCenter,
-                Height = 40
+                Height = 40,
+                ForeColor = TPVEstiloa.Koloreak.TextTitle
             };
 
             var lblPertsonak = new Label
@@ -138,7 +184,8 @@ namespace TeknoBideTPV.UI
                 Dock = DockStyle.Top,
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
                 TextAlign = ContentAlignment.MiddleCenter,
-                Height = 30
+                Height = 30,
+                ForeColor = TPVEstiloa.Koloreak.TextTitle
             };
 
             var lblKokapena = new Label
@@ -146,7 +193,8 @@ namespace TeknoBideTPV.UI
                 Text = $"📍 {mahaia.Kokapena}",
                 Dock = DockStyle.Fill,
                 Font = new Font("Segoe UI", 11, FontStyle.Italic),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = TPVEstiloa.Koloreak.TextNormal
             };
 
             panel.Controls.Add(lblKokapena);
