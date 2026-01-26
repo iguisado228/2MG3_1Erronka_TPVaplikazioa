@@ -232,17 +232,13 @@ namespace TeknoBideTPV.UI
                 WrapContents = false
             };
 
-            flp_Produktuak.HorizontalScroll.Visible = false;
-            flp_Produktuak.HorizontalScroll.Maximum = 0;
-            flp_Produktuak.AutoScrollMargin = new Size(0, 0);
-
             foreach (var p in eskaria.Produktuak)
             {
                 Label lblProd = new Label
                 {
                     Text = $"{p.ProduktuaIzena}   x{p.Kantitatea}   {p.Prezioa:0.00} €",
                     Font = new Font("Segoe UI", 10),
-                    Size = new Size(460, 25),
+                    Size = new Size(440, 25),
                     ForeColor = TPVEstiloa.Koloreak.TextTitle
                 };
 
