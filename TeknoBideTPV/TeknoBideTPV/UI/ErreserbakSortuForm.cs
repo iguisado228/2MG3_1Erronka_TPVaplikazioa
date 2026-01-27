@@ -13,11 +13,13 @@ namespace TeknoBideTPV.UI
         private Form _AurrekoPantaila;
         private readonly ApiZerbitzua _api = new ApiZerbitzua();
         private int _langileaId;
+        private bool _hasierakoaGordeta = false;
 
         public ErreserbakSortuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
-            TPVEstiloa.PantailarenEskalatuaHasi(this);
+            TPVEstiloaFinkoa.Prestatu(this);
+            _hasierakoaGordeta = true;
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
@@ -79,7 +81,15 @@ namespace TeknoBideTPV.UI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            TPVEstiloa.EskalatuaAplikatu(this);
+            TPVEstiloaFinkoa.Aplikatu(this);
+            
+            if (nud_PertsonaKopurua.Top < lbl_PertsonaKopurua.Bottom + 5)
+            {
+                nud_PertsonaKopurua.Top = lbl_PertsonaKopurua.Bottom + 5;
+            }
+            nud_PertsonaKopurua.Left = txt_BezeroIzena.Left;
+
+            AjustarDistribucion();
         }
 
         private void EstilatuKontrolak()
@@ -105,6 +115,38 @@ namespace TeknoBideTPV.UI
             btn_Gorde.ForeColor = Color.White;
             btn_Gorde.FlatStyle = FlatStyle.Flat;
             btn_Gorde.FlatAppearance.BorderSize = 0;
+        }
+
+        private void AjustarDistribucion()
+        {
+            int top = headerControl_ErreserbakSortu.Height;
+            int bottom = footerControl_ErreserbakSortu.Height;
+            int availH = this.ClientSize.Height - top - bottom;
+            int availW = this.ClientSize.Width;
+
+            int marginX = Math.Max(20, (int)(availW * 0.05));
+            int gapX = Math.Max(20, (int)(availW * 0.04));
+            int panelW = Math.Max(300, (availW - marginX * 2 - gapX) / 2);
+            int panelH = Math.Max(300, (int)(availH * 0.68));
+            int y = top + Math.Max(0, (availH - panelH) / 2);
+
+            pnl_EzkerrekoPanela.SetBounds(marginX, y, panelW, panelH);
+            pnl_EskubikoPanela.SetBounds(marginX + panelW + gapX, y, panelW, panelH);
+
+            int btnMarginX = Math.Max(20, (int)(panelW * 0.03));
+            int btnMarginY = Math.Max(20, (int)(panelH * 0.03));
+            btn_Gorde.Location = new Point(
+                pnl_EskubikoPanela.Right - btn_Gorde.Width - btnMarginX,
+                pnl_EskubikoPanela.Bottom - btn_Gorde.Height - btnMarginY
+            );
+
+            this.Resize -= Form_Resize_Reajuste;
+            this.Resize += Form_Resize_Reajuste;
+        }
+
+        private void Form_Resize_Reajuste(object sender, EventArgs e)
+        {
+            AjustarDistribucion();
         }
 
         private void OrduakEzarri()

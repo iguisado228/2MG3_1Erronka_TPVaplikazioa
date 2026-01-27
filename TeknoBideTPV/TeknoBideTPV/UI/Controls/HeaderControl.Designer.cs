@@ -1,4 +1,4 @@
-﻿namespace TeknoBideTPV.UI.Controls
+namespace TeknoBideTPV.UI.Controls
 {
     partial class HeaderControl
     {
@@ -87,7 +87,7 @@
             // tlpUser
             // 
             tlpUser.ColumnCount = 1;
-            tlpUser.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tlpUser.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpUser.Controls.Add(lbl_Erabiltzailea, 0, 0);
             tlpUser.Controls.Add(lbl_DataOrdua, 0, 1);
             tlpUser.Dock = DockStyle.Fill;

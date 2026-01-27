@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,8 +22,8 @@ namespace TeknoBideTPV.UI.Controls
         {
             base.OnLoad(e);
             
-            this.BackColor = TPVEstiloa.Koloreak.Primary;
-            this.ForeColor = TPVEstiloa.Koloreak.White;
+            this.BackColor = TPVEstiloaFinkoa.Koloreak.Primary;
+            this.ForeColor = TPVEstiloaFinkoa.Koloreak.White;
         }
 
         public string Titulo

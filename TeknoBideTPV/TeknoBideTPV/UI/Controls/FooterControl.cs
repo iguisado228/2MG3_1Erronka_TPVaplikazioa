@@ -26,17 +26,12 @@ namespace TeknoBideTPV.UI.Controls
             btn_Atzera.Resize += (s, e) =>
             {
                 btn_Atzera.Region = new Region(IskinakRedondeatu(btn_Atzera.ClientRectangle, 20));
+                PosizionatuAtzera();
             };
 
             btn_Atzera.Resize += (s, e) => EskalatuIkonoa((Button)s);
 
-            this.Resize += (s, e) =>
-            {
-                btn_Atzera.Location = new Point(
-                    this.Width - btn_Atzera.Width - 20,
-                    (this.Height - btn_Atzera.Height) / 2
-                );
-            };
+            this.Resize += (s, e) => PosizionatuAtzera();
 
             EskalatuIkonoa(btn_Atzera);
 
@@ -82,6 +77,15 @@ namespace TeknoBideTPV.UI.Controls
             f.Controls.Add(txat); 
             f.ShowDialog(); 
             TxataClick?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void PosizionatuAtzera()
+        {
+            if (btn_Atzera == null) return;
+            btn_Atzera.Location = new Point(
+                this.Width - btn_Atzera.Width - 20,
+                (this.Height - btn_Atzera.Height) / 2
+            );
         }
 
         private void EskalatuIkonoa(Button btn)

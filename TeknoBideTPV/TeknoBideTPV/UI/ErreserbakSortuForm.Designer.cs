@@ -68,10 +68,11 @@
             // nud_PertsonaKopurua
             // 
             nud_PertsonaKopurua.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nud_PertsonaKopurua.Location = new Point(20, 405);
+            nud_PertsonaKopurua.Location = new Point(20, 400);
             nud_PertsonaKopurua.Name = "nud_PertsonaKopurua";
             nud_PertsonaKopurua.Size = new Size(745, 61);
             nud_PertsonaKopurua.TabIndex = 5;
+            nud_PertsonaKopurua.Controls[0].Visible = false;
             // 
             // lbl_PertsonaKopurua
             // 

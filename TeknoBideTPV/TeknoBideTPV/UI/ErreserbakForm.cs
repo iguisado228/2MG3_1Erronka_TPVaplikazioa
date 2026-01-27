@@ -21,10 +21,11 @@ namespace TeknoBideTPV.UI
 
         private Form _AurrekoPantaila;
 
+        private bool _hasierakoaGordeta = false;
+
         public ErreserbakForm(Form AurrekoPantaila)
         {
             InitializeComponent();
-            TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
@@ -41,7 +42,13 @@ namespace TeknoBideTPV.UI
         }
         private void ErreserbakForm_Shown(object sender, EventArgs e)
         {
-            TPVEstiloa.EskalatuaAplikatu(this);
+            if (!_hasierakoaGordeta)
+            {
+                TPVEstiloaFinkoa.Prestatu(this);
+                _hasierakoaGordeta = true;
+            }
+
+            TPVEstiloaFinkoa.Aplikatu(this);
         }
 
         private async void ErreserbakForm_Load(object sender, EventArgs e)
@@ -154,6 +161,20 @@ namespace TeknoBideTPV.UI
 
                 _editatuKolumnaGehituta = true;
             }
+
+            foreach (DataGridViewColumn col in dgv_ErreserbakIkusi.Columns)
+            {
+                col.FillWeight = 100;
+            }
+
+            if (dgv_ErreserbakIkusi.Columns.Contains("Editatu"))
+                dgv_ErreserbakIkusi.Columns["Editatu"].FillWeight = 60;
+
+            if (dgv_ErreserbakIkusi.Columns.Contains("Tiketa"))
+                dgv_ErreserbakIkusi.Columns["Tiketa"].FillWeight = 60;
+
+            if (dgv_ErreserbakIkusi.Columns.Contains("Ezabatu"))
+                dgv_ErreserbakIkusi.Columns["Ezabatu"].FillWeight = 60;
         }
 
         private async void dgv_ErreserbakIkusi_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -263,6 +284,8 @@ namespace TeknoBideTPV.UI
             dgv_ErreserbakIkusi.DefaultCellStyle.SelectionForeColor = TPVEstiloa.Koloreak.TextTitle;
 
             dgv_ErreserbakIkusi.RowTemplate.Height = 40;
+
+            TPVEstiloaFinkoa.EguneratuKontrola(dgv_ErreserbakIkusi, this);
         }
 
         private void EstilatuKontrolak()
