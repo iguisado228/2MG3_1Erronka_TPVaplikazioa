@@ -39,11 +39,26 @@ namespace TeknoBideTPV.UI
             OrduakEzarri();
 
             var mahaiak = await _api.MahaiakLortuAsync();
-
+            
             cmb_Mahaiak.DataSource = mahaiak;
             cmb_Mahaiak.DisplayMember = "Zenbakia";
             cmb_Mahaiak.ValueMember = "Id";
 
+            cmb_Mahaiak.SelectedIndexChanged += Cmb_Mahaiak_SelectedIndexChanged;
+
+            cmb_Mahaiak.Format += (s, ev) =>
+            {
+                if (ev.ListItem is MahaiaDto mahaia)
+                {
+                    ev.Value = $"{mahaia.Zenbakia} (Max: {mahaia.PertsonaKopurua} perts.)";
+                }
+            };
+
+            if (cmb_Mahaiak.SelectedItem != null)
+            {
+                Cmb_Mahaiak_SelectedIndexChanged(null, null);
+            }
+            
             headerControl_ErreserbakSortu.Izena = "TXAPELA";
             headerControl_ErreserbakSortu.Titulo = "ERRESERBA SORTU";
             headerControl_ErreserbakSortu.Erabiltzailea = SesioZerbitzua.Izena;
@@ -115,6 +130,18 @@ namespace TeknoBideTPV.UI
             }
 
             cmb_Ordua.SelectedIndex = 0;
+        }
+
+        private void Cmb_Mahaiak_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_Mahaiak.SelectedItem is MahaiaDto mahaia)
+            {
+                nud_PertsonaKopurua.Maximum = mahaia.PertsonaKopurua;
+                if (nud_PertsonaKopurua.Value > mahaia.PertsonaKopurua)
+                {
+                    nud_PertsonaKopurua.Value = mahaia.PertsonaKopurua;
+                }
+            }
         }
 
         private void btn_Atzera_Click(object sender, EventArgs e)
