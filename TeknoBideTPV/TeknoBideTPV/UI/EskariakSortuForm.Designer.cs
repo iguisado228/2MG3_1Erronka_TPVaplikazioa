@@ -1,4 +1,4 @@
-﻿namespace TeknoBideTPV.UI
+namespace TeknoBideTPV.UI
 {
     partial class EskariakSortuForm
     {
@@ -33,7 +33,7 @@
             lbl_PrezioTotala = new Label();
             txt_PrezioTotala = new TextBox();
             cbo_Erreserba = new ComboBox();
-            label1 = new Label();
+            lbl_AukeratutakoErreserba = new Label();
             btn_SortuEskaria = new Button();
             pnl_ProduktuMotak = new Panel();
             flp_ProduktuMotak = new FlowLayoutPanel();
@@ -52,17 +52,17 @@
             // dgv_EskariaProduktua
             // 
             dgv_EskariaProduktua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_EskariaProduktua.Location = new Point(1132, 214);
+            dgv_EskariaProduktua.Location = new Point(1132, 190);
             dgv_EskariaProduktua.Name = "dgv_EskariaProduktua";
             dgv_EskariaProduktua.RowHeadersWidth = 51;
-            dgv_EskariaProduktua.Size = new Size(651, 568);
+            dgv_EskariaProduktua.Size = new Size(720, 580);
             dgv_EskariaProduktua.TabIndex = 2;
             // 
             // lbl_PrezioTotala
             // 
             lbl_PrezioTotala.AutoSize = true;
             lbl_PrezioTotala.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_PrezioTotala.Location = new Point(1288, 794);
+            lbl_PrezioTotala.Location = new Point(1250, 800);
             lbl_PrezioTotala.Name = "lbl_PrezioTotala";
             lbl_PrezioTotala.Size = new Size(148, 31);
             lbl_PrezioTotala.TabIndex = 3;
@@ -71,7 +71,7 @@
             // txt_PrezioTotala
             // 
             txt_PrezioTotala.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_PrezioTotala.Location = new Point(1442, 791);
+            txt_PrezioTotala.Location = new Point(1480, 797);
             txt_PrezioTotala.Name = "txt_PrezioTotala";
             txt_PrezioTotala.Size = new Size(125, 38);
             txt_PrezioTotala.TabIndex = 4;
@@ -80,25 +80,25 @@
             // 
             cbo_Erreserba.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbo_Erreserba.FormattingEnabled = true;
-            cbo_Erreserba.Location = new Point(1447, 144);
+            cbo_Erreserba.Location = new Point(1480, 144);
             cbo_Erreserba.Name = "cbo_Erreserba";
             cbo_Erreserba.Size = new Size(219, 39);
             cbo_Erreserba.TabIndex = 5;
             // 
-            // label1
+            // lbl_AukeratutakoErreserba
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(1184, 144);
-            label1.Name = "label1";
-            label1.Size = new Size(257, 31);
-            label1.TabIndex = 6;
-            label1.Text = "Aukeratutako Erreserba:";
+            lbl_AukeratutakoErreserba.AutoSize = true;
+            lbl_AukeratutakoErreserba.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_AukeratutakoErreserba.Location = new Point(1184, 144);
+            lbl_AukeratutakoErreserba.Name = "lbl_AukeratutakoErreserba";
+            lbl_AukeratutakoErreserba.Size = new Size(257, 31);
+            lbl_AukeratutakoErreserba.TabIndex = 6;
+            lbl_AukeratutakoErreserba.Text = "Aukeratutako Erreserba:";
             // 
             // btn_SortuEskaria
             // 
             btn_SortuEskaria.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_SortuEskaria.Location = new Point(1334, 835);
+            btn_SortuEskaria.Location = new Point(1334, 850);
             btn_SortuEskaria.Name = "btn_SortuEskaria";
             btn_SortuEskaria.Size = new Size(216, 68);
             btn_SortuEskaria.TabIndex = 8;
@@ -124,10 +124,11 @@
             // 
             // headerControl_EskariakSortu
             // 
-            headerControl_EskariakSortu.BackColor = Color.FromArgb(210, 210, 210);
+            headerControl_EskariakSortu.BackColor = Color.FromArgb(255, 140, 0);
             headerControl_EskariakSortu.DataOrdua = "Data - Ordua";
             headerControl_EskariakSortu.Dock = DockStyle.Top;
             headerControl_EskariakSortu.Erabiltzailea = "Erabiltzailea";
+            headerControl_EskariakSortu.ForeColor = Color.White;
             headerControl_EskariakSortu.Izena = "TXAPELA";
             headerControl_EskariakSortu.Location = new Point(0, 0);
             headerControl_EskariakSortu.Name = "headerControl_EskariakSortu";
@@ -138,12 +139,14 @@
             // footerControl_EskariakSortu
             // 
             footerControl_EskariakSortu.AtzeraTestua = "Atzera";
-            footerControl_EskariakSortu.BackColor = Color.Silver;
+            footerControl_EskariakSortu.BackColor = Color.FromArgb(245, 124, 0);
             footerControl_EskariakSortu.Dock = DockStyle.Bottom;
+            footerControl_EskariakSortu.ForeColor = Color.FromArgb(62, 39, 35);
             footerControl_EskariakSortu.Location = new Point(0, 933);
             footerControl_EskariakSortu.Name = "footerControl_EskariakSortu";
             footerControl_EskariakSortu.Size = new Size(1902, 100);
             footerControl_EskariakSortu.TabIndex = 14;
+            footerControl_EskariakSortu.TxataTestua = "Txata";
             // 
             // EskariakSortuForm
             // 
@@ -155,7 +158,7 @@
             Controls.Add(flp_ProduktuMotak);
             Controls.Add(pnl_ProduktuMotak);
             Controls.Add(btn_SortuEskaria);
-            Controls.Add(label1);
+            Controls.Add(lbl_AukeratutakoErreserba);
             Controls.Add(cbo_Erreserba);
             Controls.Add(txt_PrezioTotala);
             Controls.Add(lbl_PrezioTotala);
@@ -176,7 +179,7 @@
         private Label lbl_PrezioTotala;
         private TextBox txt_PrezioTotala;
         private ComboBox cbo_Erreserba;
-        private Label label1;
+        private Label lbl_AukeratutakoErreserba;
         private Button btn_SortuEskaria;
         private Panel pnl_ProduktuMotak;
         private FlowLayoutPanel flp_ProduktuMotak;

@@ -28,7 +28,7 @@ namespace TeknoBideTPV.UI
         public EskariakSortuForm(Form AurrekoPantaila)
         {
             InitializeComponent();
-            TPVEstiloa.PantailarenEskalatuaHasi(this);
+            TPVEstiloaFinkoa.Prestatu(this);
 
             //minimizatu maximizatu eta itxi botoiak ezkutatu
             this.ControlBox = false;
@@ -92,11 +92,9 @@ namespace TeknoBideTPV.UI
                 headerControl_EskariakSortu.Titulo = "ESKARIA EDITATU";
                 btn_SortuEskaria.Text = "GORDE";
                 
-                // Erreserba aukeratu eta blokeatu
                 cbo_Erreserba.SelectedValue = _eskariaEditatzeko.ErreserbaId;
                 cbo_Erreserba.Enabled = false;
 
-                // Produktuak kargatu
                 produktuakEskarian = _eskariaEditatzeko.Produktuak.Select(p => new EskariaProduktuaSortuDto
                 {
                     ProduktuaId = p.ProduktuaId,
@@ -123,7 +121,51 @@ namespace TeknoBideTPV.UI
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            TPVEstiloa.EskalatuaAplikatu(this);
+            TPVEstiloaFinkoa.Aplikatu(this);
+            DistribuzioaAjustatu();
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            DistribuzioaAjustatu();
+        }
+
+        private void DistribuzioaAjustatu()
+        {
+            if (cbo_Erreserba.Left < lbl_AukeratutakoErreserba.Right + 20)
+            {
+                cbo_Erreserba.Left = lbl_AukeratutakoErreserba.Right + 20;
+            }
+
+            int availableComboWidth = this.ClientSize.Width - cbo_Erreserba.Left - 50;
+            int desiredComboWidth = Math.Max(cbo_Erreserba.Width, Math.Min(availableComboWidth, 400));
+            cbo_Erreserba.Width = desiredComboWidth;
+            cbo_Erreserba.DropDownWidth = Math.Max(cbo_Erreserba.DropDownWidth, desiredComboWidth + 100);
+
+            int rightMargin = 50;
+            int newWidth = this.ClientSize.Width - dgv_EskariaProduktua.Left - rightMargin;
+            if (newWidth > dgv_EskariaProduktua.Width)
+            {
+                dgv_EskariaProduktua.Width = newWidth;
+            }
+
+            int bottomLimit = (footerControl_EskariakSortu != null) ? footerControl_EskariakSortu.Top : (this.ClientSize.Height - 100);
+            
+            btn_SortuEskaria.Top = bottomLimit - btn_SortuEskaria.Height - 30;
+            btn_SortuEskaria.Left = this.ClientSize.Width - btn_SortuEskaria.Width - rightMargin;
+
+            txt_PrezioTotala.Top = btn_SortuEskaria.Top - txt_PrezioTotala.Height - 20;
+            lbl_PrezioTotala.Top = txt_PrezioTotala.Top; 
+
+            txt_PrezioTotala.Left = btn_SortuEskaria.Right - txt_PrezioTotala.Width;
+            lbl_PrezioTotala.Left = txt_PrezioTotala.Left - lbl_PrezioTotala.Width - 20;
+
+            int availableHeight = txt_PrezioTotala.Top - dgv_EskariaProduktua.Top - 20;
+            if (availableHeight > dgv_EskariaProduktua.Height)
+            {
+                dgv_EskariaProduktua.Height = availableHeight;
+            }
         }
 
         private void EstilatuKontrolak()
@@ -133,7 +175,7 @@ namespace TeknoBideTPV.UI
             flp_ProduktuMotak.BackColor = TPVEstiloa.Koloreak.Background;
             pnl_ProduktuMotak.BackColor = TPVEstiloa.Koloreak.Background;
 
-            label1.ForeColor = TPVEstiloa.Koloreak.TextTitle;
+            lbl_AukeratutakoErreserba.ForeColor = TPVEstiloa.Koloreak.TextTitle;
             lbl_PrezioTotala.ForeColor = TPVEstiloa.Koloreak.TextTitle;
 
             btn_SortuEskaria.BackColor = TPVEstiloa.Koloreak.Primary;
@@ -172,6 +214,8 @@ namespace TeknoBideTPV.UI
                 if (btn != botoiAktiboa)
                     btn.BackColor = KoloreNormala;
             };
+
+            TPVEstiloaFinkoa.EguneratuKontrola(btn, this);
 
             return btn;
         }
@@ -253,6 +297,7 @@ namespace TeknoBideTPV.UI
 
                 btn.Click += ProduktuaGehitu_Click;
                 flp_Produktuak.Controls.Add(btn);
+                TPVEstiloaFinkoa.EguneratuKontrola(btn, this);
             }
             EguneratuBotoiak();
         }

@@ -9,7 +9,7 @@ namespace TeknoBideTPV.UI.Styles
     {
         public static class Koloreak
         {
-            public static Color Primary = Color.FromArgb(255, 140, 0); // Naranja corporativo
+            public static Color Primary = Color.FromArgb(255, 140, 0); 
             public static Color Secondary = Color.FromArgb(255, 200, 100);
             public static Color Background = Color.FromArgb(253, 245, 230);
             public static Color TextTitle = Color.FromArgb(50, 50, 50);
@@ -22,8 +22,9 @@ namespace TeknoBideTPV.UI.Styles
             public float FontSize;
             public int RowHeight;
             public int ColumnHeadersHeight;
-            public Dictionary<string, int> ColumnWidths = new(); // Key: Column Name
+            public Dictionary<string, int> ColumnWidths = new(); 
             public Padding Padding;
+            public Padding Margin;
         }
 
         private static readonly Dictionary<Form, Dictionary<Control, KontrolInfo>> originalak = new();
@@ -65,7 +66,8 @@ namespace TeknoBideTPV.UI.Styles
             {
                 Bounds = c.Bounds,
                 FontSize = c.Font.Size,
-                Padding = c.Padding
+                Padding = c.Padding,
+                Margin = c.Margin
             };
 
             if (c is DataGridView dgv)
@@ -131,6 +133,13 @@ namespace TeknoBideTPV.UI.Styles
                     (int)(info.Padding.Top * scaleY),
                     (int)(info.Padding.Right * scaleX),
                     (int)(info.Padding.Bottom * scaleY)
+                );
+
+                c.Margin = new Padding(
+                    (int)(info.Margin.Left * scaleX),
+                    (int)(info.Margin.Top * scaleY),
+                    (int)(info.Margin.Right * scaleX),
+                    (int)(info.Margin.Bottom * scaleY)
                 );
             }
             catch { }

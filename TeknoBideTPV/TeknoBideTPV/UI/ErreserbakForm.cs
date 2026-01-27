@@ -49,6 +49,52 @@ namespace TeknoBideTPV.UI
             }
 
             TPVEstiloaFinkoa.Aplikatu(this);
+            DistribuzioaAjustatu();
+        }
+
+        private void DistribuzioaAjustatu()
+        {
+            int magina = 20;
+
+
+            if (txt_Bilatu.Left < lbl_Bilatu.Right + magina)
+            {
+                txt_Bilatu.Left = lbl_Bilatu.Right + magina;
+            }
+
+            if (lbl_Eguna.Left < txt_Bilatu.Right + magina)
+            {
+                lbl_Eguna.Left = txt_Bilatu.Right + magina;
+            }
+
+            if (dtp_Eguna.Left < lbl_Eguna.Right + magina)
+            {
+                dtp_Eguna.Left = lbl_Eguna.Right + magina;
+            }
+
+            if (btn_Bilatu.Left < dtp_Eguna.Right + magina)
+            {
+                btn_Bilatu.Left = dtp_Eguna.Right + magina;
+            }
+
+             if (btn_Garbitu.Left < btn_Bilatu.Right + magina)
+            {
+                btn_Garbitu.Left = btn_Bilatu.Right + magina;
+            }
+
+            btn_Garbitu.AutoSize = false;
+            int requiredWidth = TextRenderer.MeasureText(btn_Garbitu.Text, btn_Garbitu.Font).Width + 30;
+            int availableWidth = pnl_Filtroak.ClientSize.Width - btn_Garbitu.Left - magina;
+            if (availableWidth > 0)
+            {
+                btn_Garbitu.Width = Math.Min(requiredWidth, availableWidth);
+            }
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            DistribuzioaAjustatu();
         }
 
         private async void ErreserbakForm_Load(object sender, EventArgs e)
