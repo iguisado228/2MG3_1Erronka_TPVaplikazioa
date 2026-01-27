@@ -152,8 +152,18 @@ namespace TeknoBideTPV.UI
         {
             txt_BezeroIzena.Text = _erreserba.BezeroIzena;
             txt_Telefonoa.Text = _erreserba.Telefonoa;
-            nud_PertsonaKopurua.Value = _erreserba.PertsonaKopurua;
             dtp_Eguna.Value = _erreserba.EgunaOrdua.Date;
+
+            if (_erreserba.MahaiakId > 0)
+            {
+                cmb_Mahaiak.SelectedValue = _erreserba.MahaiakId;
+            }
+            
+            if (_erreserba.PertsonaKopurua > nud_PertsonaKopurua.Maximum)
+            {
+                nud_PertsonaKopurua.Maximum = _erreserba.PertsonaKopurua;
+            }
+            nud_PertsonaKopurua.Value = _erreserba.PertsonaKopurua;
 
             string timeStr = _erreserba.EgunaOrdua.ToString("HH:mm");
             if (cmb_Ordua.Items.Contains(timeStr))
@@ -164,8 +174,6 @@ namespace TeknoBideTPV.UI
             {
                 cmb_Ordua.Text = timeStr;
             }
-
-            cmb_Mahaiak.SelectedValue = _erreserba.MahaiakId;
         }
 
         private async void btn_Gorde_Click(object sender, EventArgs e)
