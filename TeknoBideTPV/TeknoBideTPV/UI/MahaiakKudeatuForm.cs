@@ -38,6 +38,80 @@ namespace TeknoBideTPV.UI
         {
             base.OnShown(e);
             TPVEstiloa.EskalatuaAplikatu(this);
+            DistribuzioaAjustatu();
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            DistribuzioaAjustatu();
+        }
+
+        private void DistribuzioaAjustatu()
+        {
+            int margina = 30; 
+            btn_Garbitu.Top = 20;
+            btn_Garbitu.Left = pnl_Ezaugarriak.Width - btn_Garbitu.Width - 20;
+            btn_Garbitu.Height = Math.Max(btn_Garbitu.Height, 42);
+
+            int maxLabelRight = 0;
+            if (lbl_Izena.Right > maxLabelRight) maxLabelRight = lbl_Izena.Right;
+            if (lbl_PertsonaKopurua.Right > maxLabelRight) maxLabelRight = lbl_PertsonaKopurua.Right;
+            if (lbl_Kokapena.Right > maxLabelRight) maxLabelRight = lbl_Kokapena.Right;
+
+            int inputLeft = maxLabelRight + 20;
+            
+            int availableWidth = pnl_Ezaugarriak.Width - inputLeft - 20;
+
+            int newWidth = Math.Max(300, availableWidth); 
+
+            if (inputLeft + newWidth > pnl_Ezaugarriak.Width - 20)
+                newWidth = pnl_Ezaugarriak.Width - inputLeft - 20;
+
+            txt_Zenbakia.Width = newWidth;
+            nud_PertsonaKopurua.Width = newWidth;
+            cmb_Kokapena.Width = newWidth;
+
+            txt_Zenbakia.Left = inputLeft;
+            nud_PertsonaKopurua.Left = inputLeft;
+            cmb_Kokapena.Left = inputLeft;
+
+            int startY = Math.Max(lbl_Izenburua.Bottom, btn_Garbitu.Bottom) + 40;
+
+            AlignRow(lbl_Izena, txt_Zenbakia, startY);
+            startY += Math.Max(lbl_Izena.Height, txt_Zenbakia.Height) + margina;
+
+            AlignRow(lbl_PertsonaKopurua, nud_PertsonaKopurua, startY);
+            startY += Math.Max(lbl_PertsonaKopurua.Height, nud_PertsonaKopurua.Height) + margina;
+
+            AlignRow(lbl_Kokapena, cmb_Kokapena, startY);
+            startY += Math.Max(lbl_Kokapena.Height, cmb_Kokapena.Height) + margina;
+
+            int groupLeft = Math.Min(lbl_Izena.Left, Math.Min(lbl_PertsonaKopurua.Left, lbl_Kokapena.Left));
+            int groupRight = inputLeft + newWidth;
+            int groupWidth = Math.Max(100, groupRight - groupLeft);
+            int gap = 20;
+            int halfWidth = Math.Max(80, (groupWidth - gap) / 2);
+
+            btn_Gorde.Top = startY + 10;
+            btn_Ezabatu.Top = startY + 10;
+            btn_Gorde.Left = groupLeft;
+            btn_Gorde.Width = halfWidth;
+            btn_Ezabatu.Left = btn_Gorde.Right + 20;
+            btn_Ezabatu.Width = halfWidth;
+
+            btn_MahaiBerria.Top = btn_Gorde.Bottom + 20;
+            btn_MahaiBerria.Left = groupLeft;
+            btn_MahaiBerria.Width = groupWidth;
+        }
+
+        private void AlignRow(Control label, Control input, int topY)
+        {
+            int maxHeight = Math.Max(label.Height, input.Height);
+            int centerY = topY + (maxHeight / 2);
+
+            label.Top = centerY - (label.Height / 2);
+            input.Top = centerY - (input.Height / 2);
         }
 
         private async void MahaiakKudeatuForm_Load(object sender, EventArgs e)
@@ -65,14 +139,12 @@ namespace TeknoBideTPV.UI
             pnl_Edukia.BackColor = TPVEstiloa.Koloreak.Background;
             pnl_Ezaugarriak.BackColor = TPVEstiloa.Koloreak.Background;
 
-            // Labels
             Label[] labels = { lbl_Izena, lbl_Izenburua, lbl_PertsonaKopurua, lbl_Kokapena };
             foreach (var lbl in labels)
             {
                 lbl.ForeColor = TPVEstiloa.Koloreak.TextTitle;
             }
 
-            // Buttons
             btn_Gorde.BackColor = TPVEstiloa.Koloreak.Primary;
             btn_Gorde.ForeColor = TPVEstiloa.Koloreak.White;
             btn_Gorde.FlatStyle = FlatStyle.Flat;
@@ -165,7 +237,6 @@ namespace TeknoBideTPV.UI
             {
                 var g = e.Graphics;
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                // g.FillRectangle(new SolidBrush(Color.White), panel.ClientRectangle); // Not needed if BackColor is set
             };
 
             var lblZenbakia = new Label

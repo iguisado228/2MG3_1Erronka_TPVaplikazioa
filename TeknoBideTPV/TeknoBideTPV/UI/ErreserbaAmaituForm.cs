@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -27,9 +27,10 @@ namespace TeknoBideTPV.UI
             TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             dgv_Eskariak.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Eskariak.RowTemplate.Height = 50;
-            dgv_Eskariak.Font = new Font("Segoe UI", 14);
-            dgv_Eskariak.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            dgv_Eskariak.RowTemplate.Height = 80;
+            dgv_Eskariak.Font = new Font("Segoe UI", 24);
+            dgv_Eskariak.DefaultCellStyle.Font = new Font("Segoe UI", 24);
+            dgv_Eskariak.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 18, FontStyle.Bold);
             dgv_Eskariak.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Eskariak.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Eskariak.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -93,6 +94,31 @@ namespace TeknoBideTPV.UI
         {
             base.OnShown(e);
             TPVEstiloa.EskalatuaAplikatu(this);
+            ZabaleraAjustatu();
+            
+            dgv_Eskariak.DefaultCellStyle.Font = new Font("Segoe UI", 35);
+            dgv_Eskariak.RowTemplate.Height = 90; 
+            foreach (DataGridViewRow row in dgv_Eskariak.Rows)
+            {
+                row.Height = 90;
+            }
+        }
+        
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            ZabaleraAjustatu();
+        }
+        
+        private void ZabaleraAjustatu()
+        {
+            int margen = 20;
+            lbl_Guztira.AutoSize = false;
+            int available = pnl_Ordainketa.ClientSize.Width - lbl_Guztira.Left - margen;
+            if (available > 0)
+            {
+                lbl_Guztira.Width = available;
+            }
         }
 
         private void EstilatuKontrolak()
