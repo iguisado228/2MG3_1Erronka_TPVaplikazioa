@@ -19,12 +19,18 @@ namespace TeknoBideTPV.Txata
         {
             InitializeComponent();
             this.erabiltzaileIzena = erabiltzaileIzena;
+
+            // Activar redimensionado por porcentajes
+            this.Resize += TxatPantaila_Resize;
         }
 
         public TxatPantaila()
         {
             InitializeComponent();
             this.Load += TxatPantaila_Load;
+
+            // Activar redimensionado por porcentajes
+            this.Resize += TxatPantaila_Resize;
         }
 
         private void TxatPantaila_Load(object sender, EventArgs e)
@@ -83,7 +89,6 @@ namespace TeknoBideTPV.Txata
             else
             {
                 GehituRTFBorde(msg, NireMezua);
-
             }
         }
 
@@ -104,18 +109,29 @@ namespace TeknoBideTPV.Txata
             MezuPantaila.AppendText("\n");
         }
 
-
-
         private void BidaliBotoia_Click(object sender, EventArgs e)
         {
-           
             string mezua = MezuIdazlea.Text.Trim();
             if (mezua == "") return;
-            
 
             idazlea.WriteLine(SesioZerbitzua.Izena + ":  " + mezua);
             MezuIdazlea.Text = "";
         }
 
+
+        private void TxatPantaila_Resize(object sender, EventArgs e)
+        {
+            int w = this.Width;
+            int h = this.Height;
+
+            MezuPantaila.Location = new Point((int)(w * 0.02), (int)(h * 0.02));
+            MezuPantaila.Size = new Size((int)(w * 0.96), (int)(h * 0.80));
+
+            MezuIdazlea.Location = new Point((int)(w * 0.02), (int)(h * 0.84));
+            MezuIdazlea.Size = new Size((int)(w * 0.75), (int)(h * 0.12));
+
+            BidaliBotoia.Location = new Point((int)(w * 0.79), (int)(h * 0.84));
+            BidaliBotoia.Size = new Size((int)(w * 0.19), (int)(h * 0.12));
+        }
     }
 }
