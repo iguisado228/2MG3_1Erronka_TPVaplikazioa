@@ -52,10 +52,11 @@
             // 
             // headerControl_ErreserbaAmaitu
             // 
-            headerControl_ErreserbaAmaitu.BackColor = Color.FromArgb(210, 210, 210);
+            headerControl_ErreserbaAmaitu.BackColor = Color.FromArgb(255, 140, 0);
             headerControl_ErreserbaAmaitu.DataOrdua = "Data - Ordua";
             headerControl_ErreserbaAmaitu.Dock = DockStyle.Top;
             headerControl_ErreserbaAmaitu.Erabiltzailea = "Erabiltzailea";
+            headerControl_ErreserbaAmaitu.ForeColor = Color.White;
             headerControl_ErreserbaAmaitu.Izena = "TXAPELA";
             headerControl_ErreserbaAmaitu.Location = new Point(0, 0);
             headerControl_ErreserbaAmaitu.Name = "headerControl_ErreserbaAmaitu";
@@ -66,8 +67,9 @@
             // footerControl_ErreserbaAmaitu
             // 
             footerControl_ErreserbaAmaitu.AtzeraTestua = "Atzera";
-            footerControl_ErreserbaAmaitu.BackColor = Color.Silver;
+            footerControl_ErreserbaAmaitu.BackColor = Color.FromArgb(245, 124, 0);
             footerControl_ErreserbaAmaitu.Dock = DockStyle.Bottom;
+            footerControl_ErreserbaAmaitu.ForeColor = Color.FromArgb(62, 39, 35);
             footerControl_ErreserbaAmaitu.Location = new Point(0, 933);
             footerControl_ErreserbaAmaitu.Name = "footerControl_ErreserbaAmaitu";
             footerControl_ErreserbaAmaitu.Size = new Size(1902, 100);
@@ -216,10 +218,10 @@
             // lbl_Guztira
             // 
             lbl_Guztira.AutoSize = true;
-            lbl_Guztira.Font = new Font("Segoe UI", 40.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_Guztira.Location = new Point(0, 160);
+            lbl_Guztira.Font = new Font("Segoe UI", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Guztira.Location = new Point(3, 160);
             lbl_Guztira.Name = "lbl_Guztira";
-            lbl_Guztira.Size = new Size(212, 89);
+            lbl_Guztira.Size = new Size(148, 62);
             lbl_Guztira.TabIndex = 1;
             lbl_Guztira.Text = "0,00€";
             lbl_Guztira.TextAlign = ContentAlignment.MiddleRight;
