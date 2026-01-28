@@ -96,7 +96,9 @@ namespace TeknoBideTPV.Txata
         {
             string alineacion = NireMezua ? @"\qr" : @"\ql";
 
-            Color fondo = NireMezua ? Color.LightGreen : Color.LightGray;
+            Color fondo = NireMezua
+                ? ColorTranslator.FromHtml("#E65100")
+                : ColorTranslator.FromHtml("#F57C00");
 
             string rtf = @"{\rtf1\ansi
 {\pard" + alineacion + @" 
@@ -132,6 +134,11 @@ namespace TeknoBideTPV.Txata
 
             BidaliBotoia.Location = new Point((int)(w * 0.79), (int)(h * 0.84));
             BidaliBotoia.Size = new Size((int)(w * 0.19), (int)(h * 0.12));
+        }
+
+        private void TxatPantaila_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

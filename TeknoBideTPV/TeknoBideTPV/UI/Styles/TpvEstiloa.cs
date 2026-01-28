@@ -91,15 +91,15 @@ public static class TPVEstiloa
 
     public static class Koloreak
     {
-        public static readonly Color Background = ColorTranslator.FromHtml("#FFF3E0"); 
-        public static readonly Color Primary = ColorTranslator.FromHtml("#F57C00");
-        public static readonly Color PrimaryDark = ColorTranslator.FromHtml("#E65100");
-        public static readonly Color Secondary = ColorTranslator.FromHtml("#FFCCBC");
-        public static readonly Color Error = ColorTranslator.FromHtml("#D32F2F"); 
-        public static readonly Color Text = ColorTranslator.FromHtml("#E65100"); 
-        public static readonly Color TextTitle = ColorTranslator.FromHtml("#3E2723"); 
+        public static readonly Color Background = ColorTranslator.FromHtml("#FFF3E0");      //Laranja oso argia
+        public static readonly Color Primary = ColorTranslator.FromHtml("#F57C00");         //Laranja argia
+        public static readonly Color PrimaryDark = ColorTranslator.FromHtml("#E65100");     //Laranja iluna
+        public static readonly Color Secondary = ColorTranslator.FromHtml("#FFCCBC");       //Laranja argia
+        public static readonly Color Error = ColorTranslator.FromHtml("#D32F2F");           //Gorria
+        public static readonly Color Text = ColorTranslator.FromHtml("#E65100");            //Laranja iluna
+        public static readonly Color TextTitle = ColorTranslator.FromHtml("#3E2723");       //Marroia
         public static readonly Color TextNormal = Color.Black; 
         public static readonly Color White = Color.White;
-        public static readonly Color Baieztatu = ColorTranslator.FromHtml("#43A047"); 
+        public static readonly Color Baieztatu = ColorTranslator.FromHtml("#43A047");       //Berdea
     }
 }
