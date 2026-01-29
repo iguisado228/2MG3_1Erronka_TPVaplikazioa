@@ -50,15 +50,28 @@ namespace TeknoBideTPV.UI
         private void DistribuzioaAjustatu()
         {
             int margina = 30; 
-            btn_Garbitu.Top = 20;
+            
+            
             btn_Garbitu.Left = pnl_Ezaugarriak.Width - btn_Garbitu.Width - 20;
             btn_Garbitu.Height = Math.Max(btn_Garbitu.Height, 42);
+
+            if (lbl_Izenburua.Right + 20 > btn_Garbitu.Left)
+            {
+                 btn_Garbitu.Top = lbl_Izenburua.Bottom + 10;
+                 btn_Garbitu.Left = pnl_Ezaugarriak.Width - btn_Garbitu.Width - 20;
+            }
+            else
+            {
+                 btn_Garbitu.Top = 20;
+            }
+            
+            int startY = Math.Max(lbl_Izenburua.Bottom, btn_Garbitu.Bottom) + 40;
 
             int maxLabelRight = 0;
             if (lbl_Izena.Right > maxLabelRight) maxLabelRight = lbl_Izena.Right;
             if (lbl_PertsonaKopurua.Right > maxLabelRight) maxLabelRight = lbl_PertsonaKopurua.Right;
             if (lbl_Kokapena.Right > maxLabelRight) maxLabelRight = lbl_Kokapena.Right;
-
+            
             int inputLeft = maxLabelRight + 20;
             
             int availableWidth = pnl_Ezaugarriak.Width - inputLeft - 20;
@@ -75,8 +88,6 @@ namespace TeknoBideTPV.UI
             txt_Zenbakia.Left = inputLeft;
             nud_PertsonaKopurua.Left = inputLeft;
             cmb_Kokapena.Left = inputLeft;
-
-            int startY = Math.Max(lbl_Izenburua.Bottom, btn_Garbitu.Bottom) + 40;
 
             AlignRow(lbl_Izena, txt_Zenbakia, startY);
             startY += Math.Max(lbl_Izena.Height, txt_Zenbakia.Height) + margina;
