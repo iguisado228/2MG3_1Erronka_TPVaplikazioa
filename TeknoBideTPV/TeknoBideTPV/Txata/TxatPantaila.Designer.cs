@@ -15,7 +15,7 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de componentes
+        #region 
 
         private void InitializeComponent()
         {
@@ -23,9 +23,7 @@
             MezuIdazlea = new TextBox();
             MezuPantaila = new RichTextBox();
             SuspendLayout();
-            // 
-            // BidaliBotoia
-            // 
+
             BidaliBotoia.BackColor = Color.FromArgb(255, 243, 224);
             BidaliBotoia.Location = new Point(470, 539);
             BidaliBotoia.Name = "BidaliBotoia";
