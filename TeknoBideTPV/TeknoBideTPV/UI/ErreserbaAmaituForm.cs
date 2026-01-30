@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -27,9 +27,10 @@ namespace TeknoBideTPV.UI
             TPVEstiloa.PantailarenEskalatuaHasi(this);
 
             dgv_Eskariak.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv_Eskariak.RowTemplate.Height = 50;
-            dgv_Eskariak.Font = new Font("Segoe UI", 14);
-            dgv_Eskariak.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            dgv_Eskariak.RowTemplate.Height = 60;
+            dgv_Eskariak.Font = new Font("Segoe UI", 22);
+            dgv_Eskariak.DefaultCellStyle.Font = new Font("Segoe UI", 22);
+            dgv_Eskariak.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 18, FontStyle.Bold);
             dgv_Eskariak.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Eskariak.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv_Eskariak.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -93,6 +94,182 @@ namespace TeknoBideTPV.UI
         {
             base.OnShown(e);
             TPVEstiloa.EskalatuaAplikatu(this);
+            ZabaleraAjustatu();
+            
+            dgv_Eskariak.DefaultCellStyle.Font = new Font("Segoe UI", 22);
+            dgv_Eskariak.RowTemplate.Height = 60; 
+            foreach (DataGridViewRow row in dgv_Eskariak.Rows)
+            {
+                row.Height = 60;
+            }
+        }
+        
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            ZabaleraAjustatu();
+        }
+        
+        private void ZabaleraAjustatu()
+        {
+            int gap = 40;
+            int margin = 40;
+
+            // Calcular espacio vertical disponible entre Header y Footer
+            int topPos = margin;
+            int bottomLimit = this.ClientSize.Height - margin;
+
+            // Intentar obtener límites de header y footer si existen
+            if (headerControl_ErreserbaAmaitu != null)
+                topPos = headerControl_ErreserbaAmaitu.Bottom + 10; // Pequeño margen extra
+            
+            if (footerControl_ErreserbaAmaitu != null)
+                bottomLimit = footerControl_ErreserbaAmaitu.Top - 10;
+
+            int availableHeight = bottomLimit - topPos;
+            if (availableHeight < 0) availableHeight = 0;
+
+            int totalAvailableWidth = this.ClientSize.Width - (2 * margin) - gap;
+
+            if (totalAvailableWidth > 0)
+            {
+                // Aumentamos el panel de pago al 50%
+                int eskariakWidth = (int)(totalAvailableWidth * 0.50);
+                int ordainketaWidth = totalAvailableWidth - eskariakWidth;
+
+                pnl_Eskariak.Left = margin;
+                pnl_Eskariak.Top = topPos;
+                pnl_Eskariak.Width = eskariakWidth;
+                pnl_Eskariak.Height = availableHeight;
+                
+                dgv_Eskariak.Width = pnl_Eskariak.Width;
+                dgv_Eskariak.Height = pnl_Eskariak.Height;
+
+                pnl_Ordainketa.Left = pnl_Eskariak.Right + gap;
+                pnl_Ordainketa.Top = topPos;
+                pnl_Ordainketa.Width = ordainketaWidth;
+                pnl_Ordainketa.Height = availableHeight; 
+
+                // Ajustar controles dentro de pnl_Ordainketa
+                AjustarKontrolakOrdainketa(ordainketaWidth, pnl_Ordainketa.Height);
+            }
+
+            // Ajustar label Guztira (existente)
+            int margenLbl = 20;
+            lbl_Guztira.AutoSize = false;
+            int availableLbl = pnl_Ordainketa.ClientSize.Width - lbl_Guztira.Left - margenLbl;
+            if (availableLbl > 0)
+            {
+                lbl_Guztira.Width = availableLbl;
+            }
+        }
+
+        private void AjustarKontrolakOrdainketa(int panelWidth, int panelHeight)
+        {
+            int innerMargin = 8;
+            int fullWidth = panelWidth - (2 * innerMargin);
+
+            // Reducir alturas para asegurar que caben en 700px y permitir mayor separación
+            int btnHeight = 70;      
+            int btnPayHeight = 80;   
+            int lblTotalHeight = 60; 
+            int txtHeight = 50;      
+            
+            if (btn_Eskudirua != null) btn_Eskudirua.Height = btnHeight;
+            if (btn_Txartela != null) btn_Txartela.Height = btnHeight;
+            if (btn_Ordaindu != null) btn_Ordaindu.Height = btnPayHeight;
+            if (lbl_Guztira != null) lbl_Guztira.Height = lblTotalHeight;
+            if (lbl_Itzulia != null) lbl_Itzulia.Height = lblTotalHeight; // Usamos la misma altura que Guztira para consistencia
+            if (txt_JasoDenDirua != null) txt_JasoDenDirua.Height = txtHeight;
+            if (cmb_Erreserbak != null) cmb_Erreserbak.Height = 45; // Mantener altura combo
+
+            if (cmb_Erreserbak != null) cmb_Erreserbak.Width = fullWidth;
+
+            if (btn_Eskudirua != null && btn_Txartela != null)
+            {
+                int buttonGap = 20;
+                int halfWidth = (fullWidth - buttonGap) / 2;
+                btn_Eskudirua.Width = halfWidth;
+                btn_Txartela.Width = halfWidth;
+                btn_Txartela.Left = btn_Eskudirua.Right + buttonGap;
+            }
+
+            if (txt_JasoDenDirua != null)
+                txt_JasoDenDirua.Width = (int)(fullWidth * 0.5);
+
+            if (btn_Ordaindu != null)
+            {
+                int ordainduWidth = (int)(fullWidth * 0.6);
+                btn_Ordaindu.Width = ordainduWidth;
+                btn_Ordaindu.Left = innerMargin + ((fullWidth - ordainduWidth) / 2);
+            }
+
+            // Distribución Vertical
+            // Definimos grupos de controles y su altura aproximada
+            // Grupo 1: Seleccion
+            int h1 = lbl_ErreserbaAukeratu.Height + cmb_Erreserbak.Height;
+            // Grupo 2: Total
+            int h2 = lbl_GuztiraIzenburua.Height + lbl_Guztira.Height;
+            // Grupo 3: Metodo
+            int h3 = lbl_OrdainketaMetodoa.Height + btn_Eskudirua.Height;
+            // Grupo 4: Recibido
+            int h4 = lbl_JasoDenDirua.Height + txt_JasoDenDirua.Height;
+            // Grupo 5: Vuelta
+            int h5 = lbl_ItzuliIzenburua.Height + lbl_Itzulia.Height;
+            // Grupo 6: Boton Pagar
+            int h6 = btn_Ordaindu.Height;
+
+            int totalContentHeight = h1 + h2 + h3 + h4 + h5 + h6;
+            int availableSpace = panelHeight - totalContentHeight;
+            
+            // Distribuimos el espacio disponible entre los huecos (7 huecos: antes del 1, entre grupos, despues del 6)
+            int gapCount = 5; 
+            // Permitir que el gap sea pequeño si hace falta, pero intentar mantener al menos 4px
+            int gapSize = 6;
+            
+            if (availableSpace > 0)
+            {
+                gapSize = availableSpace / (gapCount + 2);
+                // Limitar el gap máximo para que no queden muy separados si sobra mucho espacio
+                if (gapSize > 20) gapSize = 20; 
+                if (gapSize < 4) gapSize = 4;
+            }
+            else
+            {
+                // Si no hay espacio, usar un gap mínimo y permitir desbordamiento o scroll (si lo hubiera)
+                gapSize = 2;
+            }
+
+            int currentY = gapSize;
+
+            // Grupo 1
+            lbl_ErreserbaAukeratu.Top = currentY;
+            cmb_Erreserbak.Top = lbl_ErreserbaAukeratu.Bottom; 
+            currentY = cmb_Erreserbak.Bottom + gapSize;
+
+            // Grupo 2
+            lbl_GuztiraIzenburua.Top = currentY;
+            lbl_Guztira.Top = lbl_GuztiraIzenburua.Bottom;
+            currentY = lbl_Guztira.Bottom + gapSize;
+
+            // Grupo 3
+            lbl_OrdainketaMetodoa.Top = currentY;
+            btn_Eskudirua.Top = lbl_OrdainketaMetodoa.Bottom;
+            btn_Txartela.Top = btn_Eskudirua.Top;
+            currentY = btn_Eskudirua.Bottom + gapSize;
+
+            // Grupo 4
+            lbl_JasoDenDirua.Top = currentY;
+            txt_JasoDenDirua.Top = lbl_JasoDenDirua.Bottom;
+            currentY = txt_JasoDenDirua.Bottom + gapSize;
+
+            // Grupo 5
+            lbl_ItzuliIzenburua.Top = currentY;
+            lbl_Itzulia.Top = lbl_ItzuliIzenburua.Bottom;
+            currentY = lbl_Itzulia.Bottom + gapSize;
+
+            // Grupo 6
+            btn_Ordaindu.Top = currentY;
         }
 
         private void EstilatuKontrolak()

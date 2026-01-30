@@ -44,6 +44,7 @@ namespace TeknoBideTPV.UI
             // 
             // flp_Produktuak
             // 
+            flp_Produktuak.AutoScroll = true;
             flp_Produktuak.Location = new Point(34, 246);
             flp_Produktuak.Name = "flp_Produktuak";
             flp_Produktuak.Size = new Size(1005, 679);
