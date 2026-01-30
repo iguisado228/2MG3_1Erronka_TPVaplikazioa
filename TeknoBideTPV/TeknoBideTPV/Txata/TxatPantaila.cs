@@ -20,7 +20,6 @@ namespace TeknoBideTPV.Txata
             InitializeComponent();
             this.erabiltzaileIzena = erabiltzaileIzena;
 
-            // Activar redimensionado por porcentajes
             this.Resize += TxatPantaila_Resize;
         }
 
@@ -29,7 +28,6 @@ namespace TeknoBideTPV.Txata
             InitializeComponent();
             this.Load += TxatPantaila_Load;
 
-            // Activar redimensionado por porcentajes
             this.Resize += TxatPantaila_Resize;
         }
 
@@ -137,6 +135,11 @@ namespace TeknoBideTPV.Txata
         }
 
         private void TxatPantaila_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MezuPantaila_TextChanged(object sender, EventArgs e)
         {
 
         }

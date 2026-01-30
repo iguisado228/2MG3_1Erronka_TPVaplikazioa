@@ -2,15 +2,10 @@
 {
     partial class TxatPantaila
     {
-        /// <summary> 
-        /// Variable del diseñador necesaria.
-        /// </summary>
+
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Limpiar los recursos que se estén usando.
-        /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -39,18 +34,15 @@
             BidaliBotoia.Text = "Bidali";
             BidaliBotoia.UseVisualStyleBackColor = false;
             BidaliBotoia.Click += BidaliBotoia_Click;
-            // 
-            // MezuIdazlea
-            // 
+
             MezuIdazlea.BackColor = Color.FromArgb(255, 243, 224);
             MezuIdazlea.Location = new Point(16, 539);
             MezuIdazlea.Multiline = true;
             MezuIdazlea.Name = "MezuIdazlea";
             MezuIdazlea.Size = new Size(445, 50);
             MezuIdazlea.TabIndex = 1;
-            // 
-            // MezuPantaila
-            // 
+           
+
             MezuPantaila.BackColor = Color.FromArgb(255, 243, 224);
             MezuPantaila.ForeColor = Color.Black;
             MezuPantaila.Location = new Point(16, 16);
@@ -58,9 +50,8 @@
             MezuPantaila.Size = new Size(565, 505);
             MezuPantaila.TabIndex = 2;
             MezuPantaila.Text = "";
-            // 
-            // TxatPantaila
-            // 
+            MezuPantaila.TextChanged += MezuPantaila_TextChanged;
+           
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 204, 188);
